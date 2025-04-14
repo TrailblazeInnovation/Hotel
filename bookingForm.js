@@ -949,7 +949,7 @@
                     // // Update single duration input
                     // exactDaysInput.max = totalDays;
                     // exactDaysInput.value = Math.min(totalDays, parseInt(exactDaysInput.value) || 1);
-                    // maxDaysNote.textContent = `You can choose max ${totalDays} days`;
+                    // maxDaysNote.textContent = `${maxDays}`;
 
                     // Update range inputs
                     fromDayInput.max = totalDays;
