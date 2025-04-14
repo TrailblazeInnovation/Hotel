@@ -2,7 +2,7 @@
         name: 'Forms',
         type: 'response',
         match: ({ trace }) =>
-            trace?.type === 'Custom_Form' || (trace.payload && trace.payload?.name === 'Custom_Form'),
+            trace?.type === 'Book_Form' || (trace.payload && trace.payload?.name === 'Book_Form'),
         render: ({ trace, element }) => {
             const link = document.createElement('link');
             link.href = 'https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300;400;500;600;700&display=swap';
