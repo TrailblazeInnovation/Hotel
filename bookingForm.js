@@ -507,7 +507,7 @@
             <li>
                 <input type="checkbox" id="myCheckbox1" />
                 <label for="myCheckbox1">
-                    <img src="./ac1.png" />
+                    <img src="https://i.postimg.cc/15VVqdtX/Screenshot-2025-01-12-212108.png" />
                     <br/>
                     <p style="text-align: left;">
                         <b>Standard Room</b><br/>
@@ -526,7 +526,7 @@
             <li>
                 <input type="checkbox" id="myCheckbox2" />
                 <label for="myCheckbox2">
-                    <img src="./ac2.png" />
+                    <img src="https://i.postimg.cc/fRx3H0Yh/Screenshot-2025-01-12-212321.png" />
                     <br/>
                     <p style="text-align: left;">
                         <b>Classic Room</b><br/>
@@ -543,7 +543,7 @@
             <li>
                 <input type="checkbox" id="myCheckbox3" />
                 <label for="myCheckbox3">
-                    <img src="./ac3.png" />
+                    <img src="https://i.postimg.cc/LXsn6CwH/Screenshot-2025-01-12-213453.png" />
                     <br/>
                     <p style="text-align: left;">
                         <b>Comfort Room</b><br/>
@@ -560,7 +560,7 @@
             <li>
                 <input type="checkbox" id="myCheckbox4" />
                 <label for="myCheckbox4">
-                    <img src="./ac4.png" />
+                    <img src="https://i.postimg.cc/6q2qC7Bg/Screenshot-2025-01-12-214111.png" />
                     <br/>
                     <p style="text-align: left;">
                         <b>Plus Room</b><br/>
