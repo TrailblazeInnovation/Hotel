@@ -14,7 +14,7 @@
             let currentStep = 1;
             let selectedStartDate = null;
             let selectedEndDate = null;
-            const { titleChooseYourStay, undertitleChooseYourStay, noDatesSelected, undertitleChooseYourStay2, selectDuration, exactlyAsSpecified, threeDays, fourDays, fiveDays, sixDays, sevenDays, tenDays, enterExactDates, from, until, titlePickAccommodation, undertitlePickAccommodation, accommodationDescription1, accommodationDescription2, accommodationDescription3, accommodationDescription4, titleWhoTraveling, undertitleWhoTraveling, adults14Plus, children, specialRequests, specialRequestsTxt, titleContactInformation, undertitleContactInformationBooking, firstName, lastName, email, phoneNumber, next, back, titleReview, undertitleReviewBooking, reviewStayDates, reviewTravelDates, reviewDurationOFStay, reviewAccommodation, reviewTypes, reviewTravelers, edit, submit, firstAndLastname, thankSubmission, formSubmitted, formTeam } = trace.payload;
+            const { titleChooseYourStay, undertitleChooseYourStay, noDatesSelected, undertitleChooseYourStay2, selectDuration, exactlyAsSpecified, threeDays, fourDays, fiveDays, sixDays, sevenDays, tenDays, enterExactDates, from, until, titlePickAccommodation, undertitlePickAccommodation, accommodationDescription1, accommodationDescription2, accommodationDescription3, accommodationDescription4, titleWhoTraveling, undertitleWhoTraveling, adults14Plus, children, specialRequests, specialRequestsTxt, titleContactInformation, undertitleContactInformationBooking, firstName, lastName, email, phoneNumber, next, back, titleReview, undertitleReviewBooking, reviewStayDates, reviewTravelDates, reviewDurationOFStay, reviewAccommodation, reviewTypes, reviewTravelers, reviewAdults, edit, submit, firstAndLastname, thankSubmission, formSubmitted, formTeam } = trace.payload;
 
             formContainer.innerHTML = `
             <style>
@@ -460,32 +460,32 @@
                 <!-- Quick duration buttons -->
                 <div style="margin-bottom: 20px;">
                     <input type="radio" id="ButtonSelection" name="durationType" checked value="single" style="width: auto!important">
-                    <lable for="ButtonSelection"><p style="margin-bottom: 10px; font-weight: 500; display: contents;">Select a duration:</p></label>
+                    <lable for="ButtonSelection"><p style="margin-bottom: 10px; font-weight: 500; display: contents;">${selectDuration}:</p></label>
                     <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-                        <button type="button" class="duration-btn BtnSimp" data-days="exact">Exactly as specified</button>
-                        <button type="button" class="duration-btn BtnSimp" data-days="3">3 days</button>
-                        <button type="button" class="duration-btn BtnSimp" data-days="4">4 days</button>
-                        <button type="button" class="duration-btn BtnSimp" data-days="5">5 days</button>
-                        <button type="button" class="duration-btn BtnSimp" data-days="6">6 days</button>
-                        <button type="button" class="duration-btn BtnSimp" data-days="7">7 days</button>
+                        <button type="button" class="duration-btn BtnSimp" data-days="exact">${exactlyAsSpecified}</button>
+                        <button type="button" class="duration-btn BtnSimp" data-days="3">${threeDays}</button>
+                        <button type="button" class="duration-btn BtnSimp" data-days="4">${fourDays}</button>
+                        <button type="button" class="duration-btn BtnSimp" data-days="5">${fiveDays}</button>
+                        <button type="button" class="duration-btn BtnSimp" data-days="6">${sixDays}</button>
+                        <button type="button" class="duration-btn BtnSimp" data-days="7">${sevenDays}</button>
                         <button type="button" class="duration-btn BtnSimp" data-days="8">8 days</button>
                         <button type="button" class="duration-btn BtnSimp" data-days="9">9 days</button>
-                        <button type="button" class="duration-btn BtnSimp" data-days="10">10 days</button>
+                        <button type="button" class="duration-btn BtnSimp" data-days="10">${tenDays}</button>
                     </div>
                 </div>
     
                 <!-- Manual duration selection -->
                 <div>
                     <input type="radio" id="rangeDuration" name="durationType" value="range" style="width: auto!important">
-                    <p style="margin-bottom: 10px; font-weight: 500; display: contents;">Enter the exact travel duration in days:</p>
+                    <p style="margin-bottom: 10px; font-weight: 500; display: contents;">${enterExactDates}:</p>
                     <div style="margin-bottom: 15px; display: flex; gap: 10px; align-items: center;">
                         <div style="display: flex; gap: 10px; margin-top: 10px; align-items: center;">
                             <div class="input-wrapper">
-                                <label for="fromDay" style="display: block; margin-bottom: 5px; font-size: 12px;">From</label>
+                                <label for="fromDay" style="display: block; margin-bottom: 5px; font-size: 12px;">${from}</label>
                                 <input type="number" id="fromDay" name="fromDay" min="2" value="2" style="width: 80px; padding: 8px;">
                             </div>
                             <div class="input-wrapper">
-                                <label for="tillDay" style="display: block; margin-bottom: 5px; font-size: 12px;">Till</label>
+                                <label for="tillDay" style="display: block; margin-bottom: 5px; font-size: 12px;">${until}</label>
                                 <input type="number" id="tillDay" name="tillDay" min="1" value="1" style="width: 80px; padding: 8px;">
                             </div>
                             <span id="maxRangeNote" style="margin-left: 10px; color: #666; font-size: 12px;"></span>
@@ -500,8 +500,8 @@
             </div>
          <div class="step step-3" style="display: none;">
     <style> .vfrc-message--extension-Forms{width: 100%!important;}</style>
-    <h2 style="margin: 0!important;">Pick Your Accommodation</h2>
-    <p style="margin: 7px 0px!important;">You can select one or more accommodation types. If you're booking for multiple people, simply add more as needed</p><br/>
+    <h2 style="margin: 0!important;">${titlePickAccommodation}</h2>
+    <p style="margin: 7px 0px!important;">${undertitlePickAccommodation}</p><br/>
     <div>
         <ul>
             <li>
@@ -577,67 +577,67 @@
         </ul>
     </div>
     <div style="display: flex; justify-content: space-between; gap: 30px; margin-top: 17px;">
-        <button type="button" class="prev">Back</button>
-        <button type="button" class="next">Next</button>
+        <button type="button" class="prev">${back}</button>
+        <button type="button" class="next">${next}</button>
     </div>
 </div>
           <div class="step step-4" style="display: none;">
-              <h2 style="margin: 0!important;">Who Will Be Traveling?</h2>
-              <p style="margin: 7px 0px!important;">Enter the number of adults and children, and let us know if you have any special requests</p><br/>
+              <h2 style="margin: 0!important;">${titleWhoTraveling}</h2>
+              <p style="margin: 7px 0px!important;">${undertitleWhoTraveling}</p><br/>
                 <div style="display: flex; gap: 30px; justify-content: space-between;">
                     <div style="width: 45%;">
-                        <label for="adults" style="text-align: left!important;">Adults (14+)*</label>
+                        <label for="adults" style="text-align: left!important;">${adults14Plus}*</label>
                         <input type="number" id="adults" name="adults" min="1" value="1" required/>
                     </div>
                     <div style="width: 45%;">
-                        <label for="children" style="text-align: left!important;">Children</label>
+                        <label for="children" style="text-align: left!important;">${children}</label>
                         <input type="number" id="children" name="children" min="0" value="0"/>
                     </div>
                 </div>
                 <div>
-                    <label for="special-requests" style="text-align: left!important;">Special Requests (e.g., dietary needs, accessibility, pets)</label>
-                    <textarea id="special-requests" name="special-requests" rows="4" placeholder="Please let us know if you have any special requests"></textarea>
+                    <label for="special-requests" style="text-align: left!important;">${specialRequests}</label>
+                    <textarea id="special-requests" name="special-requests" rows="4" placeholder="${specialRequestsTxt}"></textarea>
                 </div>
               <div style="display: flex; justify-content: space-between; gap: 30px; margin-top: 17px;">
-               <button type="button" class="prev">Back</button>
-                <button type="button" class="next">Next</button>
+               <button type="button" class="prev">${back}</button>
+                <button type="button" class="next">${next}</button>
             </div>
           </div>
 
 
           <div class="step step-5" style="display: none;">
-              <h2 style="margin: 0!important;">Contact Information</h2>
-              <p style="margin: 7px 0px!important;">Please provide your details so we can complete your booking</p><br/>
+              <h2 style="margin: 0!important;">${titleContactInformation}</h2>
+              <p style="margin: 7px 0px!important;">${undertitleContactInformationBooking}</p><br/>
                 <div style="display: flex; gap: 30px; justify-content: space-between;">
                     <div style="width: 45%;">
-                        <label for="First" style="text-align: left!important;">First Name*</label>
+                        <label for="First" style="text-align: left!important;">${firstName}*</label>
                         <input type="text" id="First" name="First" class="FirstName fieldinput" required/>
                     </div>
                     <div style="width: 45%;">
-                        <label for="LastName" style="text-align: left!important;">Last Name*</label>
+                        <label for="LastName" style="text-align: left!important;">${lastName}*</label>
                         <input type="text" id="LastName" name="LastName" class="LastName fieldinput" required/>
                     </div>
                 </div>
                 <div>
-                    <label for="Email" style="text-align: left!important;">Email*</label>
+                    <label for="Email" style="text-align: left!important;">${email}*</label>
                     <input type="email" id="Email" name="Email" class="Email fieldinput" required/>
                 </div>
                 <div>
-                    <label for="Phone" style="text-align: left!important;">Phone Number</label>
+                    <label for="Phone" style="text-align: left!important;">${phoneNumber}</label>
                     <input type="text" id="Phone" name="Phone" class="Phone fieldinput"/>
                 </div>
               <div style="display: flex; justify-content: space-between; gap: 30px; margin-top: 17px;">
-                <button type="button" class="prev">Back</button>
-                <button type="button" class="next">Next</button>
+                <button type="button" class="prev">${back}</button>
+                <button type="button" class="next">${next}</button>
             </div>
           </div>
                     <div class="step step-6" style="display: none;">
-              <h2 style="margin: 0!important;">Review and Submit</h2>
-              <p style="margin: 7px 0px!important;">Please review your booking information before submitting</p><br/>
+              <h2 style="margin: 0!important;">${titleReview}</h2>
+              <p style="margin: 7px 0px!important;">${undertitleReviewBooking}</p><br/>
                 <div id="review-info"></div>
               <div style="display: flex; justify-content: space-between; gap: 30px; margin-top: 17px;">
-                <button type="button" class="prev">Back</button>
-                <button type="submit" class="next">Submit</button>
+                <button type="button" class="prev">${edit}</button>
+                <button type="submit" class="next">${submit}</button>
             </div>
           </div>
       </div>
@@ -1075,34 +1075,34 @@
                 reviewInfo.innerHTML = `
          <div style="background: #F5F5F7; padding: 10px; border-radius: 5px; margin-top: 20px;">
             <div>
-                <h2 style="margin: 0!important;">Stay Dates</h2>
+                <h2 style="margin: 0!important;">${reviewStayDates}</h2>
             </div>
             <div>
-                <p style="font-family: 'Host Grotesk', serif;">Travel Dates: <br/> <span style="color: gray;">${dateRangeStr}</span></p>
+                <p style="font-family: 'Host Grotesk', serif;">${reviewTravelDates}<br/> <span style="color: gray;">${dateRangeStr}</span></p>
             </div>
             <div>
-                <p style="font-family: 'Host Grotesk', serif;">Duration of Stay: <br/> <span style="color: gray;">${durationText}</span></p>
+                <p style="font-family: 'Host Grotesk', serif;">${reviewDurationOFStay}<br/> <span style="color: gray;">${durationText}</span></p>
             </div>
         </div>
 
         <div style="background: #F5F5F7; padding: 10px; border-radius: 5px; margin-top: 20px;">
           <div>
-              <h2 style="margin: 0!important;">Accommodation</h2>
+              <h2 style="margin: 0!important;">${reviewAccommodation}</h2>
           </div>
           <div>
-              <p style="font-family: 'Host Grotesk', serif;">Type(s): <br/> <span style="color: gray;">${accommodationTypes.length > 0 ? accommodationTypes.join('<br/>') : 'None selected'}</span></p>
+              <p style="font-family: 'Host Grotesk', serif;">${reviewTypes}<br/> <span style="color: gray;">${accommodationTypes.length > 0 ? accommodationTypes.join('<br/>') : 'None selected'}</span></p>
           </div>
         </div>
 
         <div style="background: #F5F5F7; padding: 10px; border-radius: 5px; margin-top: 20px;">
           <div>
-              <h2 style="margin: 0!important;">Travelers</h2>
+              <h2 style="margin: 0!important;">${reviewTravelers}</h2>
           </div>
           <div>
               <p style="font-family: 'Host Grotesk', serif;">Adults: <br/> <span style="color: gray;">${formContainer.querySelector("#adults")?.value || ''}</span></p>
           </div>
           <div>
-              <p style="font-family: 'Host Grotesk', serif;">Children: <br/> <span style="color: gray;">${formContainer.querySelector("#children")?.value || ''}</span></p>
+              <p style="font-family: 'Host Grotesk', serif;">${children}<br/> <span style="color: gray;">${formContainer.querySelector("#children")?.value || ''}</span></p>
           </div>
           <div>
               <p style="font-family: 'Host Grotesk', serif;">Special Requests: <br/> <span style="color: gray;">${formContainer.querySelector("#special-requests")?.value || 'None'}</span></p>
