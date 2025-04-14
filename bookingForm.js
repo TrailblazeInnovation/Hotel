@@ -814,7 +814,7 @@
                     }
 
                     // Update display
-                    updateDateRangeDisplay();
+                    updateDateRangeDisplay(selected);
                     // Re-render calendar to show new selections
                     renderCalendar(currentMonth, currentYear);
                 }
