@@ -949,13 +949,13 @@
                     // // Update single duration input
                     // exactDaysInput.max = totalDays;
                     // exactDaysInput.value = Math.min(totalDays, parseInt(exactDaysInput.value) || 1);
-                    // maxDaysNote.textContent = `${maxDays}`;
+                    // maxDaysNote.textContent = `maxDays.replace('{days}', totalDays)`;
 
                     // Update range inputs
                     fromDayInput.max = totalDays;
                     tillDayInput.max = totalDays;
                     tillDayInput.value = totalDays;
-                    maxRangeNote.textContent = `${maxDays}`;
+                    maxRangeNote.textContent = `maxDays.replace('{days}', totalDays)`;
 
                     // Handle radio button changes
                     // singleDurationRadio.addEventListener("change", function () {
