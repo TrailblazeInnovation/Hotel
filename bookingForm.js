@@ -14,7 +14,7 @@
             let currentStep = 1;
             let selectedStartDate = null;
             let selectedEndDate = null;
-            const { titleChooseYourStay, undertitleChooseYourStay, noDatesSelected, undertitleChooseYourStay2, selectDuration, exactlyAsSpecified, threeDays, fourDays, fiveDays, sixDays, sevenDays, tenDays, enterExactDates, from, until, titlePickAccommodation, undertitlePickAccommodation, accommodationDescription1, accommodationDescription2, accommodationDescription3, accommodationDescription4, titleWhoTraveling, undertitleWhoTraveling, adults14Plus, children, specialRequests, specialRequestsTxt, titleContactInformation, undertitleContactInformationBooking, firstName, lastName, email, phoneNumber, next, back, titleReview, undertitleReviewBooking, reviewStayDates, reviewTravelDates, reviewDurationOFStay, reviewAccommodation, reviewTypes, reviewTravelers, reviewAdults, edit, submit, firstAndLastname, thankSubmission, formSubmitted, formTeam } = trace.payload;
+            const { titleChooseYourStay, undertitleChooseYourStay, noDatesSelected, undertitleChooseYourStay2, selectDuration, exactlyAsSpecified, threeDays, fourDays, fiveDays, sixDays, sevenDays, tenDays, enterExactDates, from, until, titlePickAccommodation, undertitlePickAccommodation, accommodationDescription1, accommodationDescription2, accommodationDescription3, accommodationDescription4, titleWhoTraveling, undertitleWhoTraveling, adults14Plus, children, specialRequests, specialRequestsTxt, titleContactInformation, undertitleContactInformationBooking, firstName, lastName, email, phoneNumber, next, back, titleReview, undertitleReviewBooking, reviewStayDates, reviewTravelDates, reviewDurationOFStay, reviewAccommodation, reviewTypes, reviewTravelers, reviewAdults, reviewSpecialRequests, edit, submit, firstAndLastname, thankSubmission, formSubmitted, formTeam } = trace.payload;
 
             formContainer.innerHTML = `
             <style>
@@ -1099,28 +1099,28 @@
               <h2 style="margin: 0!important;">${reviewTravelers}</h2>
           </div>
           <div>
-              <p style="font-family: 'Host Grotesk', serif;">Adults: <br/> <span style="color: gray;">${formContainer.querySelector("#adults")?.value || ''}</span></p>
+              <p style="font-family: 'Host Grotesk', serif;">${reviewAdults}<br/> <span style="color: gray;">${formContainer.querySelector("#adults")?.value || ''}</span></p>
           </div>
           <div>
               <p style="font-family: 'Host Grotesk', serif;">${children}<br/> <span style="color: gray;">${formContainer.querySelector("#children")?.value || ''}</span></p>
           </div>
           <div>
-              <p style="font-family: 'Host Grotesk', serif;">Special Requests: <br/> <span style="color: gray;">${formContainer.querySelector("#special-requests")?.value || 'None'}</span></p>
+              <p style="font-family: 'Host Grotesk', serif;">${reviewSpecialRequests}<br/> <span style="color: gray;">${formContainer.querySelector("#special-requests")?.value || 'None'}</span></p>
           </div>
         </div>
 
          <div style="background: #F5F5F7; padding: 10px; border-radius: 5px; margin-top: 20px;">
           <div>
-              <h2 style="margin: 0!important;">Contact Information</h2>
+              <h2 style="margin: 0!important;">${titleContactInformation}</h2>
           </div>
           <div>
-              <p style="font-family: 'Host Grotesk', serif;">First and Last Name: <br/> <span style="color: gray;">${firstName} ${lastName}</span></p>
+              <p style="font-family: 'Host Grotesk', serif;">${firstAndLastname}<br/> <span style="color: gray;">${firstName} ${lastName}</span></p>
           </div>
           <div>
-              <p style="font-family: 'Host Grotesk', serif;">Email: <br/> <span style="color: gray;">${email}</span></p>
+              <p style="font-family: 'Host Grotesk', serif;">${email}<br/> <span style="color: gray;">${email}</span></p>
           </div>
           <div>
-              <p style="font-family: 'Host Grotesk', serif;">Phone Number: <br/> <span style="color: gray;">${phone}</span></p>
+              <p style="font-family: 'Host Grotesk', serif;">${phoneNumber}<br/> <span style="color: gray;">${phone}</span></p>
           </div>
         </div>
     `;
@@ -1168,8 +1168,8 @@
                             <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/>
                           </svg>
                         </div>
-                        <h3>Thank you for your submission!</h3>
-                        <p>Your form has been successfully submitted.<br/> Our team will get back to you shortly.</p>
+                        <h3>${thankSubmission}</h3>
+                        <p>${formSubmitted}<br/>${formTeam}</p>
                       </div>
 
                     </div>
