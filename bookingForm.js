@@ -14,7 +14,7 @@
             let currentStep = 1;
             let selectedStartDate = null;
             let selectedEndDate = null;
-            const { titleChooseYourStay, undertitleChooseYourStay, undertitleChooseYourStay2, selectDuration, exactlyAsSpecified, threeDays, fourDays, fiveDays, sixDays, sevenDays, tenDays, enterExactDates, from, until, titlePickAccommodation, undertitlePickAccommodation, accommodationDescription1, accommodationDescription2, accommodationDescription3, accommodationDescription4, titleWhoTraveling, undertitleWhoTraveling, adults14Plus, children, specialRequests, specialRequestsTxt, titleContactInformation, undertitleContactInformationBooking, firstName, lastName, email, phoneNumber, next, back, titleReview, undertitleReviewBooking, reviewStayDates, reviewTravelDates, reviewDurationOFStay, reviewAccommodation, reviewTypes, reviewTravelers, edit, submit, firstAndLastname, thankSubmission, formSubmitted, formTeam } = trace.payload;
+            const { titleChooseYourStay, undertitleChooseYourStay, noDatesSelected, undertitleChooseYourStay2, selectDuration, exactlyAsSpecified, threeDays, fourDays, fiveDays, sixDays, sevenDays, tenDays, enterExactDates, from, until, titlePickAccommodation, undertitlePickAccommodation, accommodationDescription1, accommodationDescription2, accommodationDescription3, accommodationDescription4, titleWhoTraveling, undertitleWhoTraveling, adults14Plus, children, specialRequests, specialRequestsTxt, titleContactInformation, undertitleContactInformationBooking, firstName, lastName, email, phoneNumber, next, back, titleReview, undertitleReviewBooking, reviewStayDates, reviewTravelDates, reviewDurationOFStay, reviewAccommodation, reviewTypes, reviewTravelers, edit, submit, firstAndLastname, thankSubmission, formSubmitted, formTeam } = trace.payload;
 
             formContainer.innerHTML = `
             <style>
@@ -435,24 +435,24 @@
         </div>
       <div class="step-content">
           <div class="step step-1">             
-              <h2 style="margin: 0!important;">Choose Your Stay Dates</h2>
-              <p style="margin: 7px 0px!important;">Select your check-in and check-out dates        </p><br/>
+              <h2 style="margin: 0!important;">${titleChooseYourStay}</h2>
+              <p style="margin: 7px 0px!important;">${undertitleChooseYourStay}</p><br/>
               <div id="firstSte">
                   <div class="custom-calendar" id="customCalendar"></div>
                   <div class="date-range-display" id="dateRangeDisplay">
-                      <span>No dates selected</span>
+                      <span>${noDatesSelected}</span>
                   </div>
               </div>
                <div id="secondSte" style="display: none;">
-                  Choose how long you want to stay within the selected period
+                  ${undertitleChooseYourStay2}
               </div>    
                <div style="display: flex; justify-content: right; gap: 30px; margin-top: 17px;">
-                    <button type="button" class="next">Next</button>
+                    <button type="button" class="next">${next}</button>
                 </div>
           </div>
           <div class="step step-2" style="display: none;">             
-            <h2 style="margin: 0!important;">Choose Your Stay Dates</h2>
-              <p style="margin: 7px 0px!important;">Select how long you want to stay within the selected period  </p><br/>
+            <h2 style="margin: 0!important;">${titleChooseYourStay}</h2>
+              <p style="margin: 7px 0px!important;">${undertitleChooseYourStay2}</p><br/>
         
                 <!-- Display selected date range -->
                 <div id="selectedDateRange" style="margin-bottom: 20px; font-weight: 900; color: #000; font-size: 19px;"></div>
