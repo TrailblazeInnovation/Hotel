@@ -468,8 +468,8 @@
                         <button type="button" class="duration-btn BtnSimp" data-days="5">${fiveDays}</button>
                         <button type="button" class="duration-btn BtnSimp" data-days="6">${sixDays}</button>
                         <button type="button" class="duration-btn BtnSimp" data-days="7">${sevenDays}</button>
-                        <button type="button" class="duration-btn BtnSimp" data-days="8">8 days</button>
-                        <button type="button" class="duration-btn BtnSimp" data-days="9">9 days</button>
+                        <button type="button" class="duration-btn BtnSimp" data-days="8">${eightDays}</button>
+                        <button type="button" class="duration-btn BtnSimp" data-days="9">${nineDays}</button>
                         <button type="button" class="duration-btn BtnSimp" data-days="10">${tenDays}</button>
                     </div>
                 </div>
