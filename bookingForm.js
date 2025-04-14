@@ -444,7 +444,7 @@
                   </div>
               </div>
                <div id="secondSte" style="display: none;">
-                  ${undertitleChooseYourStay2}
+                  Choose how long you want to stay within the selected period
               </div>    
                <div style="display: flex; justify-content: right; gap: 30px; margin-top: 17px;">
                     <button type="button" class="next">${next}</button>
