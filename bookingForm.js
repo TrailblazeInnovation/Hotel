@@ -930,7 +930,7 @@
                     // Update date range display
                     const startStr = selectedStartDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
                     const endStr = selectedEndDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-                    dateRangeDisplay.textContent = `${startStr} to ${endStr}`;
+                    dateRangeDisplay.textContent = `${startStr} - ${endStr}`;
 
                     // Update duration buttons
                     durationBtns.forEach(btn => {
