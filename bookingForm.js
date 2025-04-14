@@ -937,7 +937,7 @@
                         const days = btn.dataset.days;
 
                         if (days === "exact") {
-                            btn.textContent = `Exactly as specified`;
+                            btn.textContent = `${exactlyAsSpecified}`;
                             btn.dataset.days = totalDays;
                         } else {
                             const daysNum = parseInt(days);
