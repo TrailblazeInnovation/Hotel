@@ -149,7 +149,7 @@
           .next, .prev{
               background: transparent;
               border: 1px solid gray; 
-              width: 100px; 
+              width: 150px; 
               color: black; 
               padding: 10px 25px; 
               border-radius: 20px;
