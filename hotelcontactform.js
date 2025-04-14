@@ -59,6 +59,7 @@
             width: 100%;
             padding: 10px;
             margin: 10px 0;
+            margin-top: 0px;
             border-radius: 10px;
             border: 1px solid #ccc;
             outline: none;
