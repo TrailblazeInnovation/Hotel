@@ -14,6 +14,8 @@
             let currentStep = 1;
             let selectedStartDate = null;
             let selectedEndDate = null;
+            const { titleChooseYourStay, undertitleChooseYourStay, noDatesSelected, undertitleChooseYourStay2, selectDuration, exactlyAsSpecified, threeDays, fourDays, fiveDays, sixDays, sevenDays, tenDays, enterExactDates, from, until, titlePickAccommodation, undertitlePickAccommodation, accommodationDescription1, accommodationDescription2, accommodationDescription3, accommodationDescription4, titleWhoTraveling, undertitleWhoTraveling, adults14Plus, children, specialRequests, specialRequestsTxt, titleContactInformation, undertitleContactInformationBooking, firstName, lastName, email, phoneNumber, next, back, titleReview, undertitleReviewBooking, reviewStayDates, reviewTravelDates, reviewDurationOFStay, reviewAccommodation, reviewTypes, reviewTravelers, reviewAdults, reviewSpecialRequests, edit, submit, firstAndLastname, thankSubmission, formSubmitted, formTeam } = trace.payload;
+
 
             formContainer.innerHTML = `
             <style>
