@@ -14,7 +14,7 @@
             let currentStep = 1;
             let selectedStartDate = null;
             let selectedEndDate = null;
-            const { titleChooseYourStay, undertitleChooseYourStay, noDatesSelected, selected, undertitleChooseYourStay2, selectDuration, exactlyAsSpecified, threeDays, fourDays, fiveDays, sixDays, sevenDays, eightDays, nineDays, tenDays, enterExactDates, from, until, youCanChoose, days, titlePickAccommodation, undertitlePickAccommodation, size1, people1, titleWhoTraveling, undertitleWhoTraveling, adults14Plus, children, specialRequests, specialRequestsTxt, titleContactInformation, undertitleContactInformationBooking, firstName, lastName, emailVF, phoneNumber, next, back, titleReview, undertitleReviewBooking, reviewStayDates, reviewTravelDates, reviewDurationOFStay, reviewAccommodation, reviewTypes, reviewTravelers, reviewAdults, reviewSpecialRequests, edit, submit, firstAndLastname, thankSubmission, formSubmitted, formTeam } = trace.payload;
+            const { titleChooseYourStay, undertitleChooseYourStay, noDatesSelected, selected, undertitleChooseYourStay2, selectDuration, exactlyAsSpecified, threeDays, fourDays, fiveDays, sixDays, sevenDays, eightDays, nineDays, tenDays, enterExactDates, from, until, youCanChoose, days, titlePickAccommodation, undertitlePickAccommodation, accommodationSize1, accommodationPeople1, accommodationSize2, accommodationPeople2, accommodationSize3, accommodationPeople3, accommodationSize4, accommodationPeople4, titleWhoTraveling, undertitleWhoTraveling, adults14Plus, children, specialRequests, specialRequestsTxt, titleContactInformation, undertitleContactInformationBooking, firstName, lastName, emailVF, phoneNumber, next, back, titleReview, undertitleReviewBooking, reviewStayDates, reviewTravelDates, reviewDurationOFStay, reviewAccommodation, reviewTypes, reviewTravelers, reviewAdults, reviewSpecialRequests, edit, submit, firstAndLastname, thankSubmission, formSubmitted, formTeam } = trace.payload;
 
             formContainer.innerHTML = `
             <style>
@@ -511,8 +511,8 @@
                     <br/>
                     <p style="text-align: left;">
                         <b>Standard Room</b><br/>
-                        Size: 20 sqm <br/>
-                        Ideal for: 1-2 people
+                        ${accommodationSize1} <br/>
+                        ${accommodationPeople1}
                     </p>
                 </label>
                 <div class="room-counter" style="display: none; margin-top: 5px;">
@@ -530,8 +530,8 @@
                     <br/>
                     <p style="text-align: left;">
                         <b>Classic Room</b><br/>
-                        Size: 25 sqm <br/>
-                        Ideal for: 1-2 people
+                        ${accommodationSize2} <br/>
+                        ${accommodationPeople2}
                     </p>
                 </label>
                 <div class="room-counter" style="display: none; margin-top: 5px;">
@@ -547,8 +547,8 @@
                     <br/>
                     <p style="text-align: left;">
                         <b>Comfort Room</b><br/>
-                        Size: 30 sqm <br/>
-                        Ideal for: Up to 3 people
+                        ${accommodationSize3} <br/>
+                        ${accommodationPeople3}
                     </p>
                 </label>
                 <div class="room-counter" style="display: none; margin-top: 5px;">
@@ -564,8 +564,8 @@
                     <br/>
                     <p style="text-align: left;">
                         <b>Plus Room</b><br/>
-                        Size: 35 sqm <br/>
-                        Ideal for: Up to 3 people
+                        ${accommodationSize4} <br/>
+                        ${accommodationPeople4}
                     </p>
                 </label>
                 <div class="room-counter" style="display: none; margin-top: 5px;">
