@@ -1,4 +1,4 @@
-      export const FormExtension = {
+    export const FormExtension = {
         name: 'Forms',
         type: 'response',
         match: ({ trace }) =>
@@ -9,13 +9,12 @@
             link.rel = 'stylesheet';
             document.head.appendChild(link);
           
-          const formContainer = document.createElement('form');
+            const formContainer = document.createElement('form');
             formContainer.classList.add('form-container');
             let currentStep = 1;
             let selectedStartDate = null;
             let selectedEndDate = null;
-            const { titleChooseYourStay, undertitleChooseYourStay, noDatesSelected, undertitleChooseYourStay2, selectDuration, exactlyAsSpecified, threeDays, fourDays, fiveDays, sixDays, sevenDays, tenDays, enterExactDates, from, until, titlePickAccommodation, undertitlePickAccommodation, accommodationDescription1, accommodationDescription2, accommodationDescription3, accommodationDescription4, titleWhoTraveling, undertitleWhoTraveling, adults14Plus, children, specialRequests, specialRequestsTxt, titleContactInformation, undertitleContactInformationBooking, firstName, lastName, email, phoneNumber, next, back, titleReview, undertitleReviewBooking, reviewStayDates, reviewTravelDates, reviewDurationOFStay, reviewAccommodation, reviewTypes, reviewTravelers, reviewAdults, reviewSpecialRequests, edit, submit, firstAndLastname, thankSubmission, formSubmitted, formTeam } = trace.payload;
-
+            const { titleChooseYourStay, undertitleChooseYourStay, noDatesSelected, selected, undertitleChooseYourStay2, selectDuration, exactlyAsSpecified, threeDays, fourDays, fiveDays, sixDays, sevenDays, eightDays, nineDays, tenDays, enterExactDates, from, until, youCanChoose, days, titlePickAccommodation, undertitlePickAccommodation, accommodationSize1, accommodationPeople1, accommodationSize2, accommodationPeople2, accommodationSize3, accommodationPeople3, accommodationSize4, accommodationPeople4, titleWhoTraveling, undertitleWhoTraveling, adults14Plus, children, specialRequests, specialRequestsTxt, titleContactInformation, undertitleContactInformationBooking, firstName, lastName, emailVF, phoneNumber, next, back, titleReview, undertitleReviewBooking, reviewStayDates, reviewTravelDates, reviewDurationOFStay, reviewAccommodation, reviewTypes, reviewTravelers, reviewAdults, reviewSpecialRequests, edit, submit, firstAndLastname, thankSubmission, formSubmitted, formTeam } = trace.payload;
 
             formContainer.innerHTML = `
             <style>
@@ -225,8 +224,8 @@
         }
 
         label img {
-        height: 110px;
-        width: 118px;
+        height: 150px;
+        width: 170px;
         transition-duration: 0.2s;
         transform-origin: 50% 50%;
         border-radius: 11px;
@@ -437,23 +436,23 @@
       <div class="step-content">
           <div class="step step-1">             
               <h2 style="margin: 0!important;">${titleChooseYourStay}</h2>
-              <p style="margin: 7px 0px!important;">Select your check-in and check-out dates        </p><br/>
+              <p style="margin: 7px 0px!important;">${undertitleChooseYourStay}</p><br/>
               <div id="firstSte">
                   <div class="custom-calendar" id="customCalendar"></div>
                   <div class="date-range-display" id="dateRangeDisplay">
-                      <span>No dates selected</span>
+                      <span>${noDatesSelected}</span>
                   </div>
               </div>
                <div id="secondSte" style="display: none;">
-                  Choose how long you want to stay within the selected period
+                  ${undertitleChooseYourStay2}
               </div>    
                <div style="display: flex; justify-content: right; gap: 30px; margin-top: 17px;">
-                    <button type="button" class="next">Next</button>
+                    <button type="button" class="next">${next}</button>
                 </div>
           </div>
           <div class="step step-2" style="display: none;">             
-            <h2 style="margin: 0!important;">Choose Your Stay Dates</h2>
-              <p style="margin: 7px 0px!important;">Select how long you want to stay within the selected period  </p><br/>
+            <h2 style="margin: 0!important;">${titleChooseYourStay}</h2>
+              <p style="margin: 7px 0px!important;">${undertitleChooseYourStay2}</p><br/>
         
                 <!-- Display selected date range -->
                 <div id="selectedDateRange" style="margin-bottom: 20px; font-weight: 900; color: #000; font-size: 19px;"></div>
@@ -461,32 +460,32 @@
                 <!-- Quick duration buttons -->
                 <div style="margin-bottom: 20px;">
                     <input type="radio" id="ButtonSelection" name="durationType" checked value="single" style="width: auto!important">
-                    <lable for="ButtonSelection"><p style="margin-bottom: 10px; font-weight: 500; display: contents;">Select a duration:</p></label>
+                    <lable for="ButtonSelection"><p style="margin-bottom: 10px; font-weight: 500; display: contents;">${selectDuration}:</p></label>
                     <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-                        <button type="button" class="duration-btn BtnSimp" data-days="exact">Exactly as specified</button>
-                        <button type="button" class="duration-btn BtnSimp" data-days="3">3 days</button>
-                        <button type="button" class="duration-btn BtnSimp" data-days="4">4 days</button>
-                        <button type="button" class="duration-btn BtnSimp" data-days="5">5 days</button>
-                        <button type="button" class="duration-btn BtnSimp" data-days="6">6 days</button>
-                        <button type="button" class="duration-btn BtnSimp" data-days="7">7 days</button>
-                        <button type="button" class="duration-btn BtnSimp" data-days="8">8 days</button>
-                        <button type="button" class="duration-btn BtnSimp" data-days="9">9 days</button>
-                        <button type="button" class="duration-btn BtnSimp" data-days="10">10 days</button>
+                        <button type="button" class="duration-btn BtnSimp" data-days="exact">${exactlyAsSpecified}</button>
+                        <button type="button" class="duration-btn BtnSimp" data-days="3">${threeDays}</button>
+                        <button type="button" class="duration-btn BtnSimp" data-days="4">${fourDays}</button>
+                        <button type="button" class="duration-btn BtnSimp" data-days="5">${fiveDays}</button>
+                        <button type="button" class="duration-btn BtnSimp" data-days="6">${sixDays}</button>
+                        <button type="button" class="duration-btn BtnSimp" data-days="7">${sevenDays}</button>
+                        <button type="button" class="duration-btn BtnSimp" data-days="8">${eightDays}</button>
+                        <button type="button" class="duration-btn BtnSimp" data-days="9">${nineDays}</button>
+                        <button type="button" class="duration-btn BtnSimp" data-days="10">${tenDays}</button>
                     </div>
                 </div>
     
                 <!-- Manual duration selection -->
                 <div>
                     <input type="radio" id="rangeDuration" name="durationType" value="range" style="width: auto!important">
-                    <p style="margin-bottom: 10px; font-weight: 500; display: contents;">Enter the exact travel duration in days:</p>
+                    <p style="margin-bottom: 10px; font-weight: 500; display: contents;">${enterExactDates}:</p>
                     <div style="margin-bottom: 15px; display: flex; gap: 10px; align-items: center;">
                         <div style="display: flex; gap: 10px; margin-top: 10px; align-items: center;">
                             <div class="input-wrapper">
-                                <label for="fromDay" style="display: block; margin-bottom: 5px; font-size: 12px;">From</label>
+                                <label for="fromDay" style="display: block; margin-bottom: 5px; font-size: 12px;">${from}</label>
                                 <input type="number" id="fromDay" name="fromDay" min="2" value="2" style="width: 80px; padding: 8px;">
                             </div>
                             <div class="input-wrapper">
-                                <label for="tillDay" style="display: block; margin-bottom: 5px; font-size: 12px;">Till</label>
+                                <label for="tillDay" style="display: block; margin-bottom: 5px; font-size: 12px;">${until}</label>
                                 <input type="number" id="tillDay" name="tillDay" min="1" value="1" style="width: 80px; padding: 8px;">
                             </div>
                             <span id="maxRangeNote" style="margin-left: 10px; color: #666; font-size: 12px;"></span>
@@ -495,25 +494,25 @@
                 </div>
                 
                 <div style="display: flex; justify-content: space-between; gap: 30px; margin-top: 17px;">
-                    <button type="button" class="prev">Back</button>
-                    <button type="button" class="next">Next</button>
+                    <button type="button" class="prev">${back}</button>
+                    <button type="button" class="next">${next}</button>
                 </div>
             </div>
          <div class="step step-3" style="display: none;">
     <style> .vfrc-message--extension-Forms{width: 100%!important;}</style>
-    <h2 style="margin: 0!important;">Pick Your Accommodation</h2>
-    <p style="margin: 7px 0px!important;">You can select one or more accommodation types. If you're booking for multiple people, simply add more as needed</p><br/>
+    <h2 style="margin: 0!important;">${titlePickAccommodation}</h2>
+    <p style="margin: 7px 0px!important;">${undertitlePickAccommodation}</p><br/>
     <div>
         <ul>
             <li>
                 <input type="checkbox" id="myCheckbox1" />
                 <label for="myCheckbox1">
-                    <img src="./ac1.png" />
+                    <img src="https://i.postimg.cc/15VVqdtX/Screenshot-2025-01-12-212108.png" />
                     <br/>
                     <p style="text-align: left;">
                         <b>Standard Room</b><br/>
-                        Size: 20 sqm <br/>
-                        Ideal for: 1-2 people
+                        ${accommodationSize1} <br/>
+                        ${accommodationPeople1}
                     </p>
                 </label>
                 <div class="room-counter" style="display: none; margin-top: 5px;">
@@ -527,12 +526,12 @@
             <li>
                 <input type="checkbox" id="myCheckbox2" />
                 <label for="myCheckbox2">
-                    <img src="./ac2.png" />
+                    <img src="https://i.postimg.cc/fRx3H0Yh/Screenshot-2025-01-12-212321.png" />
                     <br/>
                     <p style="text-align: left;">
                         <b>Classic Room</b><br/>
-                        Size: 25 sqm <br/>
-                        Ideal for: 1-2 people
+                        ${accommodationSize2} <br/>
+                        ${accommodationPeople2}
                     </p>
                 </label>
                 <div class="room-counter" style="display: none; margin-top: 5px;">
@@ -544,29 +543,12 @@
             <li>
                 <input type="checkbox" id="myCheckbox3" />
                 <label for="myCheckbox3">
-                    <img src="./ac3.png" />
+                    <img src="https://i.postimg.cc/LXsn6CwH/Screenshot-2025-01-12-213453.png" />
                     <br/>
                     <p style="text-align: left;">
                         <b>Comfort Room</b><br/>
-                        Size: 30 sqm <br/>
-                        Ideal for: Up to 3 people
-                    </p>
-                </label>
-                <div class="room-counter" style="display: none; margin-top: 5px;">
-                    <button class="counter-btn decrement" type="button">-</button>
-                    <input type="number" class="room-quantity" min="1" value="1" style="width: 60px; text-align: center;">
-                    <button class="counter-btn increment" type="button">+</button>
-                </div>
-            </li>
-            <li>
-                <input type="checkbox" id="myCheckbox4" />
-                <label for="myCheckbox4">
-                    <img src="./ac4.png" />
-                    <br/>
-                    <p style="text-align: left;">
-                        <b>Plus Room</b><br/>
-                        Size: 35 sqm <br/>
-                        Ideal for: Up to 3 people
+                        ${accommodationSize3} <br/>
+                        ${accommodationPeople3}
                     </p>
                 </label>
                 <div class="room-counter" style="display: none; margin-top: 5px;">
@@ -578,67 +560,67 @@
         </ul>
     </div>
     <div style="display: flex; justify-content: space-between; gap: 30px; margin-top: 17px;">
-        <button type="button" class="prev">Back</button>
-        <button type="button" class="next">Next</button>
+        <button type="button" class="prev">${back}</button>
+        <button type="button" class="next">${next}</button>
     </div>
 </div>
           <div class="step step-4" style="display: none;">
-              <h2 style="margin: 0!important;">Who Will Be Traveling?</h2>
-              <p style="margin: 7px 0px!important;">Enter the number of adults and children, and let us know if you have any special requests</p><br/>
+              <h2 style="margin: 0!important;">${titleWhoTraveling}</h2>
+              <p style="margin: 7px 0px!important;">${undertitleWhoTraveling}</p><br/>
                 <div style="display: flex; gap: 30px; justify-content: space-between;">
                     <div style="width: 45%;">
-                        <label for="adults" style="text-align: left!important;">Adults (14+)*</label>
+                        <label for="adults" style="text-align: left!important;">${adults14Plus}*</label>
                         <input type="number" id="adults" name="adults" min="1" value="1" required/>
                     </div>
                     <div style="width: 45%;">
-                        <label for="children" style="text-align: left!important;">Children</label>
+                        <label for="children" style="text-align: left!important;">${children}</label>
                         <input type="number" id="children" name="children" min="0" value="0"/>
                     </div>
                 </div>
                 <div>
-                    <label for="special-requests" style="text-align: left!important;">Special Requests (e.g., dietary needs, accessibility, pets)</label>
-                    <textarea id="special-requests" name="special-requests" rows="4" placeholder="Please let us know if you have any special requests"></textarea>
+                    <label for="special-requests" style="text-align: left!important;">${specialRequests}</label>
+                    <textarea id="special-requests" name="special-requests" rows="4" placeholder="${specialRequestsTxt}"></textarea>
                 </div>
               <div style="display: flex; justify-content: space-between; gap: 30px; margin-top: 17px;">
-               <button type="button" class="prev">Back</button>
-                <button type="button" class="next">Next</button>
+               <button type="button" class="prev">${back}</button>
+                <button type="button" class="next">${next}</button>
             </div>
           </div>
 
 
           <div class="step step-5" style="display: none;">
-              <h2 style="margin: 0!important;">Contact Information</h2>
-              <p style="margin: 7px 0px!important;">Please provide your details so we can complete your booking</p><br/>
+              <h2 style="margin: 0!important;">${titleContactInformation}</h2>
+              <p style="margin: 7px 0px!important;">${undertitleContactInformationBooking}</p><br/>
                 <div style="display: flex; gap: 30px; justify-content: space-between;">
                     <div style="width: 45%;">
-                        <label for="First" style="text-align: left!important;">First Name*</label>
+                        <label for="First" style="text-align: left!important;">${firstName}*</label>
                         <input type="text" id="First" name="First" class="FirstName fieldinput" required/>
                     </div>
                     <div style="width: 45%;">
-                        <label for="LastName" style="text-align: left!important;">Last Name*</label>
+                        <label for="LastName" style="text-align: left!important;">${lastName}*</label>
                         <input type="text" id="LastName" name="LastName" class="LastName fieldinput" required/>
                     </div>
                 </div>
                 <div>
-                    <label for="Email" style="text-align: left!important;">Email*</label>
+                    <label for="Email" style="text-align: left!important;">${emailVF}*</label>
                     <input type="email" id="Email" name="Email" class="Email fieldinput" required/>
                 </div>
                 <div>
-                    <label for="Phone" style="text-align: left!important;">Phone Number</label>
+                    <label for="Phone" style="text-align: left!important;">${phoneNumber}</label>
                     <input type="text" id="Phone" name="Phone" class="Phone fieldinput"/>
                 </div>
               <div style="display: flex; justify-content: space-between; gap: 30px; margin-top: 17px;">
-                <button type="button" class="prev">Back</button>
-                <button type="button" class="next">Next</button>
+                <button type="button" class="prev">${back}</button>
+                <button type="button" class="next">${next}</button>
             </div>
           </div>
                     <div class="step step-6" style="display: none;">
-              <h2 style="margin: 0!important;">Review and Submit</h2>
-              <p style="margin: 7px 0px!important;">Please review your booking information before submitting</p><br/>
+              <h2 style="margin: 0!important;">${titleReview}</h2>
+              <p style="margin: 7px 0px!important;">${undertitleReviewBooking}</p><br/>
                 <div id="review-info"></div>
               <div style="display: flex; justify-content: space-between; gap: 30px; margin-top: 17px;">
-                <button type="button" class="prev">Back</button>
-                <button type="submit" class="next">Submit</button>
+                <button type="button" class="prev">${edit}</button>
+                <button type="submit" class="next">${submit}</button>
             </div>
           </div>
       </div>
@@ -815,14 +797,14 @@
                     }
 
                     // Update display
-                    updateDateRangeDisplay();
+                    updateDateRangeDisplay(selected);
                     // Re-render calendar to show new selections
                     renderCalendar(currentMonth, currentYear);
                 }
 
                 function updateDateRangeDisplay() {
                     if (!selectedStartDate) {
-                        dateRangeDisplay.innerHTML = '<span>No dates selected</span>';
+                        dateRangeDisplay.innerHTML = `<span>${noDatesSelected}</span>`;
                         return;
                     }
 
@@ -830,12 +812,12 @@
 
                     if (!selectedEndDate) {
                         dateRangeDisplay.innerHTML = `
-                            <span>Selected: ${startDateStr}</span>
+                            <span>${selected}: ${startDateStr}</span>
                         `;
                     } else {
                         const endDateStr = selectedEndDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
                         dateRangeDisplay.innerHTML = `
-                            <span>Selected: ${startDateStr} to ${endDateStr}</span>
+                            <span>${selected}: ${startDateStr} - ${endDateStr}</span>
                         `;
                     }
                 }
@@ -931,14 +913,14 @@
                     // Update date range display
                     const startStr = selectedStartDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
                     const endStr = selectedEndDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-                    dateRangeDisplay.textContent = `${startStr} to ${endStr}`;
+                    dateRangeDisplay.textContent = `${startStr} - ${endStr}`;
 
                     // Update duration buttons
                     durationBtns.forEach(btn => {
                         const days = btn.dataset.days;
 
                         if (days === "exact") {
-                            btn.textContent = `Exactly as specified`;
+                            btn.textContent = `${exactlyAsSpecified}`;
                             btn.dataset.days = totalDays;
                         } else {
                             const daysNum = parseInt(days);
@@ -950,13 +932,13 @@
                     // // Update single duration input
                     // exactDaysInput.max = totalDays;
                     // exactDaysInput.value = Math.min(totalDays, parseInt(exactDaysInput.value) || 1);
-                    // maxDaysNote.textContent = `You can add max ${totalDays} days`;
+                    // maxDaysNote.textContent = `${youCanChoose} ${totalDays} ${days}`;
 
                     // Update range inputs
                     fromDayInput.max = totalDays;
                     tillDayInput.max = totalDays;
                     tillDayInput.value = totalDays;
-                    maxRangeNote.textContent = `You can choose max ${totalDays} days`;
+                    maxRangeNote.textContent = `${youCanChoose} ${totalDays} ${days}`;
 
                     // Handle radio button changes
                     // singleDurationRadio.addEventListener("change", function () {
@@ -1076,52 +1058,52 @@
                 reviewInfo.innerHTML = `
          <div style="background: #F5F5F7; padding: 10px; border-radius: 5px; margin-top: 20px;">
             <div>
-                <h2 style="margin: 0!important;">Stay Dates</h2>
+                <h2 style="margin: 0!important;">${reviewStayDates}</h2>
             </div>
             <div>
-                <p style="font-family: 'Host Grotesk', serif;">Travel Dates: <br/> <span style="color: gray;">${dateRangeStr}</span></p>
+                <p style="font-family: 'Host Grotesk', serif;">${reviewTravelDates}<br/> <span style="color: gray;">${dateRangeStr}</span></p>
             </div>
             <div>
-                <p style="font-family: 'Host Grotesk', serif;">Duration of Stay: <br/> <span style="color: gray;">${durationText}</span></p>
+                <p style="font-family: 'Host Grotesk', serif;">${reviewDurationOFStay}<br/> <span style="color: gray;">${durationText}</span></p>
             </div>
         </div>
 
         <div style="background: #F5F5F7; padding: 10px; border-radius: 5px; margin-top: 20px;">
           <div>
-              <h2 style="margin: 0!important;">Accommodation</h2>
+              <h2 style="margin: 0!important;">${reviewAccommodation}</h2>
           </div>
           <div>
-              <p style="font-family: 'Host Grotesk', serif;">Type(s): <br/> <span style="color: gray;">${accommodationTypes.length > 0 ? accommodationTypes.join('<br/>') : 'None selected'}</span></p>
+              <p style="font-family: 'Host Grotesk', serif;">${reviewTypes}<br/> <span style="color: gray;">${accommodationTypes.length > 0 ? accommodationTypes.join('<br/>') : 'None selected'}</span></p>
           </div>
         </div>
 
         <div style="background: #F5F5F7; padding: 10px; border-radius: 5px; margin-top: 20px;">
           <div>
-              <h2 style="margin: 0!important;">Travelers</h2>
+              <h2 style="margin: 0!important;">${reviewTravelers}</h2>
           </div>
           <div>
-              <p style="font-family: 'Host Grotesk', serif;">Adults: <br/> <span style="color: gray;">${formContainer.querySelector("#adults")?.value || ''}</span></p>
+              <p style="font-family: 'Host Grotesk', serif;">${reviewAdults}<br/> <span style="color: gray;">${formContainer.querySelector("#adults")?.value || ''}</span></p>
           </div>
           <div>
-              <p style="font-family: 'Host Grotesk', serif;">Children: <br/> <span style="color: gray;">${formContainer.querySelector("#children")?.value || ''}</span></p>
+              <p style="font-family: 'Host Grotesk', serif;">${children}<br/> <span style="color: gray;">${formContainer.querySelector("#children")?.value || ''}</span></p>
           </div>
           <div>
-              <p style="font-family: 'Host Grotesk', serif;">Special Requests: <br/> <span style="color: gray;">${formContainer.querySelector("#special-requests")?.value || 'None'}</span></p>
+              <p style="font-family: 'Host Grotesk', serif;">${reviewSpecialRequests}<br/> <span style="color: gray;">${formContainer.querySelector("#special-requests")?.value || 'None'}</span></p>
           </div>
         </div>
 
          <div style="background: #F5F5F7; padding: 10px; border-radius: 5px; margin-top: 20px;">
           <div>
-              <h2 style="margin: 0!important;">Contact Information</h2>
+              <h2 style="margin: 0!important;">${titleContactInformation}</h2>
           </div>
           <div>
-              <p style="font-family: 'Host Grotesk', serif;">First and Last Name: <br/> <span style="color: gray;">${firstName} ${lastName}</span></p>
+              <p style="font-family: 'Host Grotesk', serif;">${firstAndLastname}<br/> <span style="color: gray;">${firstName} ${lastName}</span></p>
           </div>
           <div>
-              <p style="font-family: 'Host Grotesk', serif;">Email: <br/> <span style="color: gray;">${email}</span></p>
+              <p style="font-family: 'Host Grotesk', serif;">${emailVF}<br/> <span style="color: gray;">${email}</span></p>
           </div>
           <div>
-              <p style="font-family: 'Host Grotesk', serif;">Phone Number: <br/> <span style="color: gray;">${phone}</span></p>
+              <p style="font-family: 'Host Grotesk', serif;">${phoneNumber}<br/> <span style="color: gray;">${phone}</span></p>
           </div>
         </div>
     `;
@@ -1169,8 +1151,8 @@
                             <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/>
                           </svg>
                         </div>
-                        <h3>Thank you for your submission!</h3>
-                        <p>Your form has been successfully submitted.<br/> Our team will get back to you shortly.</p>
+                        <h3>${thankSubmission}</h3>
+                        <p>${formSubmitted}<br/>${formTeam}</p>
                       </div>
 
                     </div>
