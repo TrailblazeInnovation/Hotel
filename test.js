@@ -436,7 +436,7 @@
         </div>
       <div class="step-content">
           <div class="step step-1">             
-              <h2 style="margin: 0!important;">Choose Your Stay Dates</h2>
+              <h2 style="margin: 0!important;">${titleChooseYourStay}</h2>
               <p style="margin: 7px 0px!important;">Select your check-in and check-out dates        </p><br/>
               <div id="firstSte">
                   <div class="custom-calendar" id="customCalendar"></div>
