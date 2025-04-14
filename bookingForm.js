@@ -494,8 +494,8 @@
                 </div>
                 
                 <div style="display: flex; justify-content: space-between; gap: 30px; margin-top: 17px;">
-                    <button type="button" class="prev">Back</button>
-                    <button type="button" class="next">Next</button>
+                    <button type="button" class="prev">${back}</button>
+                    <button type="button" class="next">${next}</button>
                 </div>
             </div>
          <div class="step step-3" style="display: none;">
