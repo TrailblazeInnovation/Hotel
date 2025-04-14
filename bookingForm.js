@@ -14,7 +14,7 @@
             let currentStep = 1;
             let selectedStartDate = null;
             let selectedEndDate = null;
-            const { titleChooseYourStay, undertitleChooseYourStay, noDatesSelected, selected, undertitleChooseYourStay2, selectDuration, exactlyAsSpecified, threeDays, fourDays, fiveDays, sixDays, sevenDays, tenDays, enterExactDates, from, until, titlePickAccommodation, undertitlePickAccommodation, accommodationDescription1, accommodationDescription2, accommodationDescription3, accommodationDescription4, titleWhoTraveling, undertitleWhoTraveling, adults14Plus, children, specialRequests, specialRequestsTxt, titleContactInformation, undertitleContactInformationBooking, firstName, lastName, email, phoneNumber, next, back, titleReview, undertitleReviewBooking, reviewStayDates, reviewTravelDates, reviewDurationOFStay, reviewAccommodation, reviewTypes, reviewTravelers, reviewAdults, reviewSpecialRequests, edit, submit, firstAndLastname, thankSubmission, formSubmitted, formTeam } = trace.payload;
+            const { titleChooseYourStay, undertitleChooseYourStay, noDatesSelected, selected, undertitleChooseYourStay2, selectDuration, exactlyAsSpecified, threeDays, fourDays, fiveDays, sixDays, sevenDays, tenDays, enterExactDates, from, until, titlePickAccommodation, undertitlePickAccommodation, titleWhoTraveling, undertitleWhoTraveling, adults14Plus, children, specialRequests, specialRequestsTxt, titleContactInformation, undertitleContactInformationBooking, firstName, lastName, emailVF, phoneNumber, next, back, titleReview, undertitleReviewBooking, reviewStayDates, reviewTravelDates, reviewDurationOFStay, reviewAccommodation, reviewTypes, reviewTravelers, reviewAdults, reviewSpecialRequests, edit, submit, firstAndLastname, thankSubmission, formSubmitted, formTeam } = trace.payload;
 
             formContainer.innerHTML = `
             <style>
@@ -619,7 +619,7 @@
                     </div>
                 </div>
                 <div>
-                    <label for="Email" style="text-align: left!important;">${email}*</label>
+                    <label for="Email" style="text-align: left!important;">${emailVF}*</label>
                     <input type="email" id="Email" name="Email" class="Email fieldinput" required/>
                 </div>
                 <div>
@@ -1117,7 +1117,7 @@
               <p style="font-family: 'Host Grotesk', serif;">${firstAndLastname}<br/> <span style="color: gray;">${firstName} ${lastName}</span></p>
           </div>
           <div>
-              <p style="font-family: 'Host Grotesk', serif;">${email}<br/> <span style="color: gray;">${email}</span></p>
+              <p style="font-family: 'Host Grotesk', serif;">${emailVF}<br/> <span style="color: gray;">${email}</span></p>
           </div>
           <div>
               <p style="font-family: 'Host Grotesk', serif;">${phoneNumber}<br/> <span style="color: gray;">${phone}</span></p>
