@@ -821,7 +821,7 @@
 
                 function updateDateRangeDisplay() {
                     if (!selectedStartDate) {
-                        dateRangeDisplay.innerHTML = '<span>${noDatesSelected}</span>';
+                        dateRangeDisplay.innerHTML = `<span>${noDatesSelected}</span>`;
                         return;
                     }
 
