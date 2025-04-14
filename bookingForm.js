@@ -1,8 +1,8 @@
-    export const BookingExtension = {
-        name: 'Booking',
+    export const FormExtension = {
+        name: 'Forms',
         type: 'response',
         match: ({ trace }) =>
-            trace?.type === 'ext_booking' || (trace.payload && trace.payload?.name === 'ext_booking'),
+            trace?.type === 'Custom_Form' || (trace.payload && trace.payload?.name === 'Custom_Form'),
         render: ({ trace, element }) => {
             const link = document.createElement('link');
             link.href = 'https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300;400;500;600;700&display=swap';
