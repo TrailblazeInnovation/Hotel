@@ -14,7 +14,7 @@
             let currentStep = 1;
             let selectedStartDate = null;
             let selectedEndDate = null;
-            const { titleChooseYourStay, undertitleChooseYourStay, noDatesSelected, selected, undertitleChooseYourStay2, selectDuration, exactlyAsSpecified, threeDays, fourDays, fiveDays, sixDays, sevenDays, eightDays, nineDays, tenDays, enterExactDates, from, until, maxDays, titlePickAccommodation, undertitlePickAccommodation, titleWhoTraveling, undertitleWhoTraveling, adults14Plus, children, specialRequests, specialRequestsTxt, titleContactInformation, undertitleContactInformationBooking, firstName, lastName, emailVF, phoneNumber, next, back, titleReview, undertitleReviewBooking, reviewStayDates, reviewTravelDates, reviewDurationOFStay, reviewAccommodation, reviewTypes, reviewTravelers, reviewAdults, reviewSpecialRequests, edit, submit, firstAndLastname, thankSubmission, formSubmitted, formTeam } = trace.payload;
+            const { titleChooseYourStay, undertitleChooseYourStay, noDatesSelected, selected, undertitleChooseYourStay2, selectDuration, exactlyAsSpecified, threeDays, fourDays, fiveDays, sixDays, sevenDays, eightDays, nineDays, tenDays, enterExactDates, from, until, youCanChoose, days, titlePickAccommodation, undertitlePickAccommodation, titleWhoTraveling, undertitleWhoTraveling, adults14Plus, children, specialRequests, specialRequestsTxt, titleContactInformation, undertitleContactInformationBooking, firstName, lastName, emailVF, phoneNumber, next, back, titleReview, undertitleReviewBooking, reviewStayDates, reviewTravelDates, reviewDurationOFStay, reviewAccommodation, reviewTypes, reviewTravelers, reviewAdults, reviewSpecialRequests, edit, submit, firstAndLastname, thankSubmission, formSubmitted, formTeam } = trace.payload;
 
             formContainer.innerHTML = `
             <style>
@@ -949,13 +949,13 @@
                     // // Update single duration input
                     // exactDaysInput.max = totalDays;
                     // exactDaysInput.value = Math.min(totalDays, parseInt(exactDaysInput.value) || 1);
-                    // maxDaysNote.textContent = `${maxDays}`;
+                    // maxDaysNote.textContent = `${youCanChoose} ${totalDays} ${days}`;
 
                     // Update range inputs
                     fromDayInput.max = totalDays;
                     tillDayInput.max = totalDays;
                     tillDayInput.value = totalDays;
-                    maxRangeNote.textContent = `${maxDays}`;
+                    maxRangeNote.textContent = `${youCanChoose} ${totalDays} ${days}`;
 
                     // Handle radio button changes
                     // singleDurationRadio.addEventListener("change", function () {
