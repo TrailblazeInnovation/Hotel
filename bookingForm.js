@@ -819,7 +819,7 @@
                     renderCalendar(currentMonth, currentYear);
                 }
 
-                function updateDateRangeDisplay() {
+                function updateDateRangeDisplay(selected) {
                     if (!selectedStartDate) {
                         dateRangeDisplay.innerHTML = `<span>${noDatesSelected}</span>`;
                         return;
