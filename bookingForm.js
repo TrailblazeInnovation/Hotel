@@ -224,8 +224,8 @@
         }
 
         label img {
-        height: 140px;
-        width: 160px;
+        height: 150px;
+        width: 170px;
         transition-duration: 0.2s;
         transform-origin: 50% 50%;
         border-radius: 11px;
