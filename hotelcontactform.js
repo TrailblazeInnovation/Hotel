@@ -12,7 +12,7 @@
           const formContainer = document.createElement('form');
           formContainer.classList.add('form-container');
           let currentStep = 1;
-          const { titleContactInformation, undertitleContactInformation, firstName, lastName, email, phoneNumber, next, back, titleConcerns, undertitleConcerns, message, titleReview, undertitleReview, edit, submit, firstAndLastname, thankSubmission, formSubmitted, formTeam } = trace.payload;
+          const { titleContactInformation, undertitleContactInformation, firstName, lastName, emailVF, phoneNumber, next, back, titleConcerns, undertitleConcerns, message, titleReview, undertitleReview, edit, submit, firstAndLastname, thankSubmission, formSubmitted, formTeam } = trace.payload;
   
           formContainer.innerHTML = `
           <style>
@@ -165,7 +165,7 @@
                   <input type="text" class="Lastname" name="Lastname" required>
               </div>
             </div>
-            <label for="email">${email}*</label>
+            <label for="email">${emailVF}*</label>
             <input type="email" class="email" name="email" required><br/>
             <label for="phone">${phoneNumber}</label>
             <input type="tel" class="phone" name="phone"> 
@@ -248,7 +248,7 @@
                         <p style="font-family: "Host Grotesk", serif;">${firstAndLastname}<br/> <span style="color: gray;"> ${formContainer.querySelector(".name").value} ${formContainer.querySelector(".Lastname").value} </span></p>
                     </div>
                     <div>
-                      <p style="font-family: "Host Grotesk", serif;">${email}<br/> <span style="color: gray;"> ${formContainer.querySelector(".email").value} </span></p>
+                      <p style="font-family: "Host Grotesk", serif;">${emailVF}<br/> <span style="color: gray;"> ${formContainer.querySelector(".email").value} </span></p>
                     </div>
                     <div>
                       <p style="font-family: "Host Grotesk", serif;">${phoneNumber}<br/> <span style="color: gray;"> ${formContainer.querySelector(".phone").value} </span></p>
