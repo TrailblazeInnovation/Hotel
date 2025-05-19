@@ -1155,53 +1155,35 @@ export const FormExtension = {
                 formContainer.replaceWith(chatBox);
             }
             formContainer.addEventListener('submit', function (event) {
-    event.preventDefault();
-    if (!validateStep()) return;
+                event.preventDefault();
+                if (!validateStep()) return;
 
-    const accommodation = [];
+                const formData = {
+                    dates: {
+                        start: selectedStartDate?.toISOString().split('T')[0] || '',
+                        end: selectedEndDate?.toISOString().split('T')[0] || ''
+                    },
+                    accommodation: [],
+                    adults: formContainer.querySelector("#adults")?.value || '',
+                    children: formContainer.querySelector("#children")?.value || '',
+                    specialRequests: formContainer.querySelector("#special-requests")?.value || '',
+                    firstName: formContainer.querySelector(".FirstName")?.value || '',
+                    lastName: formContainer.querySelector(".LastName")?.value || '',
+                    email: formContainer.querySelector(".Email")?.value || '',
+                    phone: formContainer.querySelector(".Phone")?.value || ''
+                };
 
-    const checkboxes = formContainer.querySelectorAll('input[type="checkbox"][id^="myCheckbox"]:checked');
-    checkboxes.forEach(checkbox => {
-        const listItem = checkbox.closest('li');
-        const label = listItem.querySelector('label[for="' + checkbox.id + '"]');
-        const quantityInput = listItem.querySelector('.room-quantity');
-        
-        const roomName = label.querySelector('b')?.textContent.trim() || 'Unknown Room';
-        const roomDetails = label.querySelector('p')?.textContent.trim() || '';
-        
-        accommodation.push({
-            id: checkbox.id,
-            type: roomName,
-            details: roomDetails,
-            quantity: quantityInput ? parseInt(quantityInput.value) || 1 : 1
-        });
-    });
+                // Get selected accommodations
+                const checkboxes = formContainer.querySelectorAll('input[type="checkbox"][id^="myCheckbox"]:checked');
+                checkboxes.forEach(checkbox => {
+                    formData.accommodation.push(checkbox.id);
+                });
 
-    // Flattened formData to match what your Voiceflow JS block expects
-    const payload = {
-        start: selectedStartDate?.toISOString().split('T')[0] || '',
-        end: selectedEndDate?.toISOString().split('T')[0] || '',
-        selectedOption: formContainer.querySelector(".duration-btn.activeBtn")?.dataset.days || '',
-        fromDay: formContainer.querySelector("#fromDay")?.value || '',
-        tillDay: formContainer.querySelector("#tillDay")?.value || '',
-        type: accommodation,
-        adults: formContainer.querySelector("#adults")?.value || '',
-        children: formContainer.querySelector("#children")?.value || '',
-        specialRequests: formContainer.querySelector("#special-requests")?.value || '',
-        firstName: formContainer.querySelector("#First")?.value || '',
-        lastName: formContainer.querySelector("#LastName")?.value || '',
-        email: formContainer.querySelector("#Email")?.value || '',
-        phone: formContainer.querySelector("#Phone")?.value || ''
-    };
+                window.voiceflow.chat.interact({
+                    type: 'complete',
+                    payload: formData,
+                });
 
-
-    window.voiceflow.chat.interact({
-        type: 'complete',
-        payload: formData,
-    });
-
-    createChatBox();
-});
 
             showStep(currentStep);
             element.appendChild(formContainer);
