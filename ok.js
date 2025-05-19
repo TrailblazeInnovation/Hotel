@@ -1178,34 +1178,38 @@
                 formContainer.replaceWith(chatBox);
             }
             formContainer.addEventListener('submit', function (event) {
-                event.preventDefault();
-                if (!validateStep()) return;
+    event.preventDefault();
+    if (!validateStep()) return;
 
-                const formData = {
-                    dates: {
-                        start: selectedStartDate?.toISOString().split('T')[0] || '',
-                        end: selectedEndDate?.toISOString().split('T')[0] || ''
-                    },
-                    accommodation: [],
-                    adults: formContainer.querySelector("#adults")?.value || '',
-                    children: formContainer.querySelector("#children")?.value || '',
-                    specialRequests: formContainer.querySelector("#special-requests")?.value || '',
-                    firstName: formContainer.querySelector(".FirstName")?.value || '',
-                    lastName: formContainer.querySelector(".LastName")?.value || '',
-                    email: formContainer.querySelector(".Email")?.value || '',
-                    phone: formContainer.querySelector(".Phone")?.value || ''
-                };
+    console.log("selectedStartDate:", selectedStartDate);
+    console.log("selectedEndDate:", selectedEndDate);
 
-                // Get selected accommodations
-                const checkboxes = formContainer.querySelectorAll('input[type="checkbox"][id^="myCheckbox"]:checked');
-                checkboxes.forEach(checkbox => {
-                    formData.accommodation.push(checkbox.id);
-                });
+    const formData = {
+        dates: {
+            start: selectedStartDate instanceof Date ? selectedStartDate.toISOString().split('T')[0] : '',
+            end: selectedEndDate instanceof Date ? selectedEndDate.toISOString().split('T')[0] : ''
+        },
+        accommodation: [],
+        adults: formContainer.querySelector("#adults")?.value || '',
+        children: formContainer.querySelector("#children")?.value || '',
+        specialRequests: formContainer.querySelector("#special-requests")?.value || '',
+        firstName: formContainer.querySelector(".FirstName")?.value || '',
+        lastName: formContainer.querySelector(".LastName")?.value || '',
+        email: formContainer.querySelector(".Email")?.value || '',
+        phone: formContainer.querySelector(".Phone")?.value || ''
+    };
 
-                window.voiceflow.chat.interact({
-                    type: 'complete',
-                    payload: formData,
-                });
+    const checkboxes = formContainer.querySelectorAll('input[type="checkbox"][id^="myCheckbox"]:checked');
+    checkboxes.forEach(checkbox => {
+        formData.accommodation.push(checkbox.id);
+    });
+
+    window.voiceflow.chat.interact({
+        type: 'complete',
+        payload: formData,
+    });
+});
+
 
                 createChatBox();
             });
