@@ -1158,19 +1158,14 @@ export const FormExtension = {
     event.preventDefault();
     if (!validateStep()) return;
 
-    // Initialize accommodation as an array (if not already)
     const accommodation = [];
-    
-    // Get all checked accommodation checkboxes
+
     const checkboxes = formContainer.querySelectorAll('input[type="checkbox"][id^="myCheckbox"]:checked');
-    
-    // Collect complete accommodation data
     checkboxes.forEach(checkbox => {
         const listItem = checkbox.closest('li');
         const label = listItem.querySelector('label[for="' + checkbox.id + '"]');
         const quantityInput = listItem.querySelector('.room-quantity');
         
-        // Extract room type information
         const roomName = label.querySelector('b')?.textContent.trim() || 'Unknown Room';
         const roomDetails = label.querySelector('p')?.textContent.trim() || '';
         
@@ -1182,30 +1177,23 @@ export const FormExtension = {
         });
     });
 
-    const formData = {
-        dates: {
-            start: selectedStartDate?.toISOString().split('T')[0] || '',
-            end: selectedEndDate?.toISOString().split('T')[0] || ''
-        },
-        duration: {
-            type: formContainer.querySelector("#rangeDuration")?.checked ? "range" : "exact",
-            fromDay: formContainer.querySelector("#fromDay")?.value || '',
-            tillDay: formContainer.querySelector("#tillDay")?.value || '',
-            selectedOption: formContainer.querySelector(".duration-btn.activeBtn")?.dataset.days || 'exact'
-        },
-        accommodation: accommodation, // Now contains full accommodation data
-        travelers: {
-            adults: formContainer.querySelector("#adults")?.value || '',
-            children: formContainer.querySelector("#children")?.value || ''
-        },
+    // Flattened formData to match what your Voiceflow JS block expects
+    const payload = {
+        start: selectedStartDate?.toISOString().split('T')[0] || '',
+        end: selectedEndDate?.toISOString().split('T')[0] || '',
+        selectedOption: formContainer.querySelector(".duration-btn.activeBtn")?.dataset.days || '',
+        fromDay: formContainer.querySelector("#fromDay")?.value || '',
+        tillDay: formContainer.querySelector("#tillDay")?.value || '',
+        type: accommodation,
+        adults: formContainer.querySelector("#adults")?.value || '',
+        children: formContainer.querySelector("#children")?.value || '',
         specialRequests: formContainer.querySelector("#special-requests")?.value || '',
-        contact: {
-            firstName: formContainer.querySelector("#First")?.value || '',
-            lastName: formContainer.querySelector("#LastName")?.value || '',
-            email: formContainer.querySelector("#Email")?.value || '',
-            phone: formContainer.querySelector("#Phone")?.value || ''
-        }
+        firstName: formContainer.querySelector("#First")?.value || '',
+        lastName: formContainer.querySelector("#LastName")?.value || '',
+        email: formContainer.querySelector("#Email")?.value || '',
+        phone: formContainer.querySelector("#Phone")?.value || ''
     };
+
 
     window.voiceflow.chat.interact({
         type: 'complete',
