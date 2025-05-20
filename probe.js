@@ -1,4 +1,4 @@
-export const FormExtension = {
+    export const FormExtension = {
         name: 'Forms',
         type: 'response',
         match: ({ trace }) =>
@@ -176,22 +176,26 @@ export const FormExtension = {
               padding: 10px 25px;
               cursor: pointer;
           }
-              ul {
+              
+                ul {
         display: flex;
         flex-wrap: wrap;
         margin-top: 0;
         list-style-type: none;
         padding-left: 10px !important;
         gap: 8px;
-      }
-      li {
+        }
+      
+          li {
         display: inline-block;
         margin: 0;
-      }
-      input[type="checkbox"][id^="myCheckbox"] {
+        }
+      
+          input[type="checkbox"][id^="myCheckbox"] {
         display: none;
-      }
-      label {
+        }
+      
+          label {
         display: block;
         position: relative;
         cursor: pointer;
@@ -200,41 +204,50 @@ export const FormExtension = {
         transition: background-color 0.3s ease;
         padding: 10px;
         background-color: transparent;
-      }
-      label:hover {
+        }
+      
+          label:hover {
         background-color: rgba(0, 0, 0, 0.05);
-      }
-      input[type="checkbox"]:checked + label {
+        }
+          
+          input[type="checkbox"]:checked + label {
         background-color: rgba(0, 0, 0, 0.08);
-      }
-      label img {
-        height: 140px;
-        width: 160px;
+        }            
+          
+          label img {
+        height: 150px;
+        width: 170px;
         border-radius: 11px;
         display: block;
         transition: transform 0.3s ease;
-      }
-      label:hover img {
+        }
+      
+          label:hover img {
         transform: scale(1.03);
-      }
-      input[type="checkbox"]:checked + label img {
+        }
+          
+          input[type="checkbox"]:checked + label img {
         transform: none !important;
-      }
-      label p {
+        }
+          
+          label p {
         font-size: 11px;
         margin-top: 8px;
-      }
-      .room-counter {
+        }
+          
+          .room-counter {
         margin-top: 8px;
         display: none;
-      }
-      input[type="checkbox"]:checked ~ .room-counter {
+        }
+          
+          input[type="checkbox"]:checked ~ .room-counter {
         display: flex;
         justify-content: center;
         align-items: center;
         gap: 6px;
-      }
+        }
 
+        
         .fieldinput{
         margin-top: 0!important;
         }
@@ -543,6 +556,23 @@ export const FormExtension = {
                         <b>Comfort Room</b><br/>
                         ${accommodationSize3} <br/>
                         ${accommodationPeople3}
+                    </p>
+                </label>
+                <div class="room-counter" style="display: none; margin-top: 5px;">
+                    <button class="counter-btn decrement" type="button">-</button>
+                    <input type="number" class="room-quantity" min="1" value="1" style="width: 60px; text-align: center;">
+                    <button class="counter-btn increment" type="button">+</button>
+                </div>
+            </li>
+            <li>
+                <input type="checkbox" id="myCheckbox4" />
+                <label for="myCheckbox4">
+                    <img src="https://i.postimg.cc/6q2qC7Bg/Screenshot-2025-01-12-214111.png" />
+                    <br/>
+                    <p style="text-align: left;">
+                        <b>Plus Room</b><br/>
+                        ${accommodationSize4} <br/>
+                        ${accommodationPeople4}
                     </p>
                 </label>
                 <div class="room-counter" style="display: none; margin-top: 5px;">
@@ -1184,6 +1214,8 @@ export const FormExtension = {
                     payload: formData,
                 });
 
+                createChatBox();
+            });
 
             showStep(currentStep);
             element.appendChild(formContainer);
