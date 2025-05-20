@@ -1022,6 +1022,14 @@
                     return false;
                 }
 
+                if (currentStep === 3) {
+                    const selectedAccommodations = formContainer.querySelectorAll('input[type="checkbox"][id^="myCheckbox"]:checked');
+                    if (selectedAccommodations.length === 0) {
+                        alert("Please select at least one accommodation type."); // Messaggio di avviso per l'utente
+                        return false; // Impedisce di proseguire
+                    }
+                }
+                
                 return true;
             }
 
