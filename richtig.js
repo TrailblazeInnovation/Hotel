@@ -176,71 +176,77 @@
               padding: 10px 25px;
               cursor: pointer;
           }
-              ul {
-              display: flex;
-              flex-wrap: wrap;
-              margin-top: 0;
+              
+            ul {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 0;
         list-style-type: none;
-        padding-left: 10px!important;
-        }
-
-        li {
+        padding-left: 10px !important;
+        gap: 8px;
+          }
+      
+          li {
         display: inline-block;
-        }
-
+        margin: 0;
+          }
+      
         input[type="checkbox"][id^="myCheckbox"] {
         display: none;
-        }
-
-        label {
-        border: 1px solid #fff;
+          }
+      
+          label {
         display: block;
         position: relative;
-        margin: 8px;
         cursor: pointer;
         text-align: center;
-        }
-
-        label p{
-            font-size: 11px;
-        }
-        label:before {
-        background-color: white;
-        color: white;
-        content: " ";
-        display: block;
-        border-radius: 50%;
-        border: 1px solid grey;
-        position: absolute;
-        top: -5px;
-        left: -5px;
-        width: 25px;
-        height: 25px;
-        text-align: center;
-        line-height: 28px;
-        transition-duration: 0.4s;
-        transform: scale(0);
-        z-index: 999;
-        }
-
-        label img {
-        height: 150px;
-        width: 170px;
-        transition-duration: 0.2s;
-        transform-origin: 50% 50%;
+        border-radius: 14px;
+        transition: background-color 0.3s ease;
+        padding: 10px;
+        background-color: transparent;
+          }
+      
+          label:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+          }
+      
+          input[type="checkbox"]:checked + label {
+        background-color: rgba(0, 0, 0, 0.08);
+          }
+      
+            label img {
+        height: 140px;
+        width: 160px;
         border-radius: 11px;
-        }
-
-        :checked + label {
-            border-color: #000;
-            border-radius: 11px;
-            padding: 3px;
-        }
-
-        :checked + label img {
-        transform: scale(0.9);
-        z-index: -1;
-        }
+        display: block;
+        transition: transform 0.3s ease;
+          }
+      
+          label:hover img {
+        transform: scale(1.03);
+          }
+      
+          input[type="checkbox"]:checked + label img {
+        transform: none !important;
+          }
+          
+          label p {
+        font-size: 11px;
+        margin-top: 8px;
+          }
+          
+          .room-counter {
+        margin-top: 8px;
+        display: none;
+          }
+          
+          input[type="checkbox"]:checked ~ .room-counter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+          }
+        
         .fieldinput{
         margin-top: 0!important;
         }
