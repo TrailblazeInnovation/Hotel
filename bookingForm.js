@@ -176,71 +176,78 @@
               padding: 10px 25px;
               cursor: pointer;
           }
-              ul {
-              display: flex;
-              flex-wrap: wrap;
-              margin-top: 0;
+              
+                ul {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 0;
         list-style-type: none;
-        padding-left: 10px!important;
+        padding-left: 10px !important;
+        gap: 8px;
         }
-
-        li {
+      
+          li {
         display: inline-block;
+        margin: 0;
         }
-
-        input[type="checkbox"][id^="myCheckbox"] {
+      
+          input[type="checkbox"][id^="myCheckbox"] {
         display: none;
         }
-
-        label {
-        border: 1px solid #fff;
+      
+          label {
         display: block;
         position: relative;
-        margin: 8px;
         cursor: pointer;
         text-align: center;
+        border-radius: 14px;
+        transition: background-color 0.3s ease;
+        padding: 10px;
+        background-color: transparent;
         }
-
-        label p{
-            font-size: 11px;
+      
+          label:hover {
+        background-color: rgba(0, 0, 0, 0.05);
         }
-        label:before {
-        background-color: white;
-        color: white;
-        content: " ";
-        display: block;
-        border-radius: 50%;
-        border: 1px solid grey;
-        position: absolute;
-        top: -5px;
-        left: -5px;
-        width: 25px;
-        height: 25px;
-        text-align: center;
-        line-height: 28px;
-        transition-duration: 0.4s;
-        transform: scale(0);
-        z-index: 999;
-        }
-
-        label img {
+          
+          input[type="checkbox"]:checked + label {
+        background-color: rgba(0, 0, 0, 0.08);
+        }            
+          
+          label img {
         height: 150px;
         width: 170px;
-        transition-duration: 0.2s;
-        transform-origin: 50% 50%;
         border-radius: 11px;
+        display: block;
+        transition: transform 0.3s ease;
+        }
+      
+          label:hover img {
+        transform: scale(1.03);
+        }
+          
+          input[type="checkbox"]:checked + label img {
+        transform: none !important;
+        }
+          
+          label p {
+        font-size: 11px;
+        margin-top: 8px;
+        }
+          
+          .room-counter {
+        margin-top: 8px;
+        display: none;
+        }
+          
+          input[type="checkbox"]:checked ~ .room-counter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
         }
 
-        :checked + label {
-            border-color: #000;
-            border-radius: 11px;
-            padding: 3px;
-        }
-
-        :checked + label img {
-        transform: scale(0.9);
-        z-index: -1;
-        }
+        
         .fieldinput{
         margin-top: 0!important;
         }
@@ -1015,6 +1022,14 @@
                     return false;
                 }
 
+                if (currentStep === 3) {
+                    const selectedAccommodations = formContainer.querySelectorAll('input[type="checkbox"][id^="myCheckbox"]:checked');
+                    if (selectedAccommodations.length === 0) {
+                        alert("Please select at least one accommodation type."); // Messaggio di avviso per l'utente
+                        return false; // Impedisce di proseguire
+                    }
+                }
+                
                 return true;
             }
 
@@ -1178,37 +1193,65 @@
                 formContainer.replaceWith(chatBox);
             }
             formContainer.addEventListener('submit', function (event) {
-                event.preventDefault();
-                if (!validateStep()) return;
+    event.preventDefault();
+    if (!validateStep()) return;
 
-                const formData = {
-                    dates: {
-                        start: selectedStartDate?.toISOString().split('T')[0] || '',
-                        end: selectedEndDate?.toISOString().split('T')[0] || ''
-                    },
-                    accommodation: [],
-                    adults: formContainer.querySelector("#adults")?.value || '',
-                    children: formContainer.querySelector("#children")?.value || '',
-                    specialRequests: formContainer.querySelector("#special-requests")?.value || '',
-                    firstName: formContainer.querySelector(".FirstName")?.value || '',
-                    lastName: formContainer.querySelector(".LastName")?.value || '',
-                    email: formContainer.querySelector(".Email")?.value || '',
-                    phone: formContainer.querySelector(".Phone")?.value || ''
-                };
+    // Initialize accommodation as an array (if not already)
+    const accommodation = [];
+    
+    // Get all checked accommodation checkboxes
+    const checkboxes = formContainer.querySelectorAll('input[type="checkbox"][id^="myCheckbox"]:checked');
+    
+    // Collect complete accommodation data
+    checkboxes.forEach(checkbox => {
+        const listItem = checkbox.closest('li');
+        const label = listItem.querySelector('label[for="' + checkbox.id + '"]');
+        const quantityInput = listItem.querySelector('.room-quantity');
+        
+        // Extract room type information
+        const roomName = label.querySelector('b')?.textContent.trim() || 'Unknown Room';
+        const roomDetails = label.querySelector('p')?.textContent.trim() || '';
+        
+        accommodation.push({
+            id: checkbox.id,
+            type: roomName,
+            details: roomDetails,
+            quantity: quantityInput ? parseInt(quantityInput.value) || 1 : 1
+        });
+    });
 
-                // Get selected accommodations
-                const checkboxes = formContainer.querySelectorAll('input[type="checkbox"][id^="myCheckbox"]:checked');
-                checkboxes.forEach(checkbox => {
-                    formData.accommodation.push(checkbox.id);
-                });
+    const formData = {
+        dates: {
+            start: selectedStartDate?.toISOString().split('T')[0] || '',
+            end: selectedEndDate?.toISOString().split('T')[0] || ''
+        },
+        duration: {
+            type: formContainer.querySelector("#rangeDuration")?.checked ? "range" : "exact",
+            fromDay: formContainer.querySelector("#fromDay")?.value || '',
+            tillDay: formContainer.querySelector("#tillDay")?.value || '',
+            selectedOption: formContainer.querySelector(".duration-btn.activeBtn")?.dataset.days || 'exact'
+        },
+        accommodation: accommodation, // Now contains full accommodation data
+        travelers: {
+            adults: formContainer.querySelector("#adults")?.value || '',
+            children: formContainer.querySelector("#children")?.value || ''
+        },
+        specialRequests: formContainer.querySelector("#special-requests")?.value || '',
+        contact: {
+            firstName: formContainer.querySelector("#First")?.value || '',
+            lastName: formContainer.querySelector("#LastName")?.value || '',
+            email: formContainer.querySelector("#Email")?.value || '',
+            phone: formContainer.querySelector("#Phone")?.value || ''
+        }
+    };
 
-                window.voiceflow.chat.interact({
-                    type: 'complete',
-                    payload: formData,
-                });
+    window.voiceflow.chat.interact({
+        type: 'complete',
+        payload: formData,
+    });
 
-                createChatBox();
-            });
+    createChatBox();
+});
 
             showStep(currentStep);
             element.appendChild(formContainer);
