@@ -1185,12 +1185,16 @@
                 formContainer.replaceWith(chatBox);
             }
             formContainer.addEventListener('submit', function (event) {
-                event.preventDefault();
-                if (!validateStep()) return;
+                event.preventDefault(); // Impedisce al modulo di essere inviato normalmente
+                if (!validateStep()) return; // Controlla la validazione del passaggio corrente
+
+                // *** INSERISCI QUI QUESTE DUE RIGHE PER IL DEBUG ***
+                console.log('Valore di selectedStartDate prima di inviare:', selectedStartDate);
+                console.log('Valore di selectedEndDate prima di inviare:', selectedEndDate);
 
                 const formData = {
                     dates: {
-                        start: selectedStartDate?.toISOString().split('T')[0] || '',
+                        start: selectedStartDate?.toISOString().split('T')[0] || '', // Prende la data, la converte in stringa ISO e poi solo la parte della data
                         end: selectedEndDate?.toISOString().split('T')[0] || ''
                     },
                     accommodation: [],
@@ -1202,7 +1206,6 @@
                     email: formContainer.querySelector(".Email")?.value || '',
                     phone: formContainer.querySelector(".Phone")?.value || ''
                 };
-
                 // Get selected accommodations
                 const checkboxes = formContainer.querySelectorAll('input[type="checkbox"][id^="myCheckbox"]:checked');
                 checkboxes.forEach(checkbox => {
