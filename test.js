@@ -1222,9 +1222,9 @@
 
     const formData = {
         dates: {
-            start: selectedStartDate?.toISOString().split('T')[0] || '',
-            end: selectedEndDate?.toISOString().split('T')[0] || ''
-        },
+  start: selectedStartDate ? `${selectedStartDate.getFullYear()}-${String(selectedStartDate.getMonth() + 1).padStart(2, '0')}-${String(selectedStartDate.getDate()).padStart(2, '0')}` : '',
+  end: selectedEndDate ? `${selectedEndDate.getFullYear()}-${String(selectedEndDate.getMonth() + 1).padStart(2, '0')}-${String(selectedEndDate.getDate()).padStart(2, '0')}` : ''
+},
         duration: {
             type: formContainer.querySelector("#rangeDuration")?.checked ? "range" : "exact",
             fromDay: formContainer.querySelector("#fromDay")?.value || '',
