@@ -713,29 +713,25 @@
                     const nav = document.createElement('div');
                     nav.className = 'calendar-nav';
 
-                    const prevBtn = document.createElement('button');
-                    prevBtn.innerHTML = '&lt;';
                     prevBtn.addEventListener('click', () => {
-                        if (month === 0) {
-                            month = 11;
-                            year--;
-                        } else {
-                            month--;
-                        }
-                        renderCalendar(month, year);
-                    });
+                        if (currentMonth === 0) {
+                            currentMonth = 11;
+                            currentYear--;
+                        } else {
+                            currentMonth--;
+                        }
+                        renderCalendar(currentMonth, currentYear);
+                    });
 
-                    const nextBtn = document.createElement('button');
-                    nextBtn.innerHTML = '&gt;';
-                    nextBtn.addEventListener('click', () => {
-                        if (month === 11) {
-                            month = 0;
-                            year++;
-                        } else {
-                            month++;
-                        }
-                        renderCalendar(month, year);
-                    });
+                    nextBtn.addEventListener('click', () => {
+                        if (currentMonth === 11) {
+                            currentMonth = 0;
+                            currentYear++;
+                        } else {
+                            currentMonth++;
+                        }
+                        renderCalendar(currentMonth, currentYear);
+                    });
 
                     nav.appendChild(prevBtn);
                     nav.appendChild(nextBtn);
