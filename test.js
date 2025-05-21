@@ -1193,62 +1193,67 @@
                 formContainer.replaceWith(chatBox);
             }
             formContainer.addEventListener('submit', function (event) {
-    event.preventDefault();
-    if (!validateStep()) return;
+  event.preventDefault();
+  if (!validateStep()) return;
 
-    // Initialize accommodation as an array (if not already)
-    const accommodation = [];
-    
-    // Get all checked accommodation checkboxes
-    const checkboxes = formContainer.querySelectorAll('input[type="checkbox"][id^="myCheckbox"]:checked');
-    
-    // Collect complete accommodation data
-    checkboxes.forEach(checkbox => {
-        const listItem = checkbox.closest('li');
-        const label = listItem.querySelector('label[for="' + checkbox.id + '"]');
-        const quantityInput = listItem.querySelector('.room-quantity');
-        
-        // Extract room type information
-        const roomName = label.querySelector('b')?.textContent.trim() || 'Unknown Room';
-        const roomDetails = label.querySelector('p')?.textContent.trim() || '';
-        
-        accommodation.push({
-            id: checkbox.id,
-            type: roomName,
-            details: roomDetails,
-            quantity: quantityInput ? parseInt(quantityInput.value) || 1 : 1
-        });
-    });
+  // Initialize accommodation as an array
+  const accommodation = [];
+  const checkboxes = formContainer.querySelectorAll('input[type="checkbox"][id^="myCheckbox"]:checked');
+  checkboxes.forEach(checkbox => {
+    const listItem = checkbox.closest('li');
+    const label = listItem.querySelector('label[for="' + checkbox.id + '"]');
+    const quantityInput = listItem.querySelector('.room-quantity');
+    const roomName = label.querySelector('b')?.textContent.trim() || 'Unknown Room';
+    const roomDetails = label.querySelector('p')?.textContent.trim() || '';
+    accommodation.push({ id: checkbox.id, type: roomName, details: roomDetails, quantity: quantityInput ? parseInt(quantityInput.value) || 1 : 1 });
+  });
 
-    const formData = {
-        dates: {
-  start: selectedStartDate ? `${selectedStartDate.getFullYear()}-${String(selectedStartDate.getMonth() + 1).padStart(2, '0')}-${String(selectedStartDate.getDate()).padStart(2, '0')}` : '',
-  end: selectedEndDate ? `${selectedEndDate.getFullYear()}-${String(selectedEndDate.getMonth() + 1).padStart(2, '0')}-${String(selectedEndDate.getDate()).padStart(2, '0')}` : ''
-},
-        duration: {
-            type: formContainer.querySelector("#rangeDuration")?.checked ? "range" : "exact",
-            fromDay: formContainer.querySelector("#fromDay")?.value || '',
-            tillDay: formContainer.querySelector("#tillDay")?.value || '',
-            selectedOption: formContainer.querySelector(".duration-btn.activeBtn")?.dataset.days || 'exact'
-        },
-        accommodation: accommodation, // Now contains full accommodation data
-        travelers: {
-            adults: formContainer.querySelector("#adults")?.value || '',
-            children: formContainer.querySelector("#children")?.value || ''
-        },
-        specialRequests: formContainer.querySelector("#special-requests")?.value || '',
-        contact: {
-            firstName: formContainer.querySelector("#First")?.value || '',
-            lastName: formContainer.querySelector("#LastName")?.value || '',
-            email: formContainer.querySelector("#Email")?.value || '',
-            phone: formContainer.querySelector("#Phone")?.value || ''
-        }
+  let durationData = {};
+  const singleDurationRadio = formContainer.querySelector("#ButtonSelection");
+  const rangeDurationRadio = formContainer.querySelector("#rangeDuration");
+  const activeDurationBtn = formContainer.querySelector(".duration-btn.activeBtn");
+  const fromDayInput = formContainer.querySelector("#fromDay");
+  const tillDayInput = formContainer.querySelector("#tillDay");
+
+  if (singleDurationRadio?.checked && activeDurationBtn?.dataset.days) {
+    durationData = {
+      type: 'single',
+      selectedOption: activeDurationBtn.dataset.days
     };
+  } else if (rangeDurationRadio?.checked) {
+    durationData = {
+      type: 'range',
+      fromDay: fromDayInput?.value || '',
+      tillDay: tillDayInput?.value || ''
+    };
+  } else {
+    durationData = { type: 'single', selectedOption: 'exact' }; // Default if no explicit selection
+  }
 
-    window.voiceflow.chat.interact({
-        type: 'complete',
-        payload: formData,
-    });
+  const formData = {
+    dates: {
+      start: selectedStartDate ? `${selectedStartDate.getFullYear()}-${String(selectedStartDate.getMonth() + 1).padStart(2, '0')}-${String(selectedStartDate.getDate()).padStart(2, '0')}` : '',
+      end: selectedEndDate ? `${selectedEndDate.getFullYear()}-${String(selectedEndDate.getMonth() + 1).padStart(2, '0')}-${String(selectedEndDate.getDate()).padStart(2, '0')}` : ''
+    },
+    duration: durationData, // Use the conditionally created durationData
+    accommodation: accommodation,
+    travelers: {
+      adults: formContainer.querySelector("#adults")?.value || '',
+      children: formContainer.querySelector("#children")?.value || ''
+    },
+    specialRequests: formContainer.querySelector("#special-requests")?.value || '',
+    contact: {
+      firstName: formContainer.querySelector("#First")?.value || '',
+      lastName: formContainer.querySelector("#LastName")?.value || '',
+      email: formContainer.querySelector("#Email")?.value || '',
+      phone: formContainer.querySelector("#Phone")?.value || ''
+    }
+  };
+
+  window.voiceflow.chat.interact({
+    type: 'complete',
+    payload: formData,
+  });
 
     createChatBox();
 });
