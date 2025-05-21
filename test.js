@@ -713,25 +713,29 @@
                     const nav = document.createElement('div');
                     nav.className = 'calendar-nav';
 
+                    const prevBtn = document.createElement('button');
+                    prevBtn.innerHTML = '&lt;';
                     prevBtn.addEventListener('click', () => {
-                        if (currentMonth === 0) {
-                            currentMonth = 11;
-                            currentYear--;
-                        } else {
-                            currentMonth--;
-                        }
-                        renderCalendar(currentMonth, currentYear);
-                    });
+                        if (month === 0) {
+                            month = 11;
+                            year--;
+                        } else {
+                            month--;
+                        }
+                        renderCalendar(month, year);
+                    });
 
-                    nextBtn.addEventListener('click', () => {
-                        if (currentMonth === 11) {
-                            currentMonth = 0;
-                            currentYear++;
-                        } else {
-                            currentMonth++;
-                        }
-                        renderCalendar(currentMonth, currentYear);
-                    });
+                    const nextBtn = document.createElement('button');
+                    nextBtn.innerHTML = '&gt;';
+                    nextBtn.addEventListener('click', () => {
+                        if (month === 11) {
+                            month = 0;
+                            year++;
+                        } else {
+                            month++;
+                        }
+                        renderCalendar(month, year);
+                    });
 
                     nav.appendChild(prevBtn);
                     nav.appendChild(nextBtn);
@@ -801,25 +805,20 @@
                 }
 
                 function selectDate(date) {
-                    const today = new Date();
-                    today.setHours(0, 0, 0, 0);
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0);
 
-                    // Don't allow selecting past dates
-                    if (date < today) return;
+                    // Don't allow selecting past dates
+                    if (date < today) return;
 
-                    if (!selectedStartDate) {
-                        selectedStartDate = date;
-                        selectedEndDate = null;
-                    } else if (!selectedEndDate) {
-                        if (date > selectedStartDate) {
-                            selectedEndDate = date;
-                        } else if (date < selectedStartDate) {
-                            selectedStartDate = date;
-                        }
-                    } else {
-                        selectedStartDate = date;
-                        selectedEndDate = null;
-                    }
+                    // If no start date selected, or if start date is after the clicked date, set as new start date
+                    if (!selectedStartDate || (selectedStartDate && selectedEndDate) || date < selectedStartDate) {
+                        selectedStartDate = date;
+                        selectedEndDate = null;
+                    } else {
+                        // Set end date
+                        selectedEndDate = date;
+                    }
 
                     // Update display
                     updateDateRangeDisplay(selected);
