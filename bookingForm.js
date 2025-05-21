@@ -805,20 +805,24 @@
                 }
 
                 function selectDate(date) {
-                    const today = new Date();
-                    today.setHours(0, 0, 0, 0);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
 
-                    // Don't allow selecting past dates
-                    if (date < today) return;
+  // Don't allow selecting past dates
+  if (date < today) return;
 
-                    // If no start date selected, or if start date is after the clicked date, set as new start date
-                    if (!selectedStartDate || (selectedStartDate && selectedEndDate) || date < selectedStartDate) {
-                        selectedStartDate = date;
-                        selectedEndDate = null;
-                    } else {
-                        // Set end date
-                        selectedEndDate = date;
-                    }
+  // Update currentMonth and currentYear to the selected date's month and year
+  currentMonth = date.getMonth();
+  currentYear = date.getFullYear();
+
+  // If no start date selected, or if start date is after the clicked date, set as new start date
+  if (!selectedStartDate || (selectedStartDate && selectedEndDate) || date < selectedStartDate) {
+    selectedStartDate = date;
+    selectedEndDate = null;
+  } else {
+    // Set end date
+    selectedEndDate = date;
+  }
 
                     // Update display
                     updateDateRangeDisplay(selected);
