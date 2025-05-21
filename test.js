@@ -811,13 +811,18 @@
                     // Don't allow selecting past dates
                     if (date < today) return;
 
-                    // If no start date selected, or if start date is after the clicked date, set as new start date
-                    if (!selectedStartDate || (selectedStartDate && selectedEndDate) || (selectedStartDate && date < selectedStartDate)) {
+                    if (!selectedStartDate) {
                         selectedStartDate = date;
                         selectedEndDate = null;
+                    } else if (!selectedEndDate) {
+                        if (date > selectedStartDate) {
+                            selectedEndDate = date;
+                        } else if (date < selectedStartDate) {
+                            selectedStartDate = date;
+                        }
                     } else {
-                        // Set end date
-                        selectedEndDate = date;
+                        selectedStartDate = date;
+                        selectedEndDate = null;
                     }
 
                     // Update display
