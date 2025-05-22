@@ -505,89 +505,265 @@
                     <button type="button" class="next">${next}</button>
                 </div>
             </div>
-         <div class="step step-3" style="display: none;">
-    <style> .vfrc-message--extension-Forms{width: 100%!important;}</style>
-    <h2 style="margin: 0!important;">${titlePickAccommodation}</h2>
-    <p style="margin: 7px 0px!important;">${undertitlePickAccommodation}</p><br/>
-    <div>
-        <ul>
-            <li>
-                <input type="checkbox" id="myCheckbox1" />
-                <label for="myCheckbox1">
-                    <img src="https://i.postimg.cc/15VVqdtX/Screenshot-2025-01-12-212108.png" />
-                    <br/>
-                    <p style="text-align: left;">
-                        <b>Standard Room</b><br/>
-                        ${accommodationSize1} <br/>
-                        ${accommodationPeople1}
-                    </p>
-                </label>
-                <div class="room-counter" style="display: none; margin-top: 5px;">
-                    <button class="counter-btn decrement" type="button">-</button>
-                    <input type="number" class="room-quantity" min="1" value="1" style="width: 60px; text-align: center;">
-                    <button class="counter-btn increment" type="button">+</button>
-                </div>
-            </li>   
 
+<div class="step step-3" style="display: none;">
+  <h2 style="margin: 0!important;">${titlePickAccommodation}</h2>
+  <p style="margin: 7px 0!important;">${undertitlePickAccommodation}</p>
 
-            <li>
-                <input type="checkbox" id="myCheckbox2" />
-                <label for="myCheckbox2">
-                    <img src="https://i.postimg.cc/fRx3H0Yh/Screenshot-2025-01-12-212321.png" />
-                    <br/>
-                    <p style="text-align: left;">
-                        <b>Classic Room</b><br/>
-                        ${accommodationSize2} <br/>
-                        ${accommodationPeople2}
-                    </p>
-                </label>
-                <div class="room-counter" style="display: none; margin-top: 5px;">
-                    <button class="counter-btn decrement" type="button">-</button>
-                    <input type="number" class="room-quantity" min="1" value="1" style="width: 60px; text-align: center;">
-                    <button class="counter-btn increment" type="button">+</button>
-                </div>
-            </li>
-            <li>
-                <input type="checkbox" id="myCheckbox3" />
-                <label for="myCheckbox3">
-                    <img src="https://i.postimg.cc/LXsn6CwH/Screenshot-2025-01-12-213453.png" />
-                    <br/>
-                    <p style="text-align: left;">
-                        <b>Comfort Room</b><br/>
-                        ${accommodationSize3} <br/>
-                        ${accommodationPeople3}
-                    </p>
-                </label>
-                <div class="room-counter" style="display: none; margin-top: 5px;">
-                    <button class="counter-btn decrement" type="button">-</button>
-                    <input type="number" class="room-quantity" min="1" value="1" style="width: 60px; text-align: center;">
-                    <button class="counter-btn increment" type="button">+</button>
-                </div>
-            </li>
-            <li>
-                <input type="checkbox" id="myCheckbox4" />
-                <label for="myCheckbox4">
-                    <img src="https://i.postimg.cc/6q2qC7Bg/Screenshot-2025-01-12-214111.png" />
-                    <br/>
-                    <p style="text-align: left;">
-                        <b>Plus Room</b><br/>
-                        ${accommodationSize4} <br/>
-                        ${accommodationPeople4}
-                    </p>
-                </label>
-                <div class="room-counter" style="display: none; margin-top: 5px;">
-                    <button class="counter-btn decrement" type="button">-</button>
-                    <input type="number" class="room-quantity" min="1" value="1" style="width: 60px; text-align: center;">
-                    <button class="counter-btn increment" type="button">+</button>
-                </div>
-            </li>
-        </ul>
+  <!-- 3A: Category selector -->
+  <div
+    id="categorySelector"
+    style="display:flex; gap:20px; justify-content:center; margin-top:20px;"
+  >
+    <!-- Suites card -->
+    <div
+      class="category-card"
+      data-category="suites"
+      style="flex:1; cursor:pointer; text-align:center;"
+    >
+      <img
+        src="https://your-url.com/big-suite.jpg"
+        alt="Suites"
+        style="width:100%; border-radius:8px;"
+      />
+      <p style="margin-top:8px; font-weight:600;">Suites</p>
     </div>
-    <div style="display: flex; justify-content: space-between; gap: 30px; margin-top: 17px;">
-        <button type="button" class="prev">${back}</button>
-        <button type="button" class="next">${next}</button>
+
+    <!-- Rooms card -->
+    <div
+      class="category-card"
+      data-category="rooms"
+      style="flex:1; cursor:pointer; text-align:center;"
+    >
+      <img
+        src="https://your-url.com/big-room.jpg"
+        alt="Rooms"
+        style="width:100%; border-radius:8px;"
+      />
+      <p style="margin-top:8px; font-weight:600;">Rooms</p>
     </div>
+  </div>
+
+  <!-- 3B: Filtered list -->
+  <div
+    id="accommodationList"
+    style="display:none; margin-top:20px;"
+  >
+    <!-- ← Back to category chooser -->
+    <button
+      type="button"
+      id="backToCategories"
+      class="prev"
+      style="margin-bottom:10px;"
+    >
+      ← Back
+    </button>
+
+    <!-- ——— Suites ——— -->
+    <ul
+      id="suiteItems"
+      style="display:none; flex-wrap:wrap; gap:8px; list-style:none; padding:0;"
+    >
+      <li>
+        <input type="checkbox" id="suiteCheckbox1" />
+        <label for="suiteCheckbox1">
+          <img
+            src="https://your-url.com/suite1.jpg"
+            alt="Presidential Suite"
+            style="height:150px; width:170px; border-radius:11px;"
+          />
+          <p style="text-align:left; font-size:11px; margin-top:8px;">
+            <b>Presidential Suite</b><br/>
+            60 mq<br/>
+            Fino a 4 persone
+          </p>
+        </label>
+        <div class="room-counter" style="display:none; margin-top:5px;">
+          <button class="counter-btn decrement" type="button">-</button>
+          <input
+            type="number"
+            class="room-quantity"
+            min="1"
+            value="1"
+            style="width:60px; text-align:center;"
+          />
+          <button class="counter-btn increment" type="button">+</button>
+        </div>
+      </li>
+      <li>
+        <input type="checkbox" id="suiteCheckbox2" />
+        <label for="suiteCheckbox2">
+          <img
+            src="https://your-url.com/suite2.jpg"
+            alt="Garden Suite"
+            style="height:150px; width:170px; border-radius:11px;"
+          />
+          <p style="text-align:left; font-size:11px; margin-top:8px;">
+            <b>Garden Suite</b><br/>
+            45 mq<br/>
+            Fino a 3 persone
+          </p>
+        </label>
+        <div class="room-counter" style="display:none; margin-top:5px;">
+          <button class="counter-btn decrement" type="button">-</button>
+          <input
+            type="number"
+            class="room-quantity"
+            min="1"
+            value="1"
+            style="width:60px; text-align:center;"
+          />
+          <button class="counter-btn increment" type="button">+</button>
+        </div>
+      </li>
+      <li>
+        <input type="checkbox" id="suiteCheckbox3" />
+        <label for="suiteCheckbox3">
+          <img
+            src="https://your-url.com/suite3.jpg"
+            alt="Penthouse Suite"
+            style="height:150px; width:170px; border-radius:11px;"
+          />
+          <p style="text-align:left; font-size:11px; margin-top:8px;">
+            <b>Penthouse Suite</b><br/>
+            70 mq<br/>
+            Fino a 5 persone
+          </p>
+        </label>
+        <div class="room-counter" style="display:none; margin-top:5px;">
+          <button class="counter-btn decrement" type="button">-</button>
+          <input
+            type="number"
+            class="room-quantity"
+            min="1"
+            value="1"
+            style="width:60px; text-align:center;"
+          />
+          <button class="counter-btn increment" type="button">+</button>
+        </div>
+      </li>
+    </ul>
+
+    <!-- ——— Rooms ——— -->
+    <ul
+      id="roomItems"
+      style="display:none; flex-wrap:wrap; gap:8px; list-style:none; padding:0;"
+    >
+      <li>
+        <input type="checkbox" id="roomCheckbox1" />
+        <label for="roomCheckbox1">
+          <img
+            src="https://your-url.com/room1.jpg"
+            alt="Deluxe Room"
+            style="height:150px; width:170px; border-radius:11px;"
+          />
+          <p style="text-align:left; font-size:11px; margin-top:8px;">
+            <b>Deluxe Room</b><br/>
+            25 mq<br/>
+            Ideale per 1–2 persone
+          </p>
+        </label>
+        <div class="room-counter" style="display:none; margin-top:5px;">
+          <button class="counter-btn decrement" type="button">-</button>
+          <input
+            type="number"
+            class="room-quantity"
+            min="1"
+            value="1"
+            style="width:60px; text-align:center;"
+          />
+          <button class="counter-btn increment" type="button">+</button>
+        </div>
+      </li>
+      <li>
+        <input type="checkbox" id="roomCheckbox2" />
+        <label for="roomCheckbox2">
+          <img
+            src="https://your-url.com/room2.jpg"
+            alt="Executive Room"
+            style="height:150px; width:170px; border-radius:11px;"
+          />
+          <p style="text-align:left; font-size:11px; margin-top:8px;">
+            <b>Executive Room</b><br/>
+            30 mq<br/>
+            Ideale per 1–3 persone
+          </p>
+        </label>
+        <div class="room-counter" style="display:none; margin-top:5px;">
+          <button class="counter-btn decrement" type="button">-</button>
+          <input
+            type="number"
+            class="room-quantity"
+            min="1"
+            value="1"
+            style="width:60px; text-align:center;"
+          />
+          <button class="counter-btn increment" type="button">+</button>
+        </div>
+      </li>
+      <li>
+        <input type="checkbox" id="roomCheckbox3" />
+        <label for="roomCheckbox3">
+          <img
+            src="https://your-url.com/room3.jpg"
+            alt="Family Room"
+            style="height:150px; width:170px; border-radius:11px;"
+          />
+          <p style="text-align:left; font-size:11px; margin-top:8px;">
+            <b>Family Room</b><br/>
+            35 mq<br/>
+            Ideale per 2–4 persone
+          </p>
+        </label>
+        <div class="room-counter" style="display:none; margin-top:5px;">
+          <button class="counter-btn decrement" type="button">-</button>
+          <input
+            type="number"
+            class="room-quantity"
+            min="1"
+            value="1"
+            style="width:60px; text-align:center;"
+          />
+          <button class="counter-btn increment" type="button">+</button>
+        </div>
+      </li>
+      <li>
+        <input type="checkbox" id="roomCheckbox4" />
+        <label for="roomCheckbox4">
+          <img
+            src="https://your-url.com/room4.jpg"
+            alt="Standard Room"
+            style="height:150px; width:170px; border-radius:11px;"
+          />
+          <p style="text-align:left; font-size:11px; margin-top:8px;">
+            <b>Standard Room</b><br/>
+            20 mq<br/>
+            Ideale per 1–2 persone
+          </p>
+        </label>
+        <div class="room-counter" style="display:none; margin-top:5px;">
+          <button class="counter-btn decrement" type="button">-</button>
+          <input
+            type="number"
+            class="room-quantity"
+            min="1"
+            value="1"
+            style="width:60px; text-align:center;"
+          />
+          <button class="counter-btn increment" type="button">+</button>
+        </div>
+      </li>
+    </ul>
+
+    <!-- Next/Prev buttons -->
+    <div style="text-align:right; margin-top:20px;">
+      <button type="button" class="prev">${back}</button>
+      <button type="button" class="next">${next}</button>
+    </div>
+  </div>
 </div>
+
+         
           <div class="step step-4" style="display: none;">
               <h2 style="margin: 0!important;">${titleWhoTraveling}</h2>
               <p style="margin: 7px 0px!important;">${undertitleWhoTraveling}</p><br/>
