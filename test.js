@@ -571,7 +571,7 @@
         }
 
         .room-list li label img {
-            height: 150px;
+            height: 200px; /* Erhöhe die Höhe für längere Fotos */
             width: 100%;
             border-radius: 11px;
             display: block;
@@ -590,6 +590,7 @@
         .room-list li label p {
             font-size: 11px;
             margin-top: 8px;
+            text-align: left; /* Text linksbündig */
         }
 
         .room-counter {
@@ -652,6 +653,72 @@
         <button type="button" class="prev">${back}</button>
         </div>
 </div>
+
+<script>
+    function showRooms(category) {
+        const accommodationCategories = document.getElementById('accommodationCategories');
+        const roomList = document.getElementById('roomList');
+        const roomsContainer = document.getElementById('roomsContainer');
+        const roomListTitle = document.getElementById('roomListTitle');
+        let roomsHTML = '';
+
+        if (category === 'suites') {
+            roomListTitle.textContent = 'Suites';
+            for (let i = 1; i <= 5; i++) {
+                roomsHTML += `
+                    <li>
+                        <input type="checkbox" id="roomCheckbox_suite${i}" />
+                        <label for="roomCheckbox_suite${i}">
+                            <img src="URL_ZUM_SUITE_BILD_${i}" alt="Suite ${i}"><br/>
+                            <p style="text-align: left;">
+                                <b>Suite ${i}</b><br/>
+                                Größe: XX qm<br/>
+                                Ideal für: Y Personen
+                            </p>
+                        </label>
+                        <div class="room-counter" style="display: none; margin-top: 5px;">
+                            <button class="counter-btn decrement" type="button">-</button>
+                            <input type="number" class="room-quantity" min="1" value="1" style="width: 60px; text-align: center;">
+                            <button class="counter-btn increment" type="button">+</button>
+                        </div>
+                    </li>`;
+            }
+        } else if (category === 'camere') {
+            roomListTitle.textContent = 'Camere';
+            for (let i = 1; i <= 5; i++) {
+                roomsHTML += `
+                    <li>
+                        <input type="checkbox" id="roomCheckbox_camera${i}" />
+                        <label for="roomCheckbox_camera${i}">
+                            <img src="URL_ZUM_ZIMMER_BILD_${i}" alt="Camera ${i}">
+                            <br/>
+                            <p style="text-align: left;">
+                                <b>Camera Doppia Standard ${i}</b><br/>
+                                Größe: ZZ qm<br/>
+                                Ideal für: 2 Personen
+                            </p>
+                        </label>
+                        <div class="room-counter" style="display: none; margin-top: 5px;">
+                            <button class="counter-btn decrement" type="button">-</button>
+                            <input type="number" class="room-quantity" min="1" value="1" style="width: 60px; text-align: center;">
+                            <button class="counter-btn increment" type="button">+</button>
+                        </div>
+                    </li>`;
+            }
+        }
+
+        roomsContainer.innerHTML = roomsHTML;
+        accommodationCategories.style.display = 'none';
+        roomList.style.display = 'block';
+    }
+
+    function showCategories() {
+        const accommodationCategories = document.getElementById('accommodationCategories');
+        const roomList = document.getElementById('roomList');
+        accommodationCategories.style.display = 'block';
+        roomList.style.display = 'none';
+    }
+</script>
           <div class="step step-4" style="display: none;">
               <h2 style="margin: 0!important;">${titleWhoTraveling}</h2>
               <p style="margin: 7px 0px!important;">${undertitleWhoTraveling}</p><br/>
