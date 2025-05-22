@@ -565,7 +565,7 @@
       style="display:none; flex-wrap:wrap; gap:8px; list-style:none; padding:0;"
     >
       <li>
-        <input type="checkbox" id="suiteCheckbox1" />
+        <input type="checkbox" id="myCheckbox1" />
         <label for="suiteCheckbox1">
           <img
             src="https://your-url.com/suite1.jpg"
@@ -650,7 +650,7 @@
       style="display:none; flex-wrap:wrap; gap:8px; list-style:none; padding:0;"
     >
       <li>
-        <input type="checkbox" id="roomCheckbox1" />
+        <input type="checkbox" id="myCheckbox1" />
         <label for="roomCheckbox1">
           <img
             src="https://your-url.com/room1.jpg"
