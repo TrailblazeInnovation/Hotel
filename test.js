@@ -1441,6 +1441,29 @@
             showStep(currentStep);
             element.appendChild(formContainer);
 
+            // —— Category chooser logic ——
+const catSel  = formContainer.querySelector('#categorySelector');
+const listBox = formContainer.querySelector('#accommodationList');
+const suites  = formContainer.querySelector('#suiteItems');
+const rooms   = formContainer.querySelector('#roomItems');
+const backBtn = formContainer.querySelector('#backToCategories');
+
+catSel.querySelectorAll('.category-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const cat = card.dataset.category;       // "suites" or "rooms"
+    catSel.style.display  = 'none';          // hide the two big images
+    listBox.style.display = 'block';         // show the list view
+    suites.style.display  = (cat === 'suites') ? 'flex' : 'none';
+    rooms.style.display   = (cat === 'rooms')  ? 'flex' : 'none';
+  });
+});
+
+backBtn.addEventListener('click', () => {
+  listBox.style.display = 'none';  // hide the list
+  catSel.style.display  = 'flex';  // show the two big images again
+});
+
+
             // Initialize the custom calendar
             createCustomCalendar();
         },
