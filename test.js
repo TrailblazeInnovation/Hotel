@@ -506,219 +506,88 @@
                 </div>
             </div>
          <div class="step step-3" style="display: none;">
-    <style>
-        .vfrc-message--extension-Forms {
-            width: 100% !important;
-        }
-
-        .category-container {
-            display: flex;
-            justify-content: space-around;
-            width: 100%;
-            margin-bottom: 20px;
-        }
-
-        .category-item {
-            width: 45%;
-            text-align: center;
-        }
-
-        .category-item img {
-            width: 100%;
-            border-radius: 11px;
-            cursor: pointer;
-            max-height: 250px; /* Anpassbare Höhe */
-            object-fit: cover;
-        }
-
-        .category-item h3 {
-            margin-top: 10px;
-            font-size: 1.2em;
-        }
-
-        .room-list ul {
-            display: flex;
-            flex-wrap: wrap;
-            margin-top: 0;
-            list-style-type: none;
-            padding-left: 0 !important;
-            gap: 10px;
-        }
-
-        .room-list li {
-            display: inline-block;
-            margin: 0;
-            width: calc(50% - 5px); /* Zwei Zimmer pro Zeile mit etwas Abstand */
-        }
-
-        .room-list li label {
-            display: block;
-            position: relative;
-            cursor: pointer;
-            text-align: center;
-            border-radius: 14px;
-            transition: background-color 0.3s ease;
-            padding: 10px;
-            background-color: transparent;
-        }
-
-        .room-list li label:hover {
-            background-color: rgba(0, 0, 0, 0.05);
-        }
-
-        .room-list li input[type="checkbox"][id^="roomCheckbox"] {
-            display: none;
-        }
-
-        .room-list li label img {
-            height: 200px; /* Erhöhe die Höhe für längere Fotos */
-            width: 100%;
-            border-radius: 11px;
-            display: block;
-            transition: transform 0.3s ease;
-            object-fit: cover;
-        }
-
-        .room-list li label:hover img {
-            transform: scale(1.03);
-        }
-
-        .room-list li input[type="checkbox"]:checked + label img {
-            transform: none !important;
-        }
-
-        .room-list li label p {
-            font-size: 11px;
-            margin-top: 8px;
-            text-align: left; /* Text linksbündig */
-        }
-
-        .room-counter {
-            margin-top: 8px;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .room-list li input[type="checkbox"]:checked ~ .room-counter {
-            display: flex;
-        }
-
-        .back-to-categories {
-            background: transparent;
-            border: 1px solid gray;
-            width: 150px;
-            color: black;
-            padding: 10px 25px;
-            border-radius: 20px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-
-        .back-to-categories:hover {
-            background: #000;
-            color: white;
-        }
-    </style>
+    <style> .vfrc-message--extension-Forms{width: 100%!important;}</style>
     <h2 style="margin: 0!important;">${titlePickAccommodation}</h2>
     <p style="margin: 7px 0px!important;">${undertitlePickAccommodation}</p><br/>
+    <div>
+        <ul>
+            <li>
+                <input type="checkbox" id="myCheckbox1" />
+                <label for="myCheckbox1">
+                    <img src="https://i.postimg.cc/15VVqdtX/Screenshot-2025-01-12-212108.png" />
+                    <br/>
+                    <p style="text-align: left;">
+                        <b>Standard Room</b><br/>
+                        ${accommodationSize1} <br/>
+                        ${accommodationPeople1}
+                    </p>
+                </label>
+                <div class="room-counter" style="display: none; margin-top: 5px;">
+                    <button class="counter-btn decrement" type="button">-</button>
+                    <input type="number" class="room-quantity" min="1" value="1" style="width: 60px; text-align: center;">
+                    <button class="counter-btn increment" type="button">+</button>
+                </div>
+            </li>   
 
-    <div id="accommodationCategories">
-        <div class="category-container">
-            <div class="category-item" onclick="showRooms('suites')">
-                <img src="URL_ZUM_SUITE_BILD" alt="Suites">
-                <h3>Suites</h3>
-            </div>
-            <div class="category-item" onclick="showRooms('camere')">
-                <img src="URL_ZUM_CAMERE_BILD" alt="Camere">
-                <h3>Camere</h3>
-            </div>
-        </div>
+
+            <li>
+                <input type="checkbox" id="myCheckbox2" />
+                <label for="myCheckbox2">
+                    <img src="https://i.postimg.cc/fRx3H0Yh/Screenshot-2025-01-12-212321.png" />
+                    <br/>
+                    <p style="text-align: left;">
+                        <b>Classic Room</b><br/>
+                        ${accommodationSize2} <br/>
+                        ${accommodationPeople2}
+                    </p>
+                </label>
+                <div class="room-counter" style="display: none; margin-top: 5px;">
+                    <button class="counter-btn decrement" type="button">-</button>
+                    <input type="number" class="room-quantity" min="1" value="1" style="width: 60px; text-align: center;">
+                    <button class="counter-btn increment" type="button">+</button>
+                </div>
+            </li>
+            <li>
+                <input type="checkbox" id="myCheckbox3" />
+                <label for="myCheckbox3">
+                    <img src="https://i.postimg.cc/LXsn6CwH/Screenshot-2025-01-12-213453.png" />
+                    <br/>
+                    <p style="text-align: left;">
+                        <b>Comfort Room</b><br/>
+                        ${accommodationSize3} <br/>
+                        ${accommodationPeople3}
+                    </p>
+                </label>
+                <div class="room-counter" style="display: none; margin-top: 5px;">
+                    <button class="counter-btn decrement" type="button">-</button>
+                    <input type="number" class="room-quantity" min="1" value="1" style="width: 60px; text-align: center;">
+                    <button class="counter-btn increment" type="button">+</button>
+                </div>
+            </li>
+            <li>
+                <input type="checkbox" id="myCheckbox4" />
+                <label for="myCheckbox4">
+                    <img src="https://i.postimg.cc/6q2qC7Bg/Screenshot-2025-01-12-214111.png" />
+                    <br/>
+                    <p style="text-align: left;">
+                        <b>Plus Room</b><br/>
+                        ${accommodationSize4} <br/>
+                        ${accommodationPeople4}
+                    </p>
+                </label>
+                <div class="room-counter" style="display: none; margin-top: 5px;">
+                    <button class="counter-btn decrement" type="button">-</button>
+                    <input type="number" class="room-quantity" min="1" value="1" style="width: 60px; text-align: center;">
+                    <button class="counter-btn increment" type="button">+</button>
+                </div>
+            </li>
+        </ul>
     </div>
-
-    <div id="roomList" style="display: none;">
-        <div class="room-list">
-            <h3 id="roomListTitle"></h3>
-            <ul id="roomsContainer">
-                </ul>
-        </div>
-        <div style="display: flex; justify-content: space-between; gap: 30px; margin-top: 17px;">
-            <button type="button" class="back-to-categories" onclick="showCategories()">${back}</button>
-            <button type="button" class="next">${next}</button>
-        </div>
-    </div>
-
     <div style="display: flex; justify-content: space-between; gap: 30px; margin-top: 17px;">
         <button type="button" class="prev">${back}</button>
-        </div>
+        <button type="button" class="next">${next}</button>
+    </div>
 </div>
-
-<script>
-    function showRooms(category) {
-        const accommodationCategories = document.getElementById('accommodationCategories');
-        const roomList = document.getElementById('roomList');
-        const roomsContainer = document.getElementById('roomsContainer');
-        const roomListTitle = document.getElementById('roomListTitle');
-        let roomsHTML = '';
-
-        if (category === 'suites') {
-            roomListTitle.textContent = 'Suites';
-            for (let i = 1; i <= 5; i++) {
-                roomsHTML += `
-                    <li>
-                        <input type="checkbox" id="roomCheckbox_suite${i}" />
-                        <label for="roomCheckbox_suite${i}">
-                            <img src="URL_ZUM_SUITE_BILD_${i}" alt="Suite ${i}"><br/>
-                            <p style="text-align: left;">
-                                <b>Suite ${i}</b><br/>
-                                Größe: XX qm<br/>
-                                Ideal für: Y Personen
-                            </p>
-                        </label>
-                        <div class="room-counter" style="display: none; margin-top: 5px;">
-                            <button class="counter-btn decrement" type="button">-</button>
-                            <input type="number" class="room-quantity" min="1" value="1" style="width: 60px; text-align: center;">
-                            <button class="counter-btn increment" type="button">+</button>
-                        </div>
-                    </li>`;
-            }
-        } else if (category === 'camere') {
-            roomListTitle.textContent = 'Camere';
-            for (let i = 1; i <= 5; i++) {
-                roomsHTML += `
-                    <li>
-                        <input type="checkbox" id="roomCheckbox_camera${i}" />
-                        <label for="roomCheckbox_camera${i}">
-                            <img src="URL_ZUM_ZIMMER_BILD_${i}" alt="Camera ${i}">
-                            <br/>
-                            <p style="text-align: left;">
-                                <b>Camera Doppia Standard ${i}</b><br/>
-                                Größe: ZZ qm<br/>
-                                Ideal für: 2 Personen
-                            </p>
-                        </label>
-                        <div class="room-counter" style="display: none; margin-top: 5px;">
-                            <button class="counter-btn decrement" type="button">-</button>
-                            <input type="number" class="room-quantity" min="1" value="1" style="width: 60px; text-align: center;">
-                            <button class="counter-btn increment" type="button">+</button>
-                        </div>
-                    </li>`;
-            }
-        }
-
-        roomsContainer.innerHTML = roomsHTML;
-        accommodationCategories.style.display = 'none';
-        roomList.style.display = 'block';
-    }
-
-    function showCategories() {
-        const accommodationCategories = document.getElementById('accommodationCategories');
-        const roomList = document.getElementById('roomList');
-        accommodationCategories.style.display = 'block';
-        roomList.style.display = 'none';
-    }
-</script>
           <div class="step step-4" style="display: none;">
               <h2 style="margin: 0!important;">${titleWhoTraveling}</h2>
               <p style="margin: 7px 0px!important;">${undertitleWhoTraveling}</p><br/>
