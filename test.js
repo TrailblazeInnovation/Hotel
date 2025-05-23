@@ -215,8 +215,8 @@
         }            
           
           label img {
-        height: 120px;
-        width: 130px;
+        height: 100px;
+        width: 120px;
         border-radius: 11px;
         display: block;
         transition: transform 0.3s ease;
