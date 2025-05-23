@@ -247,6 +247,48 @@
         gap: 6px;
         }
 
+        .toggle-bar {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.toggle-option {
+  flex: 1;
+  text-align: center;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  transition: background 0.2s, border 0.2s;
+}
+.toggle-option img {
+  width: 100%;
+  max-width: 200px;
+  border-radius: 8px;
+  margin: 0 auto 8px;
+}
+.toggle-option.active {
+  border-color: #000;
+  background: #f8f8f8;
+}
+
+.accommodation-list ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 0;
+  list-style: none;
+}
+.accommodation-list li {
+  width: calc(50% - 12px);
+}
+.room-counter {
+  display: none;
+  margin-top: 5px;
+  gap: 6px;
+  align-items: center;
+}
         
         .fieldinput{
         margin-top: 0!important;
@@ -506,87 +548,65 @@
                 </div>
             </div>
          <div class="step step-3" style="display: none;">
-    <style> .vfrc-message--extension-Forms{width: 100%!important;}</style>
-    <h2 style="margin: 0!important;">${titlePickAccommodation}</h2>
-    <p style="margin: 7px 0px!important;">${undertitlePickAccommodation}</p><br/>
-    <div>
-        <ul>
-            <li>
-                <input type="checkbox" id="myCheckbox1" />
-                <label for="myCheckbox1">
-                    <img src="https://i.postimg.cc/15VVqdtX/Screenshot-2025-01-12-212108.png" />
-                    <br/>
-                    <p style="text-align: left;">
-                        <b>Standard Room</b><br/>
-                        ${accommodationSize1} <br/>
-                        ${accommodationPeople1}
-                    </p>
-                </label>
-                <div class="room-counter" style="display: none; margin-top: 5px;">
-                    <button class="counter-btn decrement" type="button">-</button>
-                    <input type="number" class="room-quantity" min="1" value="1" style="width: 60px; text-align: center;">
-                    <button class="counter-btn increment" type="button">+</button>
-                </div>
-            </li>   
 
+  <!-- A) Toggle bar with two panels -->
+  <div class="toggle-bar">
+    <div id="toggle-suites" class="toggle-option active">
+      <img src="YOUR_SUITES_OVERVIEW_IMG_URL" alt="Suites" />
+      <p>Suites<br/><small>Pick your suite</small></p>
+    </div>
+    <div id="toggle-rooms" class="toggle-option">
+      <img src="YOUR_ROOMS_OVERVIEW_IMG_URL" alt="Rooms" />
+      <p>Rooms<br/><small>Pick your room</small></p>
+    </div>
+  </div>
 
-            <li>
-                <input type="checkbox" id="myCheckbox2" />
-                <label for="myCheckbox2">
-                    <img src="https://i.postimg.cc/fRx3H0Yh/Screenshot-2025-01-12-212321.png" />
-                    <br/>
-                    <p style="text-align: left;">
-                        <b>Classic Room</b><br/>
-                        ${accommodationSize2} <br/>
-                        ${accommodationPeople2}
-                    </p>
-                </label>
-                <div class="room-counter" style="display: none; margin-top: 5px;">
-                    <button class="counter-btn decrement" type="button">-</button>
-                    <input type="number" class="room-quantity" min="1" value="1" style="width: 60px; text-align: center;">
-                    <button class="counter-btn increment" type="button">+</button>
-                </div>
-            </li>
-            <li>
-                <input type="checkbox" id="myCheckbox3" />
-                <label for="myCheckbox3">
-                    <img src="https://i.postimg.cc/LXsn6CwH/Screenshot-2025-01-12-213453.png" />
-                    <br/>
-                    <p style="text-align: left;">
-                        <b>Comfort Room</b><br/>
-                        ${accommodationSize3} <br/>
-                        ${accommodationPeople3}
-                    </p>
-                </label>
-                <div class="room-counter" style="display: none; margin-top: 5px;">
-                    <button class="counter-btn decrement" type="button">-</button>
-                    <input type="number" class="room-quantity" min="1" value="1" style="width: 60px; text-align: center;">
-                    <button class="counter-btn increment" type="button">+</button>
-                </div>
-            </li>
-            <li>
-                <input type="checkbox" id="myCheckbox4" />
-                <label for="myCheckbox4">
-                    <img src="https://i.postimg.cc/6q2qC7Bg/Screenshot-2025-01-12-214111.png" />
-                    <br/>
-                    <p style="text-align: left;">
-                        <b>Plus Room</b><br/>
-                        ${accommodationSize4} <br/>
-                        ${accommodationPeople4}
-                    </p>
-                </label>
-                <div class="room-counter" style="display: none; margin-top: 5px;">
-                    <button class="counter-btn decrement" type="button">-</button>
-                    <input type="number" class="room-quantity" min="1" value="1" style="width: 60px; text-align: center;">
-                    <button class="counter-btn increment" type="button">+</button>
-                </div>
-            </li>
-        </ul>
-    </div>
-    <div style="display: flex; justify-content: space-between; gap: 30px; margin-top: 17px;">
-        <button type="button" class="prev">${back}</button>
-        <button type="button" class="next">${next}</button>
-    </div>
+  <!-- B) The 3 suites -->
+  <div id="list-suites" class="accommodation-list">
+    <ul>
+      <!-- Repeat one <li> per suite -->
+      <li>
+        <input type="checkbox" id="suite1" />
+        <label for="suite1">
+          <img src="SUITE1_IMAGE_URL" />
+          <p><b>Suite Name 1</b><br/>Size: 30 mq<br/>Up to 3 people</p>
+        </label>
+        <div class="room-counter">
+          <button class="decrement">–</button>
+          <input type="number" class="room-quantity" value="1" min="1" />
+          <button class="increment">+</button>
+        </div>
+      </li>
+      <!-- … suites 2 and 3 … -->
+    </ul>
+  </div>
+
+  <!-- C) The 7 rooms (hidden by default) -->
+  <div id="list-rooms" class="accommodation-list" style="display: none;">
+    <ul>
+      <!-- Repeat one <li> per room, same as before -->
+      <li>
+        <input type="checkbox" id="room1" />
+        <label for="room1">
+          <img src="STANDARD_ROOM_IMG_URL" />
+          <p><b>Standard Room</b><br/>20 mq<br/>1–2 people</p>
+        </label>
+        <div class="room-counter">
+          <button class="decrement">–</button>
+          <input type="number" class="room-quantity" value="1" min="1" />
+          <button class="increment">+</button>
+        </div>
+      </li>
+      <!-- … rooms 2 through 7 … -->
+    </ul>
+  </div>
+
+  <!-- D) Your existing Back/Next buttons -->
+  <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+    <button type="button" class="prev">${back}</button>
+    <button type="button" class="next">${next}</button>
+  </div>
+
 </div>
           <div class="step step-4" style="display: none;">
               <h2 style="margin: 0!important;">${titleWhoTraveling}</h2>
@@ -1262,8 +1282,32 @@
     createChatBox();
 });
 
+            const ts = formContainer.querySelector('#toggle-suites');
+  const tr = formContainer.querySelector('#toggle-rooms');
+  const ls = formContainer.querySelector('#list-suites');
+  const lr = formContainer.querySelector('#list-rooms');
+
+  ts.addEventListener('click', () => {
+    ts.classList.add('active');
+    tr.classList.remove('active');
+    ls.style.display = 'block';
+    lr.style.display = 'none';
+  });
+  tr.addEventListener('click', () => {
+    tr.classList.add('active');
+    ts.classList.remove('active');
+    lr.style.display = 'block';
+    ls.style.display = 'none';
+  });
+
+  // re-use your existing room-counter wiring
+  formContainer.querySelectorAll('li').forEach(li => {
+    /* checkbox → show/hide counter, increment/decrement… */
+  });
+
             showStep(currentStep);
             element.appendChild(formContainer);
+
 
             // Initialize the custom calendar
             createCustomCalendar();
