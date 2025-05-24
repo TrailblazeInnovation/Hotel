@@ -14,7 +14,21 @@ export const FormExtension = {
         let currentStep = 1;
         let selectedStartDate = null;
         let selectedEndDate = null;
-        const { titleChooseYourStay, undertitleChooseYourStay, noDatesSelected, selected, undertitleChooseYourStay2, selectDuration, exactlyAsSpecified, threeDays, fourDays, fiveDays, sixDays, sevenDays, eightDays, nineDays, tenDays, enterExactDates, from, until, youCanChoose, days, titlePickAccommodation, undertitlePickAccommodation, accommodationSize1, accommodationPeople1, accommodationSize2, accommodationPeople2, accommodationSize3, accommodationPeople3, accommodationSize4, accommodationPeople4, titleWhoTraveling, undertitleWhoTraveling, adults14Plus, children, specialRequests, specialRequestsTxt, titleContactInformation, undertitleContactInformationBooking, firstName, lastName, emailVF, phoneNumber, next, back, titleReview, undertitleReviewBooking, reviewStayDates, reviewTravelDates, reviewDurationOFStay, reviewAccommodation, reviewTypes, reviewTravelers, reviewAdults, reviewSpecialRequests, edit, submit, firstAndLastname, thankSubmission, formSubmitted, formTeam } = trace.payload;
+        const { 
+            titleChooseYourStay, undertitleChooseYourStay, noDatesSelected, selected, 
+            undertitleChooseYourStay2, selectDuration, exactlyAsSpecified, threeDays, fourDays, 
+            fiveDays, sixDays, sevenDays, eightDays, nineDays, tenDays, enterExactDates, 
+            from, until, youCanChoose, days, titlePickAccommodation, undertitlePickAccommodation, 
+            accommodationSize1, accommodationPeople1, accommodationSize2, accommodationPeople2, 
+            accommodationSize3, accommodationPeople3, accommodationSize4, accommodationPeople4, 
+            titleWhoTraveling, undertitleWhoTraveling, adults14Plus, children, specialRequests, 
+            specialRequestsTxt, titleContactInformation, undertitleContactInformationBooking, 
+            firstName, lastName, emailVF, phoneNumber, next, back, titleReview, 
+            undertitleReviewBooking, reviewStayDates, reviewTravelDates, reviewDurationOFStay, 
+            reviewAccommodation, reviewTypes, reviewTravelers, reviewAdults, reviewSpecialRequests, 
+            edit, submit, firstAndLastname, thankSubmission, formSubmitted, formTeam,
+            buttonTextAccommodationCategories = "Accommodation categories" 
+        } = trace.payload;
 
         const suitesCategoryImageUrl = 'https://i.postimg.cc/P5Skr0NL/suites-category-placeholder.png';
         const roomsCategoryImageUrl = 'https://i.postimg.cc/RZm5g7sW/rooms-category-placeholder.png';
@@ -40,7 +54,6 @@ export const FormExtension = {
         formContainer.innerHTML = `
             <style>
             @import url('https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&display=swap');
-            /* ... (all other existing styles from previous response remain unchanged unless specified below) ... */
             .form-container {
                 font-family: "Host Grotesk", serif; width: 100%; background: #fff; padding: 20px; border-radius: 5px;
             }
@@ -60,18 +73,33 @@ export const FormExtension = {
             input:hover, textarea:hover{ border: 1px solid black; }
             h2, label, input, textarea, button { font-family: "Host Grotesk", serif; }
             .steps { position: relative; width: 100%; }
-            .step-1 .bord2{ position: absolute; border: 2px solid #e1dada; width: 100%; left: 0; top: 80px; }
-            .step-1.active .bord, .step-2.active .bord{ position: absolute; border: 2px solid black; width: 20%; left: 0; top: 80px; }
-            .step-2.active .bord{ width: 20%; }
-            .step-3.active .bord{ position: absolute; border: 2px solid black; width: 40%; left: 0; top: 80px; }
-            .step-4.active .bord{ position: absolute; border: 2px solid black; width: 60%; left: 0; top: 80px; }
-            .step-5.active .bord{ position: absolute; border: 2px solid black; width: 80%; left: 0; top: 80px; }
-            .step-6.active .bord{ position: absolute; border: 2px solid black; width: 100%; left: 0; top: 80px; }
+
+            .step-1 .bord2{
+                position: absolute; border: 2px solid #e1dada; width: 100%; left: 0; top: 80px; 
+            }
+            .step-1.active .bord, .step-2.active .bord{ 
+                position: absolute; border: 2px solid black; width: 20%; left: 0; top: 80px;
+            }
+            .step-2.active .bord{ 
+                display: block!important; 
+            }
+            .step-3.active .bord{ 
+                position: absolute; border: 2px solid black; width: 40%; left: 0; top: 80px;
+            }
+            .step-4.active .bord{ 
+                position: absolute; border: 2px solid black; width: 60%; left: 0; top: 80px;
+            }
+            .step-5.active .bord{ 
+                position: absolute; border: 2px solid black; width: 80%; left: 0; top: 80px;
+            }
+            .step-6.active .bord{ 
+                position: absolute; border: 2px solid black; width: 100%; left: 0; top: 80px;
+            }
             .visited span{ background: black!important; color: white; }
-            .next, .prev, .back-to-categories-btn {
+            .next, .prev { 
                 background: transparent; border: 1px solid gray; width: 150px; color: black; padding: 10px 25px; border-radius: 20px; cursor: pointer;
             }
-            .next:hover, .prev:hover, .back-to-categories-btn:hover { background: #000; color: white; }
+            .next:hover, .prev:hover { background: #000; color: white; }
             .vfrc-message--extension-Forms{ background: white!important; }
             .step-content{margin-top: 28px;}
             .duration-btn { border: 1px solid gray; background-color: #fff; color: black; }
@@ -81,8 +109,6 @@ export const FormExtension = {
             .duration-btn.disabled {
                 opacity: 0.5; cursor: not-allowed; background: #f5f5f5 !important; border: 1px solid #ddd !important; color: #999 !important;
             }
-
-            /* --- START: Custom Radio Button Styles for Step 2 (MODIFIED) --- */
             .custom-radio-container {
                 display: flex; align-items: center; cursor: pointer; padding: 5px 0; margin-bottom: 5px;
             }
@@ -90,42 +116,87 @@ export const FormExtension = {
                 opacity: 0; position: absolute; width: 1px; height: 1px;
             }
             .custom-radio-square {
-                width: 14px;  /* MODIFIED: Slightly smaller */
-                height: 14px; /* MODIFIED: Slightly smaller */
-                border: 1px solid #888; /* MODIFIED: Default border color, slightly darker for visibility */
-                margin-right: 8px; display: inline-block; background-color: #fff;
-                transition: background-color 0.2s ease, border-color 0.2s ease;
-                border-radius: 4px; /* MODIFIED: Rounded corners, e.g. 4px or 3px */
+                width: 14px; height: 14px; border: 1px solid #888; margin-right: 8px; display: inline-block; background-color: #fff;
+                transition: background-color 0.2s ease, border-color 0.2s ease; border-radius: 4px;
             }
             .custom-radio-container input[type="radio"][name="durationType"]:checked + .custom-radio-square {
                 background-color: black; border-color: black;
             }
             .custom-radio-container .radio-label-text { font-weight: 500; font-family: "Host Grotesk", serif; }
-            /* --- END: Custom Radio Button Styles --- */
-            
             #quickDurationButtonsContainer, #rangeDurationInputContainer { transition: opacity 0.3s ease-in-out; }
+            
             ul#accommodationListContainer {
-                display: flex; flex-wrap: wrap; margin-top: 0; list-style-type: none; padding-left: 0px !important; gap: 8px; justify-content: flex-start;
+                display: flex; flex-wrap: wrap; margin-top: 0; list-style-type: none; 
+                padding-left: 0px !important; gap: 15px; 
+                justify-content: flex-start;
             }
-            ul#accommodationListContainer li { display: inline-block; margin: 0; flex-basis: calc(50% - 4px); }
-            @media (max-width: 768px) { ul#accommodationListContainer li { flex-basis: calc(100% - 4px); } }
+            ul#accommodationListContainer li { 
+                display: flex; 
+                flex-direction: column; 
+                margin: 0; 
+                flex-basis: calc(50% - 8px); 
+                border-radius: 12px; 
+                background-color: transparent; 
+                box-shadow: none; 
+                border: none; 
+                overflow: hidden; 
+                transition: background-color 0.3s ease; 
+                padding: 0; 
+            }
+            ul#accommodationListContainer li:hover {
+                background-color: #f5f5f5; 
+            }
+            ul#accommodationListContainer li.selected-item {
+                background-color: #e0e0e0; 
+            }
+            @media (max-width: 768px) { ul#accommodationListContainer li { flex-basis: calc(100% - 8px); } }
+            
             input[type="checkbox"][id^="acc-myCheckbox"] { display: none; }
+            
             ul#accommodationListContainer label {
-                display: block; position: relative; cursor: pointer; text-align: center; border-radius: 14px;
-                transition: background-color 0.3s ease; padding: 10px; background-color: transparent;
-                border: 1px solid transparent; height: 100%; box-sizing: border-box;
+                display: block; 
+                position: relative; 
+                cursor: pointer; 
+                text-align: center;
+                padding: 10px; 
+                background-color: transparent; 
+                border: none; 
+                height: auto; 
+                box-sizing: border-box;
             }
-            ul#accommodationListContainer label:hover { background-color: rgba(0, 0, 0, 0.05); border-color: #ccc; }
-            input[type="checkbox"][id^="acc-myCheckbox"]:checked + label { background-color: rgba(0, 0, 0, 0.08); border-color: #000; }
+            
             ul#accommodationListContainer label img {
-                height: 150px; width: 100%; max-width: 170px; border-radius: 11px; display: block;
-                margin-left: auto; margin-right: auto; transition: transform 0.3s ease; object-fit: cover;
+                height: 170px; 
+                width: 100%; 
+                border-radius: 8px; 
+                display: block;
+                margin-left: auto; margin-right: auto; 
+                object-fit: cover;
+                transition: transform 0.3s ease; 
+                transform: scale(1); 
             }
-            ul#accommodationListContainer label:hover img { transform: scale(1.03); }
-            input[type="checkbox"][id^="acc-myCheckbox"]:checked + label img { transform: none !important; }
-            ul#accommodationListContainer label p { font-size: 11px; margin-top: 8px; text-align: left; }
-            .room-counter { margin-top: 8px; display: none; justify-content: center; align-items: center; gap: 6px; }
+            ul#accommodationListContainer li:hover label img {
+                transform: scale(1.03); 
+            }
+            ul#accommodationListContainer label p {
+                font-size: 11px;
+                margin-top: 8px; 
+                text-align: left; 
+                padding: 0 5px; 
+                line-height: 1.4; 
+                color: #333; 
+            }
+
+            .room-counter { 
+                margin: 0px auto 10px auto; 
+                display: none; 
+                justify-content: center; 
+                align-items: center; 
+                gap: 6px; 
+                padding-top: 5px; 
+            }
             input[type="checkbox"][id^="acc-myCheckbox"]:checked ~ .room-counter { display: flex; }
+            
             .fieldinput{ margin-top: 0!important; }
             .custom-calendar { width: 100%; margin-top: 20px; font-family: "Host Grotesk", serif; }
             .calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
@@ -161,16 +232,76 @@ export const FormExtension = {
             input[type="checkbox"][id^="acc-myCheckbox"]:checked ~ .room-counter .counter-btn { display: flex !important; }
             .counter-btn:hover { background: #e0e0e0; }
             .room-quantity { border: 1px solid #ddd; border-radius: 5px; padding: 5px; text-align: center; width: 60px; }
-            #accommodation-categories { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; margin-bottom: 20px; }
-            .category-selector {
-                cursor: pointer; text-align: center; border: 1px solid #e0e0e0; padding: 15px; border-radius: 12px;
-                width: calc(50% - 30px); background-color: #fff; transition: box-shadow 0.3s ease, border-color 0.3s ease; box-sizing: border-box;
+            #accommodation-categories {
+                display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; margin-bottom: 20px;
             }
-            .category-selector:hover { border-color: #000; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-            .category-selector img { width: 100%; height: 180px; border-radius: 8px; object-fit: cover; margin-bottom: 10px; }
+            .category-selector {
+                cursor: pointer; text-align: center; padding: 15px; border-radius: 12px;
+                width: calc(50% - 25px); background-color: #fff; box-sizing: border-box; overflow: hidden;
+            }
+            .category-selector img {
+                width: 100%; height: 220px; border-radius: 8px; object-fit: cover; margin-bottom: 10px;
+                transition: transform 0.3s ease, filter 0.3s ease;
+            }
+            .category-selector:hover img { transform: scale(1.05); filter: brightness(0.7); }
             .category-selector h3 { margin-top: 10px; margin-bottom: 5px; font-size: 18px; font-weight: 600; color: #333; }
-            @media (max-width: 600px) { .category-selector { width: 100%; } }
-            .back-to-categories-btn-container { margin-bottom: 20px; text-align: left; }
+            @media (max-width: 600px) { .category-selector { width: calc(100% - 20px); margin-left: 10px; margin-right: 10px; } }
+            .back-to-categories-btn-container {
+                margin-bottom: 20px; text-align: left; 
+            }
+            .back-to-categories-btn {
+                background: none; border: none; padding: 5px 0; color: #555; cursor: pointer;
+                font-size: 14px; display: inline-flex; align-items: center;
+                font-family: "Host Grotesk", serif; text-decoration: none; width: auto; 
+                border-radius: 0; font-weight: 500; 
+            }
+            .back-to-categories-btn svg {
+                width: 1em; height: 1em; margin-right: 8px; fill: currentColor;
+            }
+            .back-to-categories-btn:hover {
+                color: #000; text-decoration: underline; background: none; 
+            }
+
+            /* --- START: CSS for Spacing in Step 4 (Who is Traveling) --- */
+            .step-4 > div:nth-child(4) { /* Flex container for Adults/Children inputs */
+                margin-bottom: 25px; 
+            }
+            .step-4 > div:nth-child(5) { /* Container for Special Requests textarea */
+                margin-bottom: 30px; 
+            }
+            .step-4 label { 
+                display: block;
+                margin-bottom: 8px; 
+                font-weight: 500; 
+                text-align: left !important; 
+            }
+            .step-4 input[type="number"],
+            .step-4 textarea {
+                margin-top: 0; 
+            }
+            /* --- END: CSS for Spacing in Step 4 --- */
+
+            /* --- START: CSS for Spacing in Step 5 (Contact Information) --- */
+            .step-5 > div:nth-child(4) { /* Flex container for First Name / Last Name inputs */
+                margin-bottom: 25px; /* Space after the First/Last Name row */
+            }
+            .step-5 > div:nth-child(5) { /* Container for Email input */
+                margin-bottom: 25px; /* Space after the Email field, before Phone field */
+            }
+            /* The Phone field container (.step-5 > div:nth-child(6)) will use its input's default bottom margin.
+               The button container (.step-5 > div:nth-child(7)) already has margin-top: 17px.
+               This should provide adequate spacing before buttons. */
+
+            .step-5 label { /* General label styling within Step 5 */
+                display: block;
+                margin-bottom: 8px; /* Space between label and its input/textarea */
+                font-weight: 500; 
+                text-align: left !important; /* From original inline style */
+            }
+            /* Inputs in Step 5 use 'fieldinput' class which has margin-top: 0 !important.
+               The global 'input, textarea' rule provides margin-bottom: 10px. This is generally fine.
+               No additional margin-top override needed here if 'fieldinput' is consistently used and styled. */
+            /* --- END: CSS for Spacing in Step 5 --- */
 
             </style>
             <div class="steps" style="display: flex; gap: 30px; justify-content: space-around; width: 100%;">
@@ -210,7 +341,8 @@ export const FormExtension = {
                             <span class="custom-radio-square"></span>
                             <span class="radio-label-text">${selectDuration}:</span>
                         </label>
-                        <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 5px; padding-left: 22px;" id="quickDurationButtonsContainer"> <button type="button" class="duration-btn BtnSimp" data-days="exact">${exactlyAsSpecified}</button>
+                        <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 5px; padding-left: 22px;" id="quickDurationButtonsContainer">
+                            <button type="button" class="duration-btn BtnSimp" data-days="exact">${exactlyAsSpecified}</button>
                             <button type="button" class="duration-btn BtnSimp" data-days="3">${threeDays}</button>
                             <button type="button" class="duration-btn BtnSimp" data-days="4">${fourDays}</button>
                             <button type="button" class="duration-btn BtnSimp" data-days="5">${fiveDays}</button>
@@ -228,7 +360,8 @@ export const FormExtension = {
                             <span class="custom-radio-square"></span>
                             <span class="radio-label-text">${enterExactDates}:</span>
                         </label>
-                        <div style="margin-top: 5px; padding-left: 22px;" id="rangeDurationInputContainer"> <div style="display: flex; gap: 10px; align-items: center;">
+                        <div style="margin-top: 5px; padding-left: 22px;" id="rangeDurationInputContainer">
+                            <div style="display: flex; gap: 10px; align-items: center;">
                                 <div class="input-wrapper">
                                     <label for="fromDay">${from}</label>
                                     <input type="number" id="fromDay" name="fromDay" min="1" value="1">
@@ -261,18 +394,18 @@ export const FormExtension = {
                 <div class="step step-4" style="display: none;">
                     <h2 style="margin: 0!important;">${titleWhoTraveling}</h2>
                     <p style="margin: 7px 0px!important;">${undertitleWhoTraveling}</p><br/>
-                    <div style="display: flex; gap: 30px; justify-content: space-between;">
-                        <div style="width: 45%;">
-                            <label for="adults" style="text-align: left!important;">${adults14Plus}*</label>
+                    <div style="display: flex; gap: 30px; justify-content: space-between;"> 
+                        <div style="width: 45%;"> 
+                            <label for="adults">${adults14Plus}*</label>
                             <input type="number" id="adults" name="adults" min="1" value="1" required/>
                         </div>
-                        <div style="width: 45%;">
-                            <label for="children" style="text-align: left!important;">${children}</label>
+                        <div style="width: 45%;"> 
+                            <label for="children">${children}</label>
                             <input type="number" id="children" name="children" min="0" value="0"/>
                         </div>
                     </div>
-                    <div>
-                        <label for="special-requests" style="text-align: left!important;">${specialRequests}</label>
+                    <div> 
+                        <label for="special-requests">${specialRequests}</label>
                         <textarea id="special-requests" name="special-requests" rows="4" placeholder="${specialRequestsTxt}"></textarea>
                     </div>
                     <div style="display: flex; justify-content: space-between; gap: 30px; margin-top: 17px;">
@@ -285,20 +418,20 @@ export const FormExtension = {
                     <p style="margin: 7px 0px!important;">${undertitleContactInformationBooking}</p><br/>
                     <div style="display: flex; gap: 30px; justify-content: space-between;">
                         <div style="width: 45%;">
-                            <label for="First" style="text-align: left!important;">${firstName}*</label>
+                            <label for="First">${firstName}*</label>
                             <input type="text" id="First" name="First" class="FirstName fieldinput" required/>
                         </div>
                         <div style="width: 45%;">
-                            <label for="LastName" style="text-align: left!important;">${lastName}*</label>
+                            <label for="LastName">${lastName}*</label>
                             <input type="text" id="LastName" name="LastName" class="LastName fieldinput" required/>
                         </div>
                     </div>
                     <div>
-                        <label for="Email" style="text-align: left!important;">${emailVF}*</label>
+                        <label for="Email">${emailVF}*</label>
                         <input type="email" id="Email" name="Email" class="Email fieldinput" required/>
                     </div>
                     <div>
-                        <label for="Phone" style="text-align: left!important;">${phoneNumber}</label>
+                        <label for="Phone">${phoneNumber}</label>
                         <input type="text" id="Phone" name="Phone" class="Phone fieldinput"/>
                     </div>
                     <div style="display: flex; justify-content: space-between; gap: 30px; margin-top: 17px;">
@@ -318,15 +451,12 @@ export const FormExtension = {
             </div>
         `;
 
-        // JavaScript functions (createCustomCalendar, setupRoomCounters, renderStep3DynamicContent, showStep,
-        // validateStep, updateReviewInfo, createChatBox, event listeners for form submit and next/prev)
-        // remain largely the same as the previous response, with specific changes to updateStep2 below.
-
+        // JavaScript functions 
         const steps = formContainer.querySelectorAll(".step");
         const stepIndicators = formContainer.querySelectorAll(".step-indicator");
         const reviewInfo = formContainer.querySelector("#review-info");
 
-        function createCustomCalendar() {
+        function createCustomCalendar() { /* ... Same as before ... */ 
             const calendarContainer = formContainer.querySelector("#customCalendar");
             const dateRangeDisplay = formContainer.querySelector("#dateRangeDisplay");
             if (!calendarContainer) return;
@@ -435,19 +565,31 @@ export const FormExtension = {
             updateDateRangeDisplay();
         }
 
-        function setupRoomCounters(containerElement) {
+        function setupRoomCounters(containerElement) { 
             const checkboxes = containerElement.querySelectorAll('input[type="checkbox"][id^="acc-myCheckbox"]');
             checkboxes.forEach(checkbox => {
-                const counter = checkbox.closest('li').querySelector('.room-counter');
+                const listItem = checkbox.closest('li'); 
+                const counter = listItem.querySelector('.room-counter'); 
                 const incrementBtn = counter.querySelector('.increment');
                 const decrementBtn = counter.querySelector('.decrement');
                 const quantityInput = counter.querySelector('.room-quantity');
 
-                 checkbox.addEventListener('change', function () {
-                    counter.style.display = this.checked ? 'flex' : 'none';
-                 });
-                 counter.style.display = checkbox.checked ? 'flex' : 'none';
-
+                const updateItemSelection = () => {
+                    if (listItem) {
+                        listItem.classList.toggle('selected-item', checkbox.checked);
+                    }
+                    counter.style.display = checkbox.checked ? 'flex' : 'none';
+                };
+                
+                checkbox.addEventListener('change', updateItemSelection);
+                
+                if (checkbox.checked) {
+                    if (listItem) listItem.classList.add('selected-item');
+                    counter.style.display = 'flex';
+                } else {
+                    if (listItem) listItem.classList.remove('selected-item');
+                    counter.style.display = 'none';
+                }
 
                 incrementBtn.addEventListener('click', function () {
                     quantityInput.value = parseInt(quantityInput.value) + 1;
@@ -486,7 +628,12 @@ export const FormExtension = {
                 });
             } else {
                 const itemsToRender = currentAccommodationViewInStep3 === 'suites' ? suitesData : roomsData;
-                let itemsHtml = `<div class="back-to-categories-btn-container"><button type="button" class="back-to-categories-btn">${back}</button></div>`;
+                let itemsHtml = `<div class="back-to-categories-btn-container">
+                                    <button type="button" class="back-to-categories-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/></svg>
+                                        ${buttonTextAccommodationCategories}
+                                    </button>
+                                 </div>`;
                 itemsHtml += `<ul id="accommodationListContainer">`;
                 itemsToRender.forEach(item => {
                     const checkboxId = `acc-myCheckbox-${item.id}`;
@@ -495,7 +642,6 @@ export const FormExtension = {
                             <input type="checkbox" id="${checkboxId}" data-name="${item.name}" data-type="${currentAccommodationViewInStep3}"/>
                             <label for="${checkboxId}">
                                 <img src="${item.imageSrc}" alt="${item.name}" />
-                                <br/>
                                 <p style="text-align: left;">
                                     <b>${item.name}</b><br/>
                                     ${item.description1 || ''} <br/>
@@ -517,11 +663,11 @@ export const FormExtension = {
                     currentAccommodationViewInStep3 = 'categories';
                     renderStep3DynamicContent();
                 });
-                setupRoomCounters(contentArea);
+                setupRoomCounters(contentArea); 
             }
         }
 
-        function showStep(step) {
+        function showStep(step) { /* ... Same as before ... */ 
              steps.forEach((el, index) => {
                 el.style.display = index === step - 1 ? "block" : "none";
                 if (index < step - 1) {
@@ -539,11 +685,10 @@ export const FormExtension = {
 
             if (step === 1) createCustomCalendar();
             if (step === 2) updateStep2();
-            if (step === 3) renderStep3DynamicContent();
+            if (step === 3) renderStep3DynamicContent(); 
             if (step === 6) updateReviewInfo();
         }
-
-        function updateStep2() {
+        function updateStep2() { /* ... Same as before ... */ 
             if (currentStep !== 2) return;
             const dateRangeDisplay = formContainer.querySelector("#selectedDateRange");
             const durationBtns = Array.from(formContainer.querySelectorAll(".duration-btn"));
@@ -641,8 +786,7 @@ export const FormExtension = {
 
             updateInputStates();
         }
-
-        function validateStep() {
+        function validateStep() { /* ... Same as before ... */ 
              if (!steps[currentStep - 1]) return true;
             const currentInputs = steps[currentStep - 1].querySelectorAll("input[required], textarea[required]");
             for (let input of currentInputs) {
@@ -691,8 +835,7 @@ export const FormExtension = {
             }
             return true;
         }
-
-        function updateReviewInfo() {
+        function updateReviewInfo() { /* ... Same as before ... */ 
             if (!reviewInfo) return;
             const accommodationTypes = [];
             const checkboxes = formContainer.querySelectorAll('#step3-dynamic-content input[type="checkbox"][id^="acc-myCheckbox"]:checked');
@@ -755,25 +898,7 @@ export const FormExtension = {
                 </div>
             `;
         }
-
-        formContainer.addEventListener("click", function (event) {
-             if (event.target.classList.contains("next")) {
-                if (!validateStep()) return;
-                if (currentStep === 5) {
-                    updateReviewInfo();
-                    currentStep++;
-                    showStep(currentStep);
-                } else {
-                    currentStep++;
-                    showStep(currentStep);
-                }
-            } else if (event.target.classList.contains("prev")) {
-                currentStep--;
-                showStep(currentStep);
-            }
-        });
-
-        function createChatBox() {
+        function createChatBox() { /* ... Same as before ... */ 
             const chatBox = document.createElement('div');
             chatBox.classList.add('chat-box');
             chatBox.innerHTML = `
@@ -795,7 +920,23 @@ export const FormExtension = {
             formContainer.replaceWith(chatBox);
         }
 
-        formContainer.addEventListener('submit', function (event) {
+        formContainer.addEventListener("click", function (event) { /* ... Same as before ... */ 
+             if (event.target.classList.contains("next")) {
+                if (!validateStep()) return;
+                if (currentStep === 5) {
+                    updateReviewInfo();
+                    currentStep++;
+                    showStep(currentStep);
+                } else {
+                    currentStep++;
+                    showStep(currentStep);
+                }
+            } else if (event.target.classList.contains("prev")) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        });
+        formContainer.addEventListener('submit', function (event) { /* ... Same as before ... */ 
             event.preventDefault();
             if (!validateStep()) return;
             const accommodationList = [];
