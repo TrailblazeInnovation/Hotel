@@ -16,13 +16,13 @@ export const FormExtension = {
         let selectedEndDate = null;
         const { titleChooseYourStay, undertitleChooseYourStay, noDatesSelected, selected, undertitleChooseYourStay2, selectDuration, exactlyAsSpecified, threeDays, fourDays, fiveDays, sixDays, sevenDays, eightDays, nineDays, tenDays, enterExactDates, from, until, youCanChoose, days, titlePickAccommodation, undertitlePickAccommodation, accommodationSize1, accommodationPeople1, accommodationSize2, accommodationPeople2, accommodationSize3, accommodationPeople3, accommodationSize4, accommodationPeople4, titleWhoTraveling, undertitleWhoTraveling, adults14Plus, children, specialRequests, specialRequestsTxt, titleContactInformation, undertitleContactInformationBooking, firstName, lastName, emailVF, phoneNumber, next, back, titleReview, undertitleReviewBooking, reviewStayDates, reviewTravelDates, reviewDurationOFStay, reviewAccommodation, reviewTypes, reviewTravelers, reviewAdults, reviewSpecialRequests, edit, submit, firstAndLastname, thankSubmission, formSubmitted, formTeam } = trace.payload;
 
-        const suitesCategoryImageUrl = 'https://i.postimg.cc/P5Skr0NL/suites-category-placeholder.png';
+        const suitesCategoryImageUrl = 'https://www.hoteltermemerano.it/img/sales-content/3d92a810-b199-4492-b49b-09f406eafb58/426/426/crop/wisthaler.com%2D24%2D02%2Dhtm%2Dhw96182%2Dweb.JPG';
         const roomsCategoryImageUrl = 'https://i.postimg.cc/RZm5g7sW/rooms-category-placeholder.png';
 
         const suitesData = [
-            { id: 'suite_01', name: 'Grand Suite', imageSrc: 'https://i.postimg.cc/8cZrzR8G/suite-placeholder-1.png', description1: 'Dimensione: 120 mq', description2: 'Ideale per: 2-4 persone' },
-            { id: 'suite_02', name: 'Executive Suite', imageSrc: 'https://i.postimg.cc/DzzW480N/suite-placeholder-2.png', description1: 'Dimensione: 85 mq', description2: 'Ideale per: 2 persone' },
-            { id: 'suite_03', name: 'Junior Suite', imageSrc: 'https://i.postimg.cc/tCNQ3S3S/suite-placeholder-3.png', description1: 'Dimensione: 65 mq', description2: 'Ideale per: 1-2 persone' },
+            { id: 'suite_01', name: 'Grand Suite', imageSrc: 'https://www.hoteltermemerano.it/img/sales-content/3d92a810-b199-4492-b49b-09f406eafb58/426/426/crop/wisthaler.com%2D24%2D02%2Dhtm%2Dhw96182%2Dweb.JPG', description1: 'Dimensione: 120 mq', description2: 'Ideale per: 2-4 persone' },
+            { id: 'suite_02', name: 'Executive Suite', imageSrc: 'https://www.hoteltermemerano.it/img/sales-content/c9c5a713-8d8e-4f21-b7d9-110c82164c9f/426/426/crop/3205%2D316460.webp', description1: 'Dimensione: 85 mq', description2: 'Ideale per: 2 persone' },
+            { id: 'suite_03', name: 'Junior Suite', imageSrc: 'https://www.hoteltermemerano.it/img/sales-content/8bc77ab5-3167-4783-a8ed-7d42b453bebc/426/426/crop/3205%2D316408.webp', description1: 'Dimensione: 65 mq', description2: 'Ideale per: 1-2 persone' },
         ];
         const roomsData = [
             { id: 'room_01', name: 'Standard Room', imageSrc: 'https://i.postimg.cc/15VVqdtX/Screenshot-2025-01-12-212108.png', description1: accommodationSize1, description2: accommodationPeople1 },
