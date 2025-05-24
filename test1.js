@@ -4,10 +4,7 @@ export const FormExtension = {
     match: ({ trace }) =>
         trace?.type === 'Book_Form' || (trace.payload && trace.payload?.name === 'Book_Form'),
     render: ({ trace, element }) => {
-        const link = document.createElement('link');
-        link.href = 'https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300;400;500;600;700&display=swap';
-        link.rel = 'stylesheet';
-        document.head.appendChild(link);
+        // Ensure "UCity Pro" is loaded in your host environment (e.g., via @font-face).
 
         const formContainer = document.createElement('form');
         formContainer.classList.add('form-container');
@@ -53,25 +50,25 @@ export const FormExtension = {
 
         formContainer.innerHTML = `
             <style>
-            @import url('https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&display=swap');
+            /* Ensure "UCity Pro" is loaded in your host environment. */
             .form-container {
-                font-family: "Host Grotesk", serif; width: 100%; background: #fff; padding: 20px; border-radius: 5px;
+                font-family: "UCity Pro", sans-serif; width: 100%; background: #fff; padding: 20px; border-radius: 5px;
             }
             .steps {
-                display: flex; justify-content: space-between; padding: 10px 0; background: #fff; font-family: "Host Grotesk", serif;
+                display: flex; justify-content: space-between; padding: 10px 0; background: #fff; font-family: "UCity Pro", sans-serif;
             }
             .step-indicator {
-                flex: 1; text-align: center; padding: 10px; font-weight: bold; color: #8b8686; background: #fff; border-radius: 5px; font-family: "Host Grotesk", serif;
+                flex: 1; text-align: center; padding: 10px; font-weight: bold; color: #8b8686; background: #fff; border-radius: 5px; font-family: "UCity Pro", sans-serif;
             }
-            .step-indicator.active span { background: black !important; color: white; font-family: "Host Grotesk", serif; }
+            .step-indicator.active span { background: black !important; color: white; font-family: "UCity Pro", sans-serif; }
             ._1ddzqsn7 { width: 100% !important; }
             .active{ color: black!important; }
             .active span { background: black; color: white; }
             input, textarea {
-                width: 100%; padding: 10px; margin: 10px 0; border-radius: 10px; border: 1px solid #ccc; outline: none; font-family: "Host Grotesk", serif; box-sizing: border-box;
+                width: 100%; padding: 10px; margin: 10px 0; border-radius: 10px; border: 1px solid #ccc; outline: none; font-family: "UCity Pro", sans-serif; box-sizing: border-box;
             }
             input:hover, textarea:hover{ border: 1px solid black; }
-            h2, label, input, textarea, button { font-family: "Host Grotesk", serif; }
+            h2, label, input, textarea, button { font-family: "UCity Pro", sans-serif; }
             .steps { position: relative; width: 100%; }
 
             .step-1 .bord2{
@@ -122,7 +119,7 @@ export const FormExtension = {
             .custom-radio-container input[type="radio"][name="durationType"]:checked + .custom-radio-square {
                 background-color: black; border-color: black;
             }
-            .custom-radio-container .radio-label-text { font-weight: 500; font-family: "Host Grotesk", serif; }
+            .custom-radio-container .radio-label-text { font-weight: 500; font-family: "UCity Pro", sans-serif; }
             #quickDurationButtonsContainer, #rangeDurationInputContainer { transition: opacity 0.3s ease-in-out; }
 
             ul#accommodationListContainer {
@@ -179,7 +176,7 @@ export const FormExtension = {
                 transform: scale(1.03);
             }
             ul#accommodationListContainer label p {
-                font-size: 11px;
+                font-size: 13px; /* INCREASED font size for item descriptions */
                 margin-top: 8px;
                 text-align: left;
                 padding: 0 5px;
@@ -198,7 +195,7 @@ export const FormExtension = {
             input[type="checkbox"][id^="acc-myCheckbox"]:checked ~ .room-counter { display: flex; }
 
             .fieldinput{ margin-top: 0!important; }
-            .custom-calendar { width: 100%; margin-top: 20px; font-family: "Host Grotesk", serif; }
+            .custom-calendar { width: 100%; margin-top: 20px; font-family: "UCity Pro", sans-serif; }
             .calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
             .calendar-title { font-weight: 600; font-size: 16px; }
             .calendar-nav { display: flex; gap: 10px; }
@@ -224,7 +221,9 @@ export const FormExtension = {
                 position: absolute; top: -0.7em; z-index: 1; left: 0.8em;
                 background-color: white; padding: 0 5px; font-size: 11px; color: #666;
             }
-            b{ font-size: 13px!important; }
+            b{ font-size: 13px!important; } /* This rule will also affect the <b> tag for item names if not overridden */
+            ul#accommodationListContainer label p b { font-size: inherit; } /* Ensure item name <b> tag inherits 13px from p */
+
             .counter-btn {
                 width: 25px; height: 25px; border-radius: 50%; background: #f5f5f5; border: 1px solid #ddd;
                 cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px;
@@ -232,37 +231,60 @@ export const FormExtension = {
             input[type="checkbox"][id^="acc-myCheckbox"]:checked ~ .room-counter .counter-btn { display: flex !important; }
             .counter-btn:hover { background: #e0e0e0; }
             .room-quantity { border: 1px solid #ddd; border-radius: 5px; padding: 5px; text-align: center; width: 60px; }
+
             #accommodation-categories {
-                display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; margin-bottom: 20px;
+                display: flex; justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-bottom: 20px;
             }
             .category-selector {
                 cursor: pointer; padding: 15px; border-radius: 12px;
-                width: calc(50% - 25px); background-color: #fff; box-sizing: border-box; overflow: hidden;
-                transition: background-color 0.3s ease; /* ADDED for smooth background hover */
+                width: calc(50% - 5px);
+                background-color: #fff; box-sizing: border-box; overflow: hidden;
+                transition: background-color 0.3s ease;
             }
             .category-selector:hover {
-                background-color: #f5f5f5; /* ADDED clean grey background on hover */
+                background-color: #f5f5f5;
             }
             .category-selector img {
-                width: 100%; height: 220px; border-radius: 8px; object-fit: cover; margin-bottom: 10px;
-                transition: transform 0.3s ease; /* UPDATED transition, filter removed */
+                width: 100%;
+                height: 220px;
+                border-radius: 8px; object-fit: cover; margin-bottom: 10px;
+                transition: transform 0.3s ease;
             }
             .category-selector:hover img {
-                transform: scale(1.05); /* KEPT image scale on hover */
-                /* filter: brightness(0.7); REMOVED image darken on hover */
+                transform: scale(1.05);
             }
             .category-selector h3 {
-                margin-top: 10px; margin-bottom: 5px; font-size: 18px; font-weight: 600; color: #333;
-                text-align: left;
+                margin-top: 10px; margin-bottom: 5px;
+                font-size: 16px;
+                font-weight: normal; color: #333;
+                text-align: left; font-family: "UCity Pro", sans-serif;
             }
-            @media (max-width: 600px) { .category-selector { width: calc(100% - 20px); margin-left: 10px; margin-right: 10px; } }
+            @media (min-width: 601px) {
+                 #accommodation-categories:has(.category-selector:nth-child(1):last-child) .category-selector {
+                    width: calc(100% - 30px);
+                    margin-left: auto;
+                    margin-right: auto;
+                 }
+            }
+            @media (max-width: 600px) {
+                .category-selector {
+                    width: calc(100% - 20px);
+                    margin-left: 10px; margin-right: 10px;
+                }
+                #accommodation-categories {
+                    justify-content: center;
+                }
+            }
             .back-to-categories-btn-container {
                 margin-bottom: 20px; text-align: left;
             }
             .back-to-categories-btn {
                 background: none; border: none; padding: 5px 0; color: #555; cursor: pointer;
                 font-size: 14px; display: inline-flex; align-items: center;
-                font-family: "Host Grotesk", serif; text-decoration: none; width: auto;
+                font-family: "UCity Pro", sans-serif; text-decoration: none; width: auto;
                 border-radius: 0; font-weight: 500;
             }
             .back-to-categories-btn svg {
@@ -454,12 +476,12 @@ export const FormExtension = {
             </div>
         `;
 
-        // JavaScript functions
+        // JavaScript functions (collapsed for brevity, unchanged from previous version)
         const steps = formContainer.querySelectorAll(".step");
         const stepIndicators = formContainer.querySelectorAll(".step-indicator");
         const reviewInfo = formContainer.querySelector("#review-info");
 
-        function createCustomCalendar() { /* ... Same as before ... */
+        function createCustomCalendar() { /* ... Code from previous version ... */
             const calendarContainer = formContainer.querySelector("#customCalendar");
             const dateRangeDisplay = formContainer.querySelector("#dateRangeDisplay");
             if (!calendarContainer) return;
@@ -567,8 +589,7 @@ export const FormExtension = {
             renderCalendar(currentMonth, currentYear);
             updateDateRangeDisplay();
         }
-
-        function setupRoomCounters(containerElement) {
+        function setupRoomCounters(containerElement) { /* ... Code from previous version ... */
             const checkboxes = containerElement.querySelectorAll('input[type="checkbox"][id^="acc-myCheckbox"]');
             checkboxes.forEach(checkbox => {
                 const listItem = checkbox.closest('li');
@@ -604,8 +625,7 @@ export const FormExtension = {
                 });
             });
         }
-
-        function renderStep3DynamicContent() {
+        function renderStep3DynamicContent() { /* ... Code from previous version, with title text corrected ... */
             const contentArea = formContainer.querySelector("#step3-dynamic-content");
             if (!contentArea) return;
             contentArea.innerHTML = '';
@@ -614,12 +634,12 @@ export const FormExtension = {
                 contentArea.innerHTML = `
                     <div id="accommodation-categories">
                         <div class="category-selector" data-category="suites">
-                            <img src="${suitesCategoryImageUrl}" alt="Our Suites">
-                            <h3>Our Suites</h3>
+                            <img src="${suitesCategoryImageUrl}" alt="Suites">
+                            <h3>Suites</h3>
                         </div>
                         <div class="category-selector" data-category="rooms">
-                            <img src="${roomsCategoryImageUrl}" alt="Our Rooms">
-                            <h3>Our Rooms</h3>
+                            <img src="${roomsCategoryImageUrl}" alt="Rooms">
+                            <h3>Rooms</h3>
                         </div>
                     </div>
                 `;
@@ -669,8 +689,7 @@ export const FormExtension = {
                 setupRoomCounters(contentArea);
             }
         }
-
-        function showStep(step) { /* ... Same as before ... */
+        function showStep(step) { /* ... Code from previous version ... */
              steps.forEach((el, index) => {
                 el.style.display = index === step - 1 ? "block" : "none";
                 if (index < step - 1) {
@@ -691,7 +710,7 @@ export const FormExtension = {
             if (step === 3) renderStep3DynamicContent();
             if (step === 6) updateReviewInfo();
         }
-        function updateStep2() { /* ... Same as before ... */
+        function updateStep2() { /* ... Code from previous version ... */
             if (currentStep !== 2) return;
             const dateRangeDisplay = formContainer.querySelector("#selectedDateRange");
             const durationBtns = Array.from(formContainer.querySelectorAll(".duration-btn"));
@@ -789,7 +808,7 @@ export const FormExtension = {
 
             updateInputStates();
         }
-        function validateStep() { /* ... Same as before ... */
+        function validateStep() { /* ... Code from previous version ... */
              if (!steps[currentStep - 1]) return true;
             const currentInputs = steps[currentStep - 1].querySelectorAll("input[required], textarea[required]");
             for (let input of currentInputs) {
@@ -806,7 +825,7 @@ export const FormExtension = {
             }
             if (currentStep === 3) {
                 if (currentAccommodationViewInStep3 === 'categories') {
-                    alert("Please select a category (Our Suites or Our Rooms) and then choose an accommodation.");
+                    alert("Please select a category (Suites or Rooms) and then choose an accommodation.");
                     return false;
                 }
                 const selectedAccommodations = formContainer.querySelectorAll('#step3-dynamic-content input[type="checkbox"][id^="acc-myCheckbox"]:checked');
@@ -838,7 +857,7 @@ export const FormExtension = {
             }
             return true;
         }
-        function updateReviewInfo() { /* ... Same as before ... */
+        function updateReviewInfo() { /* ... Code from previous version ... */
             if (!reviewInfo) return;
             const accommodationTypes = [];
             const checkboxes = formContainer.querySelectorAll('#step3-dynamic-content input[type="checkbox"][id^="acc-myCheckbox"]:checked');
@@ -901,13 +920,13 @@ export const FormExtension = {
                 </div>
             `;
         }
-        function createChatBox() { /* ... Same as before ... */
+        function createChatBox() { /* ... Code from previous version ... */
             const chatBox = document.createElement('div');
             chatBox.classList.add('chat-box');
             chatBox.innerHTML = `
                 <style>
                     .vfrc-message--extension-Forms{ width: 100%; background: #fff; }
-                    .chat-box h3, .chat-box p { font-family: "Host Grotesk", serif; }
+                    .chat-box h3, .chat-box p { font-family: "UCity Pro", sans-serif; }
                 </style>
                 <div style="position: relative; display: flex; justify-content: center; align-items: center; height: 500px; width: 100%; flex-direction: column;">
                     <div style="position: relative; color: black; text-align: center;">
@@ -923,7 +942,7 @@ export const FormExtension = {
             formContainer.replaceWith(chatBox);
         }
 
-        formContainer.addEventListener("click", function (event) { /* ... Same as before ... */
+        formContainer.addEventListener("click", function (event) { /* ... Code from previous version ... */
              if (event.target.classList.contains("next")) {
                 if (!validateStep()) return;
                 if (currentStep === 5) {
@@ -939,7 +958,7 @@ export const FormExtension = {
                 showStep(currentStep);
             }
         });
-        formContainer.addEventListener('submit', function (event) { /* ... Same as before ... */
+        formContainer.addEventListener('submit', function (event) { /* ... Code from previous version ... */
             event.preventDefault();
             if (!validateStep()) return;
             const accommodationList = [];
