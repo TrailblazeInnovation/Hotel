@@ -42,220 +42,78 @@ export const FormExtension = {
             @import url('https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&display=swap');
             /* ... (all other existing styles from previous response remain unchanged unless specified below) ... */
             .form-container {
-                font-family: "Host Grotesk", serif;
-                width: 100%;
-                background: #fff;
-                padding: 20px;
-                border-radius: 5px;
+                font-family: "Host Grotesk", serif; width: 100%; background: #fff; padding: 20px; border-radius: 5px;
             }
             .steps {
-                display: flex;
-                justify-content: space-between;
-                padding: 10px 0;
-                background: #fff;
-                font-family: "Host Grotesk", serif;
+                display: flex; justify-content: space-between; padding: 10px 0; background: #fff; font-family: "Host Grotesk", serif;
             }
             .step-indicator {
-                flex: 1;
-                text-align: center;
-                padding: 10px;
-                font-weight: bold;
-                color: #8b8686;
-                background: #fff;
-                border-radius: 5px;
-                font-family: "Host Grotesk", serif;
+                flex: 1; text-align: center; padding: 10px; font-weight: bold; color: #8b8686; background: #fff; border-radius: 5px; font-family: "Host Grotesk", serif;
             }
-            .step-indicator.active span {
-                background: black !important;
-                color: white;
-                font-family: "Host Grotesk", serif;
-            }
-            ._1ddzqsn7 {
-                width: 100% !important;
-            }
-            .active{
-                color: black!important;
-            }
-            .active span {
-                background: black;
-                color: white;
-            }
+            .step-indicator.active span { background: black !important; color: white; font-family: "Host Grotesk", serif; }
+            ._1ddzqsn7 { width: 100% !important; }
+            .active{ color: black!important; }
+            .active span { background: black; color: white; }
             input, textarea {
-                width: 100%;
-                padding: 10px;
-                margin: 10px 0;
-                border-radius: 10px;
-                border: 1px solid #ccc;
-                outline: none;
-                font-family: "Host Grotesk", serif;
-                box-sizing: border-box; /* Ensure padding doesn't expand elements */
+                width: 100%; padding: 10px; margin: 10px 0; border-radius: 10px; border: 1px solid #ccc; outline: none; font-family: "Host Grotesk", serif; box-sizing: border-box;
             }
-            input:hover, textarea:hover{
-                border: 1px solid black;
-            }
-            h2, label, input, textarea, button { /* Ensure button font family */
-                font-family: "Host Grotesk", serif;
-            }
-            .steps {
-                position: relative;
-                width: 100%;
-            }
-
-            .step-1 .bord2{
-                position: absolute;
-                border: 2px solid #e1dada;
-                width: 100%;
-                left: 0;
-                top: 80px;
-            }
-            .step-1.active .bord, .step-2.active .bord{
-                position: absolute;
-                border: 2px solid black;
-                width: 20%;
-                left: 0;
-                top: 80px;
-            }
-
-            .step-2.active .bord{
-                 width: 20%;
-            }
-
-            .step-3.active .bord{
-                position: absolute;
-                border: 2px solid black;
-                width: 40%;
-                left: 0;
-                top: 80px;
-            }
-
-            .step-4.active .bord{
-                position: absolute;
-                border: 2px solid black;
-                width: 60%;
-                left: 0;
-                top: 80px;
-            }
-            .step-5.active .bord{
-                position: absolute;
-                border: 2px solid black;
-                width: 80%;
-                left: 0;
-                top: 80px;
-            }
-
-            .step-6.active .bord{
-                position: absolute;
-                border: 2px solid black;
-                width: 100%;
-                left: 0;
-                top: 80px;
-            }
-            .visited span{
-                background: black!important;
-                color: white;
-            }
+            input:hover, textarea:hover{ border: 1px solid black; }
+            h2, label, input, textarea, button { font-family: "Host Grotesk", serif; }
+            .steps { position: relative; width: 100%; }
+            .step-1 .bord2{ position: absolute; border: 2px solid #e1dada; width: 100%; left: 0; top: 80px; }
+            .step-1.active .bord, .step-2.active .bord{ position: absolute; border: 2px solid black; width: 20%; left: 0; top: 80px; }
+            .step-2.active .bord{ width: 20%; }
+            .step-3.active .bord{ position: absolute; border: 2px solid black; width: 40%; left: 0; top: 80px; }
+            .step-4.active .bord{ position: absolute; border: 2px solid black; width: 60%; left: 0; top: 80px; }
+            .step-5.active .bord{ position: absolute; border: 2px solid black; width: 80%; left: 0; top: 80px; }
+            .step-6.active .bord{ position: absolute; border: 2px solid black; width: 100%; left: 0; top: 80px; }
+            .visited span{ background: black!important; color: white; }
             .next, .prev, .back-to-categories-btn {
-                background: transparent;
-                border: 1px solid gray;
-                width: 150px;
-                color: black;
-                padding: 10px 25px;
-                border-radius: 20px;
-                cursor: pointer;
+                background: transparent; border: 1px solid gray; width: 150px; color: black; padding: 10px 25px; border-radius: 20px; cursor: pointer;
             }
-            .next:hover, .prev:hover, .back-to-categories-btn:hover {
-                background: #000;
-                color: white;
-            }
-            .vfrc-message--extension-Forms{
-                background: white!important;
-            }
+            .next:hover, .prev:hover, .back-to-categories-btn:hover { background: #000; color: white; }
+            .vfrc-message--extension-Forms{ background: white!important; }
             .step-content{margin-top: 28px;}
-            
-            /* Styling for Duration Buttons in Step 2 */
-            .duration-btn {
-                border: 1px solid gray; 
-                background-color: #fff; 
-                color: black; 
-            }
-            .BtnSimp { 
-                border-radius: 8px;
-                padding: 10px 25px;
-                cursor: pointer;
-            }
-            .duration-btn.activeBtn { 
-                color: #fff;
-                background: #000 !important;
-                border-color: #000 !important;
-            }
-            .duration-btn:not(.disabled):hover {
-                color: #fff;
-                background: #000 !important;
-                border-color: #000 !important;
-            }
+            .duration-btn { border: 1px solid gray; background-color: #fff; color: black; }
+            .BtnSimp { border-radius: 8px; padding: 10px 25px; cursor: pointer; }
+            .duration-btn.activeBtn { color: #fff; background: #000 !important; border-color: #000 !important; }
+            .duration-btn:not(.disabled):hover { color: #fff; background: #000 !important; border-color: #000 !important; }
             .duration-btn.disabled {
-                opacity: 0.5;
-                cursor: not-allowed;
-                background: #f5f5f5 !important;
-                border: 1px solid #ddd !important; 
-                color: #999 !important;
+                opacity: 0.5; cursor: not-allowed; background: #f5f5f5 !important; border: 1px solid #ddd !important; color: #999 !important;
             }
 
-            /* --- START: Custom Radio Button Styles for Step 2 --- */
+            /* --- START: Custom Radio Button Styles for Step 2 (MODIFIED) --- */
             .custom-radio-container {
-                display: flex;
-                align-items: center;
-                cursor: pointer;
-                padding: 5px 0; /* Add some padding for better clickability */
-                margin-bottom: 5px; /* Space between radio options */
+                display: flex; align-items: center; cursor: pointer; padding: 5px 0; margin-bottom: 5px;
             }
             .custom-radio-container input[type="radio"][name="durationType"] {
-                opacity: 0;
-                position: absolute;
-                width: 1px;
-                height: 1px;
+                opacity: 0; position: absolute; width: 1px; height: 1px;
             }
             .custom-radio-square {
-                width: 16px;
-                height: 16px;
-                border: 1px solid #666; /* Default border color */
-                margin-right: 8px;
-                display: inline-block;
-                background-color: #fff;
+                width: 14px;  /* MODIFIED: Slightly smaller */
+                height: 14px; /* MODIFIED: Slightly smaller */
+                border: 1px solid #888; /* MODIFIED: Default border color, slightly darker for visibility */
+                margin-right: 8px; display: inline-block; background-color: #fff;
                 transition: background-color 0.2s ease, border-color 0.2s ease;
-                /* border-radius: 2px; /* For slightly rounded square, if desired */
+                border-radius: 4px; /* MODIFIED: Rounded corners, e.g. 4px or 3px */
             }
             .custom-radio-container input[type="radio"][name="durationType"]:checked + .custom-radio-square {
-                background-color: black;
-                border-color: black;
+                background-color: black; border-color: black;
             }
-            .custom-radio-container .radio-label-text {
-                font-weight: 500;
-                font-family: "Host Grotesk", serif;
-            }
+            .custom-radio-container .radio-label-text { font-weight: 500; font-family: "Host Grotesk", serif; }
             /* --- END: Custom Radio Button Styles --- */
             
-            /* Ensure containers for options in Step 2 transition opacity smoothly */
-            #quickDurationButtonsContainer, #rangeDurationInputContainer {
-                transition: opacity 0.3s ease-in-out;
-            }
-
+            #quickDurationButtonsContainer, #rangeDurationInputContainer { transition: opacity 0.3s ease-in-out; }
             ul#accommodationListContainer {
-                display: flex; flex-wrap: wrap; margin-top: 0; list-style-type: none;
-                padding-left: 0px !important; gap: 8px; justify-content: flex-start;
+                display: flex; flex-wrap: wrap; margin-top: 0; list-style-type: none; padding-left: 0px !important; gap: 8px; justify-content: flex-start;
             }
-            ul#accommodationListContainer li {
-                display: inline-block; margin: 0; flex-basis: calc(50% - 4px);
-            }
-            @media (max-width: 768px) {
-                 ul#accommodationListContainer li { flex-basis: calc(100% - 4px); }
-            }
+            ul#accommodationListContainer li { display: inline-block; margin: 0; flex-basis: calc(50% - 4px); }
+            @media (max-width: 768px) { ul#accommodationListContainer li { flex-basis: calc(100% - 4px); } }
             input[type="checkbox"][id^="acc-myCheckbox"] { display: none; }
             ul#accommodationListContainer label {
-                display: block; position: relative; cursor: pointer; text-align: center;
-                border-radius: 14px; transition: background-color 0.3s ease; padding: 10px;
-                background-color: transparent; border: 1px solid transparent; height: 100%;
-                box-sizing: border-box;
+                display: block; position: relative; cursor: pointer; text-align: center; border-radius: 14px;
+                transition: background-color 0.3s ease; padding: 10px; background-color: transparent;
+                border: 1px solid transparent; height: 100%; box-sizing: border-box;
             }
             ul#accommodationListContainer label:hover { background-color: rgba(0, 0, 0, 0.05); border-color: #ccc; }
             input[type="checkbox"][id^="acc-myCheckbox"]:checked + label { background-color: rgba(0, 0, 0, 0.08); border-color: #000; }
@@ -286,14 +144,14 @@ export const FormExtension = {
             .calendar-day.disabled { color: #ccc; cursor: not-allowed; }
             .date-range-display { margin-top: 15px; padding: 10px; background: #f5f5f7; border-radius: 5px; font-size: 14px; }
             .date-range-display span { color: #666; }
-            .input-wrapper { position: relative; margin: 5px 0; /* Added some margin for spacing */}
+            .input-wrapper { position: relative; margin: 5px 0; }
             #rangeDurationInputContainer .input-wrapper input[type="number"] {
                 border: 1px solid gray; border-radius: 6px; width: 80px !important; margin: 0;
-                height: 34px; text-align: right; box-sizing: border-box; padding: 0 10px; /* Ensure padding is accounted for */
+                height: 34px; text-align: right; box-sizing: border-box; padding: 0 10px;
             }
              #rangeDurationInputContainer .input-wrapper label {
-                position: absolute; top: -0.7em; /* Adjusted for better alignment */ z-index: 1; left: 0.8em; /* Adjusted */
-                background-color: white; padding: 0 5px; font-size: 11px; /* Slightly smaller label */ color: #666;
+                position: absolute; top: -0.7em; z-index: 1; left: 0.8em;
+                background-color: white; padding: 0 5px; font-size: 11px; color: #666;
             }
             b{ font-size: 13px!important; }
             .counter-btn {
@@ -352,7 +210,7 @@ export const FormExtension = {
                             <span class="custom-radio-square"></span>
                             <span class="radio-label-text">${selectDuration}:</span>
                         </label>
-                        <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 5px; padding-left: 24px;" id="quickDurationButtonsContainer"> <button type="button" class="duration-btn BtnSimp" data-days="exact">${exactlyAsSpecified}</button>
+                        <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 5px; padding-left: 22px;" id="quickDurationButtonsContainer"> <button type="button" class="duration-btn BtnSimp" data-days="exact">${exactlyAsSpecified}</button>
                             <button type="button" class="duration-btn BtnSimp" data-days="3">${threeDays}</button>
                             <button type="button" class="duration-btn BtnSimp" data-days="4">${fourDays}</button>
                             <button type="button" class="duration-btn BtnSimp" data-days="5">${fiveDays}</button>
@@ -370,7 +228,7 @@ export const FormExtension = {
                             <span class="custom-radio-square"></span>
                             <span class="radio-label-text">${enterExactDates}:</span>
                         </label>
-                        <div style="margin-top: 5px; padding-left: 24px;" id="rangeDurationInputContainer"> <div style="display: flex; gap: 10px; align-items: center;">
+                        <div style="margin-top: 5px; padding-left: 22px;" id="rangeDurationInputContainer"> <div style="display: flex; gap: 10px; align-items: center;">
                                 <div class="input-wrapper">
                                     <label for="fromDay">${from}</label>
                                     <input type="number" id="fromDay" name="fromDay" min="1" value="1">
@@ -384,7 +242,8 @@ export const FormExtension = {
                         </div>
                     </div>
 
-                    <div style="display: flex; justify-content: space-between; gap: 30px; margin-top: 30px;"> <button type="button" class="prev">${back}</button>
+                    <div style="display: flex; justify-content: space-between; gap: 30px; margin-top: 30px;">
+                        <button type="button" class="prev">${back}</button>
                         <button type="button" class="next">${next}</button>
                     </div>
                 </div>
@@ -468,7 +327,6 @@ export const FormExtension = {
         const reviewInfo = formContainer.querySelector("#review-info");
 
         function createCustomCalendar() {
-            // ... (same as previous response)
             const calendarContainer = formContainer.querySelector("#customCalendar");
             const dateRangeDisplay = formContainer.querySelector("#dateRangeDisplay");
             if (!calendarContainer) return;
@@ -480,7 +338,7 @@ export const FormExtension = {
                 calendarContainer.innerHTML = '';
                 const header = document.createElement('div');
                 header.className = 'calendar-header';
-                const titleEl = document.createElement('div'); // Renamed to avoid conflict
+                const titleEl = document.createElement('div'); 
                 titleEl.className = 'calendar-title';
                 titleEl.textContent = new Date(year, month).toLocaleDateString(trace.payload.locale || 'en-US', { month: 'long', year: 'numeric' });
                 const nav = document.createElement('div');
@@ -498,7 +356,7 @@ export const FormExtension = {
                     renderCalendar(month, year);
                 });
                 nav.appendChild(prevBtn); nav.appendChild(nextBtn);
-                header.appendChild(titleEl); header.appendChild(nav); // Use titleEl
+                header.appendChild(titleEl); header.appendChild(nav); 
                 calendarContainer.appendChild(header);
                 const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
                 const grid = document.createElement('div');
@@ -578,7 +436,6 @@ export const FormExtension = {
         }
 
         function setupRoomCounters(containerElement) {
-             // ... (same as previous response)
             const checkboxes = containerElement.querySelectorAll('input[type="checkbox"][id^="acc-myCheckbox"]');
             checkboxes.forEach(checkbox => {
                 const counter = checkbox.closest('li').querySelector('.room-counter');
@@ -604,7 +461,6 @@ export const FormExtension = {
         }
 
         function renderStep3DynamicContent() {
-            // ... (same as previous response)
             const contentArea = formContainer.querySelector("#step3-dynamic-content");
             if (!contentArea) return;
             contentArea.innerHTML = '';
@@ -666,7 +522,6 @@ export const FormExtension = {
         }
 
         function showStep(step) {
-            // ... (same as previous response, ensure step indicators are handled correctly)
              steps.forEach((el, index) => {
                 el.style.display = index === step - 1 ? "block" : "none";
                 if (index < step - 1) {
@@ -677,11 +532,10 @@ export const FormExtension = {
             });
 
             stepIndicators.forEach((el, index) => {
-                 const targetIndicator = formContainer.querySelector(`.step-indicator.step-${step}`); // step is 1-based for currentStep
+                 const targetIndicator = formContainer.querySelector(`.step-indicator.step-${step}`); 
                  stepIndicators.forEach(ind => ind.classList.remove("active"));
                  if(targetIndicator) targetIndicator.classList.add("active");
             });
-
 
             if (step === 1) createCustomCalendar();
             if (step === 2) updateStep2();
@@ -692,7 +546,7 @@ export const FormExtension = {
         function updateStep2() {
             if (currentStep !== 2) return;
             const dateRangeDisplay = formContainer.querySelector("#selectedDateRange");
-            const durationBtns = Array.from(formContainer.querySelectorAll(".duration-btn")); // Convert to array
+            const durationBtns = Array.from(formContainer.querySelectorAll(".duration-btn"));
             const fromDayInput = formContainer.querySelector("#fromDay");
             const tillDayInput = formContainer.querySelector("#tillDay");
             const maxRangeNote = formContainer.querySelector("#maxRangeNote");
@@ -724,8 +578,7 @@ export const FormExtension = {
             fromDayInput.min = 1;
             tillDayInput.min = 1;
 
-            // Smart defaulting for From/To day inputs when range becomes active
-            if (rangeDurationRadio.checked || (!singleDurationRadio.checked && !rangeDurationRadio.checked) /* initial load before interaction */) {
+            if (rangeDurationRadio.checked || (!singleDurationRadio.checked && !rangeDurationRadio.checked)) {
                  if (parseInt(fromDayInput.value) > totalDays || parseInt(fromDayInput.value) < 1 || fromDayInput.value === '' || isNaN(parseInt(fromDayInput.value))) {
                      fromDayInput.value = 1;
                  }
@@ -733,7 +586,6 @@ export const FormExtension = {
                     tillDayInput.value = totalDays;
                 }
             }
-
 
             maxRangeNote.textContent = `${youCanChoose || "Sie können maximal"} ${totalDays} ${days || "Tage"}`;
 
@@ -749,7 +601,6 @@ export const FormExtension = {
                         const daysNum = parseInt(btn.dataset.days);
                         isDisabledByTotalDays = daysNum > totalDays;
                     }
-                    // Only enable/disable based on totalDays if their section is active
                     btn.disabled = !isSingleActive || isDisabledByTotalDays;
                     btn.classList.toggle("disabled", !isSingleActive || isDisabledByTotalDays);
                     if (!isSingleActive) {
@@ -766,14 +617,12 @@ export const FormExtension = {
 
             durationBtns.forEach(btn => {
                 btn.addEventListener("click", function () {
-                    if (!singleDurationRadio.checked) { // If the other radio was checked
+                    if (!singleDurationRadio.checked) { 
                         singleDurationRadio.checked = true;
-                        // The 'change' event on radio will call updateInputStates
                         singleDurationRadio.dispatchEvent(new Event('change', { bubbles: true }));
-                    } else if (btn.disabled) { // If already in correct section, but button itself is disabled (e.g. > totalDays)
+                    } else if (btn.disabled) { 
                         return;
                     }
-                    
                     durationBtns.forEach(b => b.classList.remove("activeBtn"));
                     btn.classList.add("activeBtn");
                 });
@@ -790,11 +639,10 @@ export const FormExtension = {
             fromDayInput.addEventListener('input', autoSwitchToRange);
             tillDayInput.addEventListener('input', autoSwitchToRange);
 
-            updateInputStates(); // Initial call
+            updateInputStates();
         }
 
         function validateStep() {
-            // ... (same as previous response, with Step 2 validation logic included)
              if (!steps[currentStep - 1]) return true;
             const currentInputs = steps[currentStep - 1].querySelectorAll("input[required], textarea[required]");
             for (let input of currentInputs) {
@@ -845,12 +693,9 @@ export const FormExtension = {
         }
 
         function updateReviewInfo() {
-            // ... (same as previous response)
             if (!reviewInfo) return;
-
             const accommodationTypes = [];
             const checkboxes = formContainer.querySelectorAll('#step3-dynamic-content input[type="checkbox"][id^="acc-myCheckbox"]:checked');
-
             checkboxes.forEach(checkbox => {
                 const listItem = checkbox.closest('li');
                 if (!listItem) return;
@@ -862,21 +707,17 @@ export const FormExtension = {
                     accommodationTypes.push(`${quantity}x ${typeName}`);
                 }
             });
-
-
             let dateRangeStr = "Not selected";
             if (selectedStartDate && selectedEndDate) {
                 const startStr = selectedStartDate.toLocaleDateString(trace.payload.locale || 'en-US', { month: 'short', day: 'numeric', year: 'numeric' });
                 const endStr = selectedEndDate.toLocaleDateString(trace.payload.locale || 'en-US', { month: 'short', day: 'numeric', year: 'numeric' });
                 dateRangeStr = `${startStr} to ${endStr}`;
             }
-
             const fromDayInputVal = formContainer.querySelector("#fromDay")?.value;
             const tillDayInputVal = formContainer.querySelector("#tillDay")?.value;
             const singleDurationRadio = formContainer.querySelector("#ButtonSelection");
             const rangeDurationRadio = formContainer.querySelector("#rangeDuration");
             const activeDurationBtn = formContainer.querySelector(".duration-btn.activeBtn");
-
             let durationText = "Not specified";
             if (rangeDurationRadio?.checked) {
                 durationText = `From day ${fromDayInputVal || 'N/A'} to day ${tillDayInputVal || 'N/A'}`;
@@ -886,12 +727,10 @@ export const FormExtension = {
                  const exactBtn = Array.from(formContainer.querySelectorAll(".duration-btn")).find(b => b.dataset.days === "exact");
                  durationText = exactBtn ? exactBtn.textContent : "As specified";
             }
-
             const reviewFirstName = formContainer.querySelector("#First")?.value || '';
             const reviewLastName = formContainer.querySelector("#LastName")?.value || '';
             const reviewEmail = formContainer.querySelector("#Email")?.value || '';
             const reviewPhone = formContainer.querySelector("#Phone")?.value || '';
-
             reviewInfo.innerHTML = `
                 <div style="background: #F5F5F7; padding: 10px; border-radius: 5px; margin-top: 20px;">
                     <div><h2 style="margin: 0!important;">${reviewStayDates}</h2></div>
@@ -918,7 +757,6 @@ export const FormExtension = {
         }
 
         formContainer.addEventListener("click", function (event) {
-            // ... (same as previous response)
              if (event.target.classList.contains("next")) {
                 if (!validateStep()) return;
                 if (currentStep === 5) {
@@ -936,7 +774,6 @@ export const FormExtension = {
         });
 
         function createChatBox() {
-            // ... (same as previous response)
             const chatBox = document.createElement('div');
             chatBox.classList.add('chat-box');
             chatBox.innerHTML = `
@@ -959,10 +796,8 @@ export const FormExtension = {
         }
 
         formContainer.addEventListener('submit', function (event) {
-            // ... (same as previous response)
             event.preventDefault();
             if (!validateStep()) return;
-
             const accommodationList = [];
             const checkboxes = formContainer.querySelectorAll('#step3-dynamic-content input[type="checkbox"][id^="acc-myCheckbox"]:checked');
             checkboxes.forEach(checkbox => {
@@ -976,15 +811,12 @@ export const FormExtension = {
                      quantity: quantityInput ? parseInt(quantityInput.value) || 1 : 1
                  });
             });
-
-
             let durationData = {};
             const singleDurationRadio = formContainer.querySelector("#ButtonSelection");
             const rangeDurationRadio = formContainer.querySelector("#rangeDuration");
             const activeDurationBtn = formContainer.querySelector(".duration-btn.activeBtn");
             const fromDayInput = formContainer.querySelector("#fromDay");
             const tillDayInput = formContainer.querySelector("#tillDay");
-
             if (singleDurationRadio?.checked && activeDurationBtn?.dataset.days) {
                 durationData = { type: 'single', selectedOption: activeDurationBtn.textContent.trim(), days: activeDurationBtn.dataset.days };
             } else if (rangeDurationRadio?.checked) {
@@ -999,8 +831,6 @@ export const FormExtension = {
                      durationData = { type: 'single', selectedOption: (exactBtn ? exactBtn.textContent.trim() : 'As specified'), days: ''};
                 }
             }
-
-
             const formData = {
                 dates: {
                     start: selectedStartDate ? `${selectedStartDate.getFullYear()}-${String(selectedStartDate.getMonth() + 1).padStart(2, '0')}-${String(selectedStartDate.getDate()).padStart(2, '0')}` : '',
@@ -1020,7 +850,6 @@ export const FormExtension = {
                     phone: formContainer.querySelector("#Phone")?.value || ''
                 }
             };
-
             if (window.voiceflow && window.voiceflow.chat) {
                 window.voiceflow.chat.interact({
                     type: 'complete',
