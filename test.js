@@ -40,6 +40,7 @@ export const FormExtension = {
         formContainer.innerHTML = `
             <style>
             @import url('https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&display=swap');
+            /* ... (all other existing styles from previous response remain unchanged unless specified below) ... */
             .form-container {
                 font-family: "Host Grotesk", serif;
                 width: 100%;
@@ -87,27 +88,12 @@ export const FormExtension = {
                 border: 1px solid #ccc;
                 outline: none;
                 font-family: "Host Grotesk", serif;
+                box-sizing: border-box; /* Ensure padding doesn't expand elements */
             }
             input:hover, textarea:hover{
                 border: 1px solid black;
             }
-            .chat-box {
-                width: 100%;
-                padding: 20px;
-                background: #fff;
-                border-radius: 5px;
-                margin-top: 20px;
-                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            }
-            .chat-box h3 {
-                margin: 0;
-                font-size: 20px;
-            }
-            .chat-box p {
-                margin: 10px 0 0;
-                font-size: 16px;
-            }
-            h2, label, input, textarea, button {
+            h2, label, input, textarea, button { /* Ensure button font family */
                 font-family: "Host Grotesk", serif;
             }
             .steps {
@@ -176,7 +162,6 @@ export const FormExtension = {
                 padding: 10px 25px;
                 border-radius: 20px;
                 cursor: pointer;
-                font-family: "Host Grotesk", serif;
             }
             .next:hover, .prev:hover, .back-to-categories-btn:hover {
                 background: #000;
@@ -189,22 +174,21 @@ export const FormExtension = {
             
             /* Styling for Duration Buttons in Step 2 */
             .duration-btn {
-                border: 1px solid gray; /* CHANGE 2: Set border similar to next/prev */
-                background-color: #fff; /* Default background */
-                color: black; /* Default text color */
-                /* border-radius will be from .BtnSimp (8px) */
+                border: 1px solid gray; 
+                background-color: #fff; 
+                color: black; 
             }
-            .BtnSimp { /* This class is on duration-btn */
+            .BtnSimp { 
                 border-radius: 8px;
                 padding: 10px 25px;
                 cursor: pointer;
             }
-            .duration-btn.activeBtn { /* Style for selected quick duration button */
+            .duration-btn.activeBtn { 
                 color: #fff;
                 background: #000 !important;
                 border-color: #000 !important;
             }
-            .duration-btn:not(.disabled):hover { /* Hover for enabled duration buttons */
+            .duration-btn:not(.disabled):hover {
                 color: #fff;
                 background: #000 !important;
                 border-color: #000 !important;
@@ -213,455 +197,278 @@ export const FormExtension = {
                 opacity: 0.5;
                 cursor: not-allowed;
                 background: #f5f5f5 !important;
-                border: 1px solid #ddd !important; /* CHANGE 2: Border for disabled state */
+                border: 1px solid #ddd !important; 
                 color: #999 !important;
             }
 
-
-            ul#accommodationListContainer {
+            /* --- START: Custom Radio Button Styles for Step 2 --- */
+            .custom-radio-container {
                 display: flex;
-                flex-wrap: wrap;
-                margin-top: 0;
-                list-style-type: none;
-                padding-left: 0px !important;
-                gap: 8px;
-                justify-content: flex-start;
-            }
-
-            ul#accommodationListContainer li {
-                display: inline-block;
-                margin: 0;
-                flex-basis: calc(50% - 4px);
-            }
-            @media (max-width: 768px) {
-                 ul#accommodationListContainer li {
-                    flex-basis: calc(100% - 4px);
-                 }
-            }
-
-
-            input[type="checkbox"][id^="acc-myCheckbox"] {
-                display: none;
-            }
-
-            ul#accommodationListContainer label {
-                display: block;
-                position: relative;
-                cursor: pointer;
-                text-align: center;
-                border-radius: 14px;
-                transition: background-color 0.3s ease;
-                padding: 10px;
-                background-color: transparent;
-                border: 1px solid transparent;
-                height: 100%;
-                box-sizing: border-box;
-            }
-
-            ul#accommodationListContainer label:hover {
-                background-color: rgba(0, 0, 0, 0.05);
-                border-color: #ccc;
-            }
-
-            input[type="checkbox"][id^="acc-myCheckbox"]:checked + label {
-                background-color: rgba(0, 0, 0, 0.08);
-                border-color: #000;
-            }
-
-            ul#accommodationListContainer label img {
-                height: 150px;
-                width: 100%;
-                max-width: 170px;
-                border-radius: 11px;
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
-                transition: transform 0.3s ease;
-                object-fit: cover;
-            }
-
-            ul#accommodationListContainer label:hover img {
-                transform: scale(1.03);
-            }
-
-            input[type="checkbox"][id^="acc-myCheckbox"]:checked + label img {
-                transform: none !important;
-            }
-
-            ul#accommodationListContainer label p {
-                font-size: 11px;
-                margin-top: 8px;
-                text-align: left;
-            }
-
-            .room-counter {
-                margin-top: 8px;
-                display: none;
-                justify-content: center;
                 align-items: center;
-                gap: 6px;
+                cursor: pointer;
+                padding: 5px 0; /* Add some padding for better clickability */
+                margin-bottom: 5px; /* Space between radio options */
             }
-
-            input[type="checkbox"][id^="acc-myCheckbox"]:checked ~ .room-counter {
-                display: flex;
+            .custom-radio-container input[type="radio"][name="durationType"] {
+                opacity: 0;
+                position: absolute;
+                width: 1px;
+                height: 1px;
             }
-
-            .fieldinput{
-                margin-top: 0!important;
+            .custom-radio-square {
+                width: 16px;
+                height: 16px;
+                border: 1px solid #666; /* Default border color */
+                margin-right: 8px;
+                display: inline-block;
+                background-color: #fff;
+                transition: background-color 0.2s ease, border-color 0.2s ease;
+                /* border-radius: 2px; /* For slightly rounded square, if desired */
             }
-
-            .custom-calendar {
-                width: 100%;
-                margin-top: 20px;
+            .custom-radio-container input[type="radio"][name="durationType"]:checked + .custom-radio-square {
+                background-color: black;
+                border-color: black;
+            }
+            .custom-radio-container .radio-label-text {
+                font-weight: 500;
                 font-family: "Host Grotesk", serif;
             }
-
-            .calendar-header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 15px;
+            /* --- END: Custom Radio Button Styles --- */
+            
+            /* Ensure containers for options in Step 2 transition opacity smoothly */
+            #quickDurationButtonsContainer, #rangeDurationInputContainer {
+                transition: opacity 0.3s ease-in-out;
             }
 
-            .calendar-title {
-                font-weight: 600;
-                font-size: 16px;
+            ul#accommodationListContainer {
+                display: flex; flex-wrap: wrap; margin-top: 0; list-style-type: none;
+                padding-left: 0px !important; gap: 8px; justify-content: flex-start;
             }
-
-            .calendar-nav {
-                display: flex;
-                gap: 10px;
+            ul#accommodationListContainer li {
+                display: inline-block; margin: 0; flex-basis: calc(50% - 4px);
             }
-
-            .calendar-nav button {
-                background: none;
-                border: none;
-                cursor: pointer;
-                font-size: 16px;
-                padding: 5px 10px;
-                border-radius: 5px;
+            @media (max-width: 768px) {
+                 ul#accommodationListContainer li { flex-basis: calc(100% - 4px); }
             }
-
-            .calendar-nav button:hover {
-                background: #f5f5f5;
-            }
-
-            .calendar-grid {
-                display: grid;
-                grid-template-columns: repeat(7, 1fr);
-                gap: 0px;
-            }
-
-            .calendar-day-header {
-                text-align: center;
-                font-weight: 500;
-                font-size: 12px;
-                color: #666;
-                padding: 5px 0;
-            }
-
-            .calendar-day {
-                text-align: center;
-                padding: 10px 5px;
-                border-radius: 5px;
-                cursor: pointer;
-                font-size: 14px;
-            }
-
-            .calendar-day:hover {
-                background: #f5f5f5;
-            }
-
-            .calendar-day.empty {
-                visibility: hidden;
-            }
-
-            .calendar-day.today {
-                font-weight: bold;
-            }
-
-            .calendar-day.selected-start,
-            .calendar-day.selected-end {
-                background: black;
-                color: white;
-            }
-
-            .calendar-day.in-range {
-                background: #e0e0e0;
-                border-radius: 0px;
-            }
-
-            .calendar-day.disabled {
-                color: #ccc;
-                cursor: not-allowed;
-            }
-
-            .date-range-display {
-                margin-top: 15px;
-                padding: 10px;
-                background: #f5f5f7;
-                border-radius: 5px;
-                font-size: 14px;
-            }
-
-            .date-range-display span {
-                color: #666;
-            }
-           
-            .input-wrapper {
-                position: relative;
-            }
-
-            /* Specific styling for number inputs in range duration */
-            #rangeDurationInputContainer .input-wrapper input[type="number"] {
-                border: 1px solid gray;
-                border-radius: 6px;
-                /* position: relative; */ /* Not needed if parent is relative for label */
-                width: 80px !important; /* Ensure specific width */
-                margin: 0; /* Remove default margin from general input rule */
-                /* line-height: normal; Ensure consistent line height */
-                height: 34px; /* From original */
-                text-align: right;
-                box-sizing: border-box; /* Include padding in width/height */
-            }
-             #rangeDurationInputContainer .input-wrapper label {
-                position: absolute;
-                top: -0.8ex; /* Adjust as needed */
-                z-index: 1;
-                left: 1em; /* Adjust as needed */
-                background-color: white;
-                padding: 0 5px;
-                font-size: 12px; /* Ensure label font size */
-                color: #666; /* Label color */
-            }
-
-
-            b{
-                font-size: 13px!important;
-            }
-
-            .counter-btn {
-                width: 25px;
-                height: 25px;
-                border-radius: 50%;
-                background: #f5f5f5;
-                border: 1px solid #ddd;
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 14px;
-            }
-            input[type="checkbox"][id^="acc-myCheckbox"]:checked ~ .room-counter .counter-btn {
-                display: flex !important;
-            }
-
-
-            .counter-btn:hover {
-                background: #e0e0e0;
-            }
-
-            .room-quantity {
-                border: 1px solid #ddd;
-                border-radius: 5px;
-                padding: 5px;
-                text-align: center;
-                width: 60px;
-            }
-
-            #accommodation-categories {
-                display: flex;
-                justify-content: space-around;
-                flex-wrap: wrap;
-                gap: 20px;
-                margin-bottom: 20px;
-            }
-            .category-selector {
-                cursor: pointer;
-                text-align: center;
-                border: 1px solid #e0e0e0;
-                padding: 15px;
-                border-radius: 12px;
-                width: calc(50% - 30px);
-                background-color: #fff;
-                transition: box-shadow 0.3s ease, border-color 0.3s ease;
+            input[type="checkbox"][id^="acc-myCheckbox"] { display: none; }
+            ul#accommodationListContainer label {
+                display: block; position: relative; cursor: pointer; text-align: center;
+                border-radius: 14px; transition: background-color 0.3s ease; padding: 10px;
+                background-color: transparent; border: 1px solid transparent; height: 100%;
                 box-sizing: border-box;
             }
-            .category-selector:hover {
-                border-color: #000;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            ul#accommodationListContainer label:hover { background-color: rgba(0, 0, 0, 0.05); border-color: #ccc; }
+            input[type="checkbox"][id^="acc-myCheckbox"]:checked + label { background-color: rgba(0, 0, 0, 0.08); border-color: #000; }
+            ul#accommodationListContainer label img {
+                height: 150px; width: 100%; max-width: 170px; border-radius: 11px; display: block;
+                margin-left: auto; margin-right: auto; transition: transform 0.3s ease; object-fit: cover;
             }
-            .category-selector img {
-                width: 100%;
-                height: 180px;
-                border-radius: 8px;
-                object-fit: cover;
-                margin-bottom: 10px;
+            ul#accommodationListContainer label:hover img { transform: scale(1.03); }
+            input[type="checkbox"][id^="acc-myCheckbox"]:checked + label img { transform: none !important; }
+            ul#accommodationListContainer label p { font-size: 11px; margin-top: 8px; text-align: left; }
+            .room-counter { margin-top: 8px; display: none; justify-content: center; align-items: center; gap: 6px; }
+            input[type="checkbox"][id^="acc-myCheckbox"]:checked ~ .room-counter { display: flex; }
+            .fieldinput{ margin-top: 0!important; }
+            .custom-calendar { width: 100%; margin-top: 20px; font-family: "Host Grotesk", serif; }
+            .calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+            .calendar-title { font-weight: 600; font-size: 16px; }
+            .calendar-nav { display: flex; gap: 10px; }
+            .calendar-nav button { background: none; border: none; cursor: pointer; font-size: 16px; padding: 5px 10px; border-radius: 5px; }
+            .calendar-nav button:hover { background: #f5f5f5; }
+            .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0px; }
+            .calendar-day-header { text-align: center; font-weight: 500; font-size: 12px; color: #666; padding: 5px 0; }
+            .calendar-day { text-align: center; padding: 10px 5px; border-radius: 5px; cursor: pointer; font-size: 14px; }
+            .calendar-day:hover { background: #f5f5f5; }
+            .calendar-day.empty { visibility: hidden; }
+            .calendar-day.today { font-weight: bold; }
+            .calendar-day.selected-start, .calendar-day.selected-end { background: black; color: white; }
+            .calendar-day.in-range { background: #e0e0e0; border-radius: 0px; }
+            .calendar-day.disabled { color: #ccc; cursor: not-allowed; }
+            .date-range-display { margin-top: 15px; padding: 10px; background: #f5f5f7; border-radius: 5px; font-size: 14px; }
+            .date-range-display span { color: #666; }
+            .input-wrapper { position: relative; margin: 5px 0; /* Added some margin for spacing */}
+            #rangeDurationInputContainer .input-wrapper input[type="number"] {
+                border: 1px solid gray; border-radius: 6px; width: 80px !important; margin: 0;
+                height: 34px; text-align: right; box-sizing: border-box; padding: 0 10px; /* Ensure padding is accounted for */
             }
-            .category-selector h3 {
-                margin-top: 10px;
-                margin-bottom: 5px;
-                font-size: 18px;
-                font-weight: 600;
-                color: #333;
+             #rangeDurationInputContainer .input-wrapper label {
+                position: absolute; top: -0.7em; /* Adjusted for better alignment */ z-index: 1; left: 0.8em; /* Adjusted */
+                background-color: white; padding: 0 5px; font-size: 11px; /* Slightly smaller label */ color: #666;
             }
-            @media (max-width: 600px) {
-                .category-selector {
-                    width: 100%;
-                }
+            b{ font-size: 13px!important; }
+            .counter-btn {
+                width: 25px; height: 25px; border-radius: 50%; background: #f5f5f5; border: 1px solid #ddd;
+                cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px;
             }
-            .back-to-categories-btn-container {
-                margin-bottom: 20px;
-                text-align: left;
+            input[type="checkbox"][id^="acc-myCheckbox"]:checked ~ .room-counter .counter-btn { display: flex !important; }
+            .counter-btn:hover { background: #e0e0e0; }
+            .room-quantity { border: 1px solid #ddd; border-radius: 5px; padding: 5px; text-align: center; width: 60px; }
+            #accommodation-categories { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; margin-bottom: 20px; }
+            .category-selector {
+                cursor: pointer; text-align: center; border: 1px solid #e0e0e0; padding: 15px; border-radius: 12px;
+                width: calc(50% - 30px); background-color: #fff; transition: box-shadow 0.3s ease, border-color 0.3s ease; box-sizing: border-box;
             }
+            .category-selector:hover { border-color: #000; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+            .category-selector img { width: 100%; height: 180px; border-radius: 8px; object-fit: cover; margin-bottom: 10px; }
+            .category-selector h3 { margin-top: 10px; margin-bottom: 5px; font-size: 18px; font-weight: 600; color: #333; }
+            @media (max-width: 600px) { .category-selector { width: 100%; } }
+            .back-to-categories-btn-container { margin-bottom: 20px; text-align: left; }
 
-        </style>
-        <div class="steps" style="display: flex; gap: 30px; justify-content: space-around; width: 100%;">
-            <style>.vfrc-message--extension-Forms{
-                background: white!important;
-            }</style>
-            <div class="step-indicator step-1"><span class="bord2"></span><span class="bord"></span><span style="background-color: rgb(218 213 213 / 0%); border: 1px solid; width: 34px; text-align: center; display: inline-flex; align-items: center; height: 34px; justify-content: center; border-radius: 50%;">1</span></div>
-            <div class="step-indicator step-2" style="flex: 0!important; padding: 0!important; display: contents!important;"><span class="bord" style="display: contents;"></span></div>
-            <div class="step-indicator step-3"><span class="bord"></span><span style="background-color: rgb(218 213 213 / 0%); border: 1px solid; width: 34px; text-align: center; display: inline-flex; align-items: center; height: 34px; justify-content: center; border-radius: 50%;">2</span></div>
-            <div class="step-indicator step-4"><span class="bord"></span><span style="background-color: rgb(218 213 213 / 0%); border: 1px solid; width: 34px; text-align: center; display: inline-flex; align-items: center; height: 34px; justify-content: center; border-radius: 50%;">3</span></div>
-            <div class="step-indicator step-5"><span class="bord"></span><span style="background-color: rgb(218 213 213 / 0%); border: 1px solid; width: 34px; text-align: center; display: inline-flex; align-items: center; height: 34px; justify-content: center; border-radius: 50%;">4</span></div>
-            <div class="step-indicator step-6"><span class="bord"></span><span style="background-color: rgb(218 213 213 / 0%); border: 1px solid; width: 34px; text-align: center; display: inline-flex; align-items: center; height: 34px; justify-content: center; border-radius: 50%;">5</span></div>
-        </div>
-        <div class="step-content">
-            <div class="step step-1">
-                <h2 style="margin: 0!important;">${titleChooseYourStay}</h2>
-                <p style="margin: 7px 0px!important;">${undertitleChooseYourStay}</p><br/>
-                <div id="firstSte">
-                    <div class="custom-calendar" id="customCalendar"></div>
-                    <div class="date-range-display" id="dateRangeDisplay">
-                        <span>${noDatesSelected}</span>
-                    </div>
-                </div>
-                <div id="secondSte" style="display: none;">
-                    ${undertitleChooseYourStay2}
-                </div>
-                <div style="display: flex; justify-content: right; gap: 30px; margin-top: 17px;">
-                    <button type="button" class="next">${next}</button>
-                </div>
+            </style>
+            <div class="steps" style="display: flex; gap: 30px; justify-content: space-around; width: 100%;">
+                <style>.vfrc-message--extension-Forms{ background: white!important; }</style>
+                <div class="step-indicator step-1"><span class="bord2"></span><span class="bord"></span><span style="background-color: rgb(218 213 213 / 0%); border: 1px solid; width: 34px; text-align: center; display: inline-flex; align-items: center; height: 34px; justify-content: center; border-radius: 50%;">1</span></div>
+                <div class="step-indicator step-2" style="flex: 0!important; padding: 0!important; display: contents!important;"><span class="bord" style="display: contents;"></span></div>
+                <div class="step-indicator step-3"><span class="bord"></span><span style="background-color: rgb(218 213 213 / 0%); border: 1px solid; width: 34px; text-align: center; display: inline-flex; align-items: center; height: 34px; justify-content: center; border-radius: 50%;">2</span></div>
+                <div class="step-indicator step-4"><span class="bord"></span><span style="background-color: rgb(218 213 213 / 0%); border: 1px solid; width: 34px; text-align: center; display: inline-flex; align-items: center; height: 34px; justify-content: center; border-radius: 50%;">3</span></div>
+                <div class="step-indicator step-5"><span class="bord"></span><span style="background-color: rgb(218 213 213 / 0%); border: 1px solid; width: 34px; text-align: center; display: inline-flex; align-items: center; height: 34px; justify-content: center; border-radius: 50%;">4</span></div>
+                <div class="step-indicator step-6"><span class="bord"></span><span style="background-color: rgb(218 213 213 / 0%); border: 1px solid; width: 34px; text-align: center; display: inline-flex; align-items: center; height: 34px; justify-content: center; border-radius: 50%;">5</span></div>
             </div>
-            <div class="step step-2" style="display: none;">
-                <h2 style="margin: 0!important;">${titleChooseYourStay}</h2>
-                <p style="margin: 7px 0px!important;">${undertitleChooseYourStay2}</p><br/>
-                <div id="selectedDateRange" style="margin-bottom: 20px; font-weight: 900; color: #000; font-size: 19px;"></div>
-                
-                <div style="margin-bottom: 20px;"> <input type="radio" id="ButtonSelection" name="durationType" checked value="single" style="width: auto!important; margin-right: 5px;">
-                    <label for="ButtonSelection"><p style="margin-bottom: 10px; font-weight: 500; display: inline;">${selectDuration}:</p></label>
-                    <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;" id="quickDurationButtonsContainer">
-                        <button type="button" class="duration-btn BtnSimp" data-days="exact">${exactlyAsSpecified}</button>
-                        <button type="button" class="duration-btn BtnSimp" data-days="3">${threeDays}</button>
-                        <button type="button" class="duration-btn BtnSimp" data-days="4">${fourDays}</button>
-                        <button type="button" class="duration-btn BtnSimp" data-days="5">${fiveDays}</button>
-                        <button type="button" class="duration-btn BtnSimp" data-days="6">${sixDays}</button>
-                        <button type="button" class="duration-btn BtnSimp" data-days="7">${sevenDays}</button>
-                        <button type="button" class="duration-btn BtnSimp" data-days="8">${eightDays}</button>
-                        <button type="button" class="duration-btn BtnSimp" data-days="9">${nineDays}</button>
-                        <button type="button" class="duration-btn BtnSimp" data-days="10">${tenDays}</button>
-                    </div>
-                </div>
-                
-                <div style="margin-top: 20px;"> <input type="radio" id="rangeDuration" name="durationType" value="range" style="width: auto!important; margin-right: 5px;">
-                     <label for="rangeDuration"><p style="margin-bottom: 10px; font-weight: 500; display: inline;">${enterExactDates}:</p></label>
-                    <div style="margin-top: 10px; /* Adjusted from margin-bottom: 15px */" id="rangeDurationInputContainer">
-                        <div style="display: flex; gap: 10px; /* margin-top: 10px; */ align-items: center;">
-                            <div class="input-wrapper">
-                                <label for="fromDay">${from}</label>
-                                <input type="number" id="fromDay" name="fromDay" min="1" value="1">
-                            </div>
-                            <div class="input-wrapper">
-                                <label for="tillDay">${until}</label>
-                                <input type="number" id="tillDay" name="tillDay" min="1" value="1">
-                            </div>
-                            <span id="maxRangeNote" style="margin-left: 10px; color: #666; font-size: 12px;"></span>
+            <div class="step-content">
+                <div class="step step-1">
+                    <h2 style="margin: 0!important;">${titleChooseYourStay}</h2>
+                    <p style="margin: 7px 0px!important;">${undertitleChooseYourStay}</p><br/>
+                    <div id="firstSte">
+                        <div class="custom-calendar" id="customCalendar"></div>
+                        <div class="date-range-display" id="dateRangeDisplay">
+                            <span>${noDatesSelected}</span>
                         </div>
                     </div>
+                    <div id="secondSte" style="display: none;">
+                        ${undertitleChooseYourStay2}
+                    </div>
+                    <div style="display: flex; justify-content: right; gap: 30px; margin-top: 17px;">
+                        <button type="button" class="next">${next}</button>
+                    </div>
                 </div>
+                <div class="step step-2" style="display: none;">
+                    <h2 style="margin: 0!important;">${titleChooseYourStay}</h2>
+                    <p style="margin: 7px 0px!important;">${undertitleChooseYourStay2}</p><br/>
+                    <div id="selectedDateRange" style="margin-bottom: 20px; font-weight: 900; color: #000; font-size: 19px;"></div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <label class="custom-radio-container">
+                            <input type="radio" id="ButtonSelection" name="durationType" value="single" checked>
+                            <span class="custom-radio-square"></span>
+                            <span class="radio-label-text">${selectDuration}:</span>
+                        </label>
+                        <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 5px; padding-left: 24px;" id="quickDurationButtonsContainer"> <button type="button" class="duration-btn BtnSimp" data-days="exact">${exactlyAsSpecified}</button>
+                            <button type="button" class="duration-btn BtnSimp" data-days="3">${threeDays}</button>
+                            <button type="button" class="duration-btn BtnSimp" data-days="4">${fourDays}</button>
+                            <button type="button" class="duration-btn BtnSimp" data-days="5">${fiveDays}</button>
+                            <button type="button" class="duration-btn BtnSimp" data-days="6">${sixDays}</button>
+                            <button type="button" class="duration-btn BtnSimp" data-days="7">${sevenDays}</button>
+                            <button type="button" class="duration-btn BtnSimp" data-days="8">${eightDays}</button>
+                            <button type="button" class="duration-btn BtnSimp" data-days="9">${nineDays}</button>
+                            <button type="button" class="duration-btn BtnSimp" data-days="10">${tenDays}</button>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 20px;">
+                        <label class="custom-radio-container">
+                            <input type="radio" id="rangeDuration" name="durationType" value="range">
+                            <span class="custom-radio-square"></span>
+                            <span class="radio-label-text">${enterExactDates}:</span>
+                        </label>
+                        <div style="margin-top: 5px; padding-left: 24px;" id="rangeDurationInputContainer"> <div style="display: flex; gap: 10px; align-items: center;">
+                                <div class="input-wrapper">
+                                    <label for="fromDay">${from}</label>
+                                    <input type="number" id="fromDay" name="fromDay" min="1" value="1">
+                                </div>
+                                <div class="input-wrapper">
+                                    <label for="tillDay">${until}</label>
+                                    <input type="number" id="tillDay" name="tillDay" min="1" value="1">
+                                </div>
+                                <span id="maxRangeNote" style="margin-left: 10px; color: #666; font-size: 12px;"></span>
+                            </div>
+                        </div>
+                    </div>
 
-                <div style="display: flex; justify-content: space-between; gap: 30px; margin-top: 17px;">
-                    <button type="button" class="prev">${back}</button>
-                    <button type="button" class="next">${next}</button>
-                </div>
-            </div>
-            <div class="step step-3" style="display: none;">
-                <style> .vfrc-message--extension-Forms{width: 100%!important;}</style>
-                <h2 style="margin: 0!important;">${titlePickAccommodation}</h2>
-                <p style="margin: 7px 0px!important;">${undertitlePickAccommodation}</p><br/>
-                <div id="step3-dynamic-content">
-                </div>
-                <div style="display: flex; justify-content: space-between; gap: 30px; margin-top: 17px;">
-                    <button type="button" class="prev">${back}</button>
-                    <button type="button" class="next">${next}</button>
-                </div>
-            </div>
-            <div class="step step-4" style="display: none;">
-                <h2 style="margin: 0!important;">${titleWhoTraveling}</h2>
-                <p style="margin: 7px 0px!important;">${undertitleWhoTraveling}</p><br/>
-                <div style="display: flex; gap: 30px; justify-content: space-between;">
-                    <div style="width: 45%;">
-                        <label for="adults" style="text-align: left!important;">${adults14Plus}*</label>
-                        <input type="number" id="adults" name="adults" min="1" value="1" required/>
-                    </div>
-                    <div style="width: 45%;">
-                        <label for="children" style="text-align: left!important;">${children}</label>
-                        <input type="number" id="children" name="children" min="0" value="0"/>
+                    <div style="display: flex; justify-content: space-between; gap: 30px; margin-top: 30px;"> <button type="button" class="prev">${back}</button>
+                        <button type="button" class="next">${next}</button>
                     </div>
                 </div>
-                <div>
-                    <label for="special-requests" style="text-align: left!important;">${specialRequests}</label>
-                    <textarea id="special-requests" name="special-requests" rows="4" placeholder="${specialRequestsTxt}"></textarea>
-                </div>
-                <div style="display: flex; justify-content: space-between; gap: 30px; margin-top: 17px;">
-                    <button type="button" class="prev">${back}</button>
-                    <button type="button" class="next">${next}</button>
-                </div>
-            </div>
-            <div class="step step-5" style="display: none;">
-                <h2 style="margin: 0!important;">${titleContactInformation}</h2>
-                <p style="margin: 7px 0px!important;">${undertitleContactInformationBooking}</p><br/>
-                <div style="display: flex; gap: 30px; justify-content: space-between;">
-                    <div style="width: 45%;">
-                        <label for="First" style="text-align: left!important;">${firstName}*</label>
-                        <input type="text" id="First" name="First" class="FirstName fieldinput" required/>
+                <div class="step step-3" style="display: none;">
+                    <style> .vfrc-message--extension-Forms{width: 100%!important;}</style>
+                    <h2 style="margin: 0!important;">${titlePickAccommodation}</h2>
+                    <p style="margin: 7px 0px!important;">${undertitlePickAccommodation}</p><br/>
+                    <div id="step3-dynamic-content">
                     </div>
-                    <div style="width: 45%;">
-                        <label for="LastName" style="text-align: left!important;">${lastName}*</label>
-                        <input type="text" id="LastName" name="LastName" class="LastName fieldinput" required/>
+                    <div style="display: flex; justify-content: space-between; gap: 30px; margin-top: 17px;">
+                        <button type="button" class="prev">${back}</button>
+                        <button type="button" class="next">${next}</button>
                     </div>
                 </div>
-                <div>
-                    <label for="Email" style="text-align: left!important;">${emailVF}*</label>
-                    <input type="email" id="Email" name="Email" class="Email fieldinput" required/>
+                <div class="step step-4" style="display: none;">
+                    <h2 style="margin: 0!important;">${titleWhoTraveling}</h2>
+                    <p style="margin: 7px 0px!important;">${undertitleWhoTraveling}</p><br/>
+                    <div style="display: flex; gap: 30px; justify-content: space-between;">
+                        <div style="width: 45%;">
+                            <label for="adults" style="text-align: left!important;">${adults14Plus}*</label>
+                            <input type="number" id="adults" name="adults" min="1" value="1" required/>
+                        </div>
+                        <div style="width: 45%;">
+                            <label for="children" style="text-align: left!important;">${children}</label>
+                            <input type="number" id="children" name="children" min="0" value="0"/>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="special-requests" style="text-align: left!important;">${specialRequests}</label>
+                        <textarea id="special-requests" name="special-requests" rows="4" placeholder="${specialRequestsTxt}"></textarea>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; gap: 30px; margin-top: 17px;">
+                        <button type="button" class="prev">${back}</button>
+                        <button type="button" class="next">${next}</button>
+                    </div>
                 </div>
-                <div>
-                    <label for="Phone" style="text-align: left!important;">${phoneNumber}</label>
-                    <input type="text" id="Phone" name="Phone" class="Phone fieldinput"/>
+                <div class="step step-5" style="display: none;">
+                    <h2 style="margin: 0!important;">${titleContactInformation}</h2>
+                    <p style="margin: 7px 0px!important;">${undertitleContactInformationBooking}</p><br/>
+                    <div style="display: flex; gap: 30px; justify-content: space-between;">
+                        <div style="width: 45%;">
+                            <label for="First" style="text-align: left!important;">${firstName}*</label>
+                            <input type="text" id="First" name="First" class="FirstName fieldinput" required/>
+                        </div>
+                        <div style="width: 45%;">
+                            <label for="LastName" style="text-align: left!important;">${lastName}*</label>
+                            <input type="text" id="LastName" name="LastName" class="LastName fieldinput" required/>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="Email" style="text-align: left!important;">${emailVF}*</label>
+                        <input type="email" id="Email" name="Email" class="Email fieldinput" required/>
+                    </div>
+                    <div>
+                        <label for="Phone" style="text-align: left!important;">${phoneNumber}</label>
+                        <input type="text" id="Phone" name="Phone" class="Phone fieldinput"/>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; gap: 30px; margin-top: 17px;">
+                        <button type="button" class="prev">${back}</button>
+                        <button type="button" class="next">${next}</button>
+                    </div>
                 </div>
-                <div style="display: flex; justify-content: space-between; gap: 30px; margin-top: 17px;">
-                    <button type="button" class="prev">${back}</button>
-                    <button type="button" class="next">${next}</button>
+                <div class="step step-6" style="display: none;">
+                    <h2 style="margin: 0!important;">${titleReview}</h2>
+                    <p style="margin: 7px 0px!important;">${undertitleReviewBooking}</p><br/>
+                    <div id="review-info"></div>
+                    <div style="display: flex; justify-content: space-between; gap: 30px; margin-top: 17px;">
+                        <button type="button" class="prev">${edit}</button>
+                        <button type="submit" class="next">${submit}</button>
+                    </div>
                 </div>
             </div>
-            <div class="step step-6" style="display: none;">
-                <h2 style="margin: 0!important;">${titleReview}</h2>
-                <p style="margin: 7px 0px!important;">${undertitleReviewBooking}</p><br/>
-                <div id="review-info"></div>
-                <div style="display: flex; justify-content: space-between; gap: 30px; margin-top: 17px;">
-                    <button type="button" class="prev">${edit}</button>
-                    <button type="submit" class="next">${submit}</button>
-                </div>
-            </div>
-        </div>
         `;
+
+        // JavaScript functions (createCustomCalendar, setupRoomCounters, renderStep3DynamicContent, showStep,
+        // validateStep, updateReviewInfo, createChatBox, event listeners for form submit and next/prev)
+        // remain largely the same as the previous response, with specific changes to updateStep2 below.
 
         const steps = formContainer.querySelectorAll(".step");
         const stepIndicators = formContainer.querySelectorAll(".step-indicator");
         const reviewInfo = formContainer.querySelector("#review-info");
 
         function createCustomCalendar() {
+            // ... (same as previous response)
             const calendarContainer = formContainer.querySelector("#customCalendar");
             const dateRangeDisplay = formContainer.querySelector("#dateRangeDisplay");
             if (!calendarContainer) return;
@@ -673,9 +480,9 @@ export const FormExtension = {
                 calendarContainer.innerHTML = '';
                 const header = document.createElement('div');
                 header.className = 'calendar-header';
-                const title = document.createElement('div');
-                title.className = 'calendar-title';
-                title.textContent = new Date(year, month).toLocaleDateString(trace.payload.locale || 'en-US', { month: 'long', year: 'numeric' });
+                const titleEl = document.createElement('div'); // Renamed to avoid conflict
+                titleEl.className = 'calendar-title';
+                titleEl.textContent = new Date(year, month).toLocaleDateString(trace.payload.locale || 'en-US', { month: 'long', year: 'numeric' });
                 const nav = document.createElement('div');
                 nav.className = 'calendar-nav';
                 const prevBtn = document.createElement('button');
@@ -691,7 +498,7 @@ export const FormExtension = {
                     renderCalendar(month, year);
                 });
                 nav.appendChild(prevBtn); nav.appendChild(nextBtn);
-                header.appendChild(title); header.appendChild(nav);
+                header.appendChild(titleEl); header.appendChild(nav); // Use titleEl
                 calendarContainer.appendChild(header);
                 const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
                 const grid = document.createElement('div');
@@ -771,6 +578,7 @@ export const FormExtension = {
         }
 
         function setupRoomCounters(containerElement) {
+             // ... (same as previous response)
             const checkboxes = containerElement.querySelectorAll('input[type="checkbox"][id^="acc-myCheckbox"]');
             checkboxes.forEach(checkbox => {
                 const counter = checkbox.closest('li').querySelector('.room-counter');
@@ -796,6 +604,7 @@ export const FormExtension = {
         }
 
         function renderStep3DynamicContent() {
+            // ... (same as previous response)
             const contentArea = formContainer.querySelector("#step3-dynamic-content");
             if (!contentArea) return;
             contentArea.innerHTML = '';
@@ -856,9 +665,9 @@ export const FormExtension = {
             }
         }
 
-
         function showStep(step) {
-            steps.forEach((el, index) => {
+            // ... (same as previous response, ensure step indicators are handled correctly)
+             steps.forEach((el, index) => {
                 el.style.display = index === step - 1 ? "block" : "none";
                 if (index < step - 1) {
                     stepIndicators[index]?.classList.add("visited");
@@ -868,10 +677,11 @@ export const FormExtension = {
             });
 
             stepIndicators.forEach((el, index) => {
-                 const targetIndicator = formContainer.querySelector(`.step-indicator.step-${step}`);
+                 const targetIndicator = formContainer.querySelector(`.step-indicator.step-${step}`); // step is 1-based for currentStep
                  stepIndicators.forEach(ind => ind.classList.remove("active"));
                  if(targetIndicator) targetIndicator.classList.add("active");
             });
+
 
             if (step === 1) createCustomCalendar();
             if (step === 2) updateStep2();
@@ -879,11 +689,10 @@ export const FormExtension = {
             if (step === 6) updateReviewInfo();
         }
 
-
         function updateStep2() {
             if (currentStep !== 2) return;
             const dateRangeDisplay = formContainer.querySelector("#selectedDateRange");
-            const durationBtns = formContainer.querySelectorAll(".duration-btn");
+            const durationBtns = Array.from(formContainer.querySelectorAll(".duration-btn")); // Convert to array
             const fromDayInput = formContainer.querySelector("#fromDay");
             const tillDayInput = formContainer.querySelector("#tillDay");
             const maxRangeNote = formContainer.querySelector("#maxRangeNote");
@@ -893,76 +702,63 @@ export const FormExtension = {
             const quickButtonsContainer = formContainer.querySelector('#quickDurationButtonsContainer');
             const rangeInputContainer = formContainer.querySelector('#rangeDurationInputContainer');
 
-
             if (!selectedStartDate || !selectedEndDate) {
-                // If dates are not selected, perhaps disable the entire step 2 or show a message.
-                // For now, assume dates are selected when reaching this step.
-                // If not, totalDays calculation might fail or be 0.
-                dateRangeDisplay.textContent = "Please select travel dates first."; // Fallback
-                quickButtonsContainer.style.opacity = '0.5';
-                rangeInputContainer.style.opacity = '0.5';
-                durationBtns.forEach(btn => {btn.disabled = true; btn.classList.add("disabled");});
+                dateRangeDisplay.textContent = "Please select travel dates first.";
+                if (quickButtonsContainer) quickButtonsContainer.style.opacity = '0.5';
+                if (rangeInputContainer) rangeInputContainer.style.opacity = '0.5';
+                durationBtns.forEach(btn => { btn.disabled = true; btn.classList.add("disabled"); });
                 fromDayInput.disabled = true;
                 tillDayInput.disabled = true;
                 return;
             }
 
             const timeDiff = selectedEndDate.getTime() - selectedStartDate.getTime();
-            const totalDays = Math.max(1, Math.ceil(timeDiff / (1000 * 60 * 60 * 24)) + 1); // Ensure totalDays is at least 1
+            const totalDays = Math.max(1, Math.ceil(timeDiff / (1000 * 60 * 60 * 24)) + 1);
 
             const startStr = selectedStartDate.toLocaleDateString(trace.payload.locale || 'en-US', { month: 'short', day: 'numeric', year: 'numeric' });
             const endStr = selectedEndDate.toLocaleDateString(trace.payload.locale || 'en-US', { month: 'short', day: 'numeric', year: 'numeric' });
             dateRangeDisplay.textContent = `${startStr} - ${endStr}`;
 
-            // Initialize input fields for range duration
             fromDayInput.max = totalDays;
             tillDayInput.max = totalDays;
-            fromDayInput.min = 1; // Corrected min
-            tillDayInput.min = 1; // Corrected min
+            fromDayInput.min = 1;
+            tillDayInput.min = 1;
 
-            // Default values if not sensible
-            if (parseInt(fromDayInput.value) > totalDays || parseInt(fromDayInput.value) < 1 || fromDayInput.value === '') {
-                 fromDayInput.value = 1;
-            }
-            if (parseInt(tillDayInput.value) > totalDays || parseInt(tillDayInput.value) < parseInt(fromDayInput.value) || tillDayInput.value === '') {
-                tillDayInput.value = totalDays;
+            // Smart defaulting for From/To day inputs when range becomes active
+            if (rangeDurationRadio.checked || (!singleDurationRadio.checked && !rangeDurationRadio.checked) /* initial load before interaction */) {
+                 if (parseInt(fromDayInput.value) > totalDays || parseInt(fromDayInput.value) < 1 || fromDayInput.value === '' || isNaN(parseInt(fromDayInput.value))) {
+                     fromDayInput.value = 1;
+                 }
+                 if (parseInt(tillDayInput.value) > totalDays || parseInt(tillDayInput.value) < parseInt(fromDayInput.value) || tillDayInput.value === '' || isNaN(parseInt(tillDayInput.value))) {
+                    tillDayInput.value = totalDays;
+                }
             }
 
 
             maxRangeNote.textContent = `${youCanChoose || "Sie können maximal"} ${totalDays} ${days || "Tage"}`;
 
-
             const updateInputStates = () => {
-                const isSingleChecked = singleDurationRadio.checked;
+                const isSingleActive = singleDurationRadio.checked;
 
-                if (isSingleChecked) {
-                    if (quickButtonsContainer) quickButtonsContainer.style.opacity = '1';
-                    if (rangeInputContainer) rangeInputContainer.style.opacity = '0.5';
+                if (quickButtonsContainer) quickButtonsContainer.style.opacity = isSingleActive ? '1' : '0.5';
+                if (rangeInputContainer) rangeInputContainer.style.opacity = isSingleActive ? '0.5' : '1';
 
-                    durationBtns.forEach(btn => {
-                        const btnDaysData = btn.dataset.days;
-                        let isDisabledByTotalDays = false;
-                        if (btnDaysData !== "exact") {
-                            const daysNum = parseInt(btnDaysData);
-                            isDisabledByTotalDays = daysNum > totalDays;
-                        }
-                        btn.disabled = isDisabledByTotalDays;
-                        btn.classList.toggle("disabled", isDisabledByTotalDays);
-                    });
-                    fromDayInput.disabled = true;
-                    tillDayInput.disabled = true;
-                } else { // rangeDurationRadio is checked
-                    if (quickButtonsContainer) quickButtonsContainer.style.opacity = '0.5';
-                    if (rangeInputContainer) rangeInputContainer.style.opacity = '1';
+                durationBtns.forEach(btn => {
+                    let isDisabledByTotalDays = false;
+                    if (btn.dataset.days !== "exact") {
+                        const daysNum = parseInt(btn.dataset.days);
+                        isDisabledByTotalDays = daysNum > totalDays;
+                    }
+                    // Only enable/disable based on totalDays if their section is active
+                    btn.disabled = !isSingleActive || isDisabledByTotalDays;
+                    btn.classList.toggle("disabled", !isSingleActive || isDisabledByTotalDays);
+                    if (!isSingleActive) {
+                        btn.classList.remove("activeBtn");
+                    }
+                });
 
-                    durationBtns.forEach(b => {
-                        b.disabled = true;
-                        b.classList.add("disabled");
-                        b.classList.remove("activeBtn");
-                    });
-                    fromDayInput.disabled = false;
-                    tillDayInput.disabled = false;
-                }
+                fromDayInput.disabled = isSingleActive;
+                tillDayInput.disabled = isSingleActive;
             };
 
             singleDurationRadio.addEventListener("change", updateInputStates);
@@ -970,52 +766,36 @@ export const FormExtension = {
 
             durationBtns.forEach(btn => {
                 btn.addEventListener("click", function () {
-                    if (btn.disabled) return; // Do nothing if button is disabled (e.g. by opacity rule)
-                    
-                    // If this section was disabled, clicking a button should enable it and select the radio
-                    if (!singleDurationRadio.checked) {
+                    if (!singleDurationRadio.checked) { // If the other radio was checked
                         singleDurationRadio.checked = true;
-                        // singleDurationRadio.dispatchEvent(new Event('change')); // updateInputStates will be called
+                        // The 'change' event on radio will call updateInputStates
+                        singleDurationRadio.dispatchEvent(new Event('change', { bubbles: true }));
+                    } else if (btn.disabled) { // If already in correct section, but button itself is disabled (e.g. > totalDays)
+                        return;
                     }
                     
                     durationBtns.forEach(b => b.classList.remove("activeBtn"));
                     btn.classList.add("activeBtn");
-                    singleDurationRadio.dispatchEvent(new Event('change')); // Ensure state update
                 });
             });
+            
+            const autoSwitchToRange = () => {
+                if (!rangeDurationRadio.checked) {
+                    rangeDurationRadio.checked = true;
+                    rangeDurationRadio.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+            };
+            fromDayInput.addEventListener('focus', autoSwitchToRange);
+            tillDayInput.addEventListener('focus', autoSwitchToRange);
+            fromDayInput.addEventListener('input', autoSwitchToRange);
+            tillDayInput.addEventListener('input', autoSwitchToRange);
 
-            fromDayInput.addEventListener('focus', () => {
-                if (!rangeDurationRadio.checked) {
-                    rangeDurationRadio.checked = true;
-                    rangeDurationRadio.dispatchEvent(new Event('change'));
-                }
-            });
-            tillDayInput.addEventListener('focus', () => {
-                if (!rangeDurationRadio.checked) {
-                    rangeDurationRadio.checked = true;
-                    rangeDurationRadio.dispatchEvent(new Event('change'));
-                }
-            });
-             fromDayInput.addEventListener('input', () => { // Auto-switch on input as well
-                if (!rangeDurationRadio.checked) {
-                    rangeDurationRadio.checked = true;
-                    rangeDurationRadio.dispatchEvent(new Event('change'));
-                }
-            });
-            tillDayInput.addEventListener('input', () => {
-                if (!rangeDurationRadio.checked) {
-                    rangeDurationRadio.checked = true;
-                    rangeDurationRadio.dispatchEvent(new Event('change'));
-                }
-            });
-
-
-            updateInputStates(); // Initial call to set states based on checked radio
+            updateInputStates(); // Initial call
         }
 
-
         function validateStep() {
-            if (!steps[currentStep - 1]) return true;
+            // ... (same as previous response, with Step 2 validation logic included)
+             if (!steps[currentStep - 1]) return true;
             const currentInputs = steps[currentStep - 1].querySelectorAll("input[required], textarea[required]");
             for (let input of currentInputs) {
                 if (!input.checkValidity()) {
@@ -1040,7 +820,6 @@ export const FormExtension = {
                     return false;
                 }
             }
-             // Validation for Step 2 (Duration)
             if (currentStep === 2) {
                 const singleDurationRadio = formContainer.querySelector("#ButtonSelection");
                 const rangeDurationRadio = formContainer.querySelector("#rangeDuration");
@@ -1054,10 +833,10 @@ export const FormExtension = {
                 } else if (rangeDurationRadio.checked) {
                     const fromDayVal = parseInt(formContainer.querySelector("#fromDay").value);
                     const tillDayVal = parseInt(formContainer.querySelector("#tillDay").value);
-                    const maxDays = parseInt(formContainer.querySelector("#fromDay").max); // totalDays
+                    const maxDays = parseInt(formContainer.querySelector("#fromDay").max); 
 
-                    if (isNaN(fromDayVal) || isNaN(tillDayVal) || fromDayVal < 1 || tillDayVal < 1 || fromDayVal > tillDayVal || tillDayVal > maxDays) {
-                         alert(`Please enter a valid day range within 1 and ${maxDays} days.`);
+                    if (isNaN(fromDayVal) || isNaN(tillDayVal) || fromDayVal < 1 || tillDayVal < 1 || fromDayVal > tillDayVal || tillDayVal > maxDays ) {
+                         alert(`Please enter a valid day range (Von/Bis) within 1 and ${maxDays} days.`);
                          return false;
                     }
                 }
@@ -1066,6 +845,7 @@ export const FormExtension = {
         }
 
         function updateReviewInfo() {
+            // ... (same as previous response)
             if (!reviewInfo) return;
 
             const accommodationTypes = [];
@@ -1138,7 +918,8 @@ export const FormExtension = {
         }
 
         formContainer.addEventListener("click", function (event) {
-            if (event.target.classList.contains("next")) {
+            // ... (same as previous response)
+             if (event.target.classList.contains("next")) {
                 if (!validateStep()) return;
                 if (currentStep === 5) {
                     updateReviewInfo();
@@ -1155,6 +936,7 @@ export const FormExtension = {
         });
 
         function createChatBox() {
+            // ... (same as previous response)
             const chatBox = document.createElement('div');
             chatBox.classList.add('chat-box');
             chatBox.innerHTML = `
@@ -1177,6 +959,7 @@ export const FormExtension = {
         }
 
         formContainer.addEventListener('submit', function (event) {
+            // ... (same as previous response)
             event.preventDefault();
             if (!validateStep()) return;
 
@@ -1208,7 +991,7 @@ export const FormExtension = {
                 durationData = { type: 'range', fromDay: fromDayInput?.value || '', tillDay: tillDayInput?.value || '' };
             } else if (singleDurationRadio?.checked) {
                 const exactBtn = Array.from(formContainer.querySelectorAll(".duration-btn")).find(b => b.dataset.days === "exact");
-                if(exactBtn && selectedStartDate && selectedEndDate) { // Ensure dates are selected for totalDays calculation
+                if(exactBtn && selectedStartDate && selectedEndDate) { 
                     const timeDiff = selectedEndDate.getTime() - selectedStartDate.getTime();
                     const totalDaysInRange = Math.max(1, Math.ceil(timeDiff / (1000 * 60 * 60 * 24)) + 1);
                     durationData = { type: 'single', selectedOption: exactBtn.textContent.trim(), days: totalDaysInRange.toString() };
