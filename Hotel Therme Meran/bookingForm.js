@@ -626,12 +626,12 @@ export const FormExtension = {
                 contentArea.innerHTML = `
                     <div id="accommodation-categories">
                         <div class="category-selector" data-category="suites">
-                            <img src="${suitesCategoryImageUrl}" alt="Suites">
-                            <h3>${FormSuites}</h3>
+                            <img src="${suitesCategoryImageUrl}" alt="${FormSuites || 'Suites'}">
+                            <h3>${FormSuites || 'Suites'}</h3>
                         </div>
                         <div class="category-selector" data-category="rooms">
-                            <img src="${roomsCategoryImageUrl}" alt="Rooms">
-                            <h3>${FormRooms}</h3>
+                            <img src="${roomsCategoryImageUrl}" alt="${FormRooms || 'Rooms'}">
+                            <h3>${FormRooms || 'Rooms'}</h3>
                         </div>
                     </div>
                 `;
