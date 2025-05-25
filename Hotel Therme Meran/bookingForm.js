@@ -13,7 +13,7 @@ export const FormExtension = {
             titleChooseYourStay, undertitleChooseYourStay, noDatesSelected, selected,
             undertitleChooseYourStay2, selectDuration, exactlyAsSpecified, threeDays, fourDays,
             fiveDays, sixDays, sevenDays, eightDays, nineDays, tenDays, enterExactDates,
-            from, until, youCanChoose, days, titlePickAccommodation, undertitlePickAccommodation,
+            from, until, youCanChoose, days, titlePickAccommodation, undertitlePickAccommodation, FormSuites, FormRooms,
             accommodationRoomSize1, accommodationRoomPeople1, accommodationRoomSize2, accommodationRoomPeople2,
             accommodationRoomSize3, accommodationRoomPeople3, accommodationRoomSize4, accommodationRoomPeople4,
             titleWhoTraveling, undertitleWhoTraveling, adults14Plus, children, specialRequests,
