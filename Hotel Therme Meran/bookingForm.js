@@ -740,29 +740,14 @@ export const FormExtension = {
 
 
             if (rangeDurationRadio.checked || (!singleDurationRadio.checked && !rangeDurationRadio.checked)) {
-                if (fromDayInput.value === '' || isNaN(parseInt(fromDayInput.value)) || parseInt(fromDayInput.value) < 2) {
-                    fromDayInput.value = 2;
-                }
-                 if (parseInt(fromDayInput.value) > totalDays && totalDays >=2) { // Ensure fromDay is not more than totalDays if totalDays is valid
-                    fromDayInput.value = totalDays;
-                } else if (parseInt(fromDayInput.value) > totalDays && totalDays < 2) {
-                     fromDayInput.value = 2; // default to 2 if totalDays is less than 2
-                }
+                let currentFrom = parseInt(fromDayInput.value);
+                if (isNaN(currentFrom) || currentFrom < 2) { fromDayInput.value = 2; }
+                if (parseInt(fromDayInput.value) > totalDays) { fromDayInput.value = Math.max(2, totalDays); }
 
 
-                if (tillDayInput.value === '' || isNaN(parseInt(tillDayInput.value)) || parseInt(tillDayInput.value) < 2) {
-                    tillDayInput.value = 2;
-                }
-                if (parseInt(tillDayInput.value) > totalDays && totalDays >=2) { // Ensure tillDay is not more than totalDays
-                    tillDayInput.value = totalDays;
-                } else if (parseInt(tillDayInput.value) > totalDays && totalDays < 2) {
-                    tillDayInput.value = 2; // default to 2 if totalDays is less than 2
-                }
-
-
-                if (parseInt(tillDayInput.value) < parseInt(fromDayInput.value)) {
-                    tillDayInput.value = fromDayInput.value;
-                }
+                let currentTill = parseInt(tillDayInput.value);
+                if (isNaN(currentTill) || currentTill < 2) { tillDayInput.value = 2;}
+                if (parseInt(tillDayInput.value) > totalDays) { tillDayInput.value = Math.max(2, totalDays); }
             }
             
             if (maxDaysAllowedText) {
@@ -866,23 +851,17 @@ export const FormExtension = {
                     const fromDayVal = parseInt(fromDayInputEl.value);
                     const tillDayVal = parseInt(tillDayInputEl.value);
                     
-                    const minFrom = parseInt(fromDayInputEl.min); // Should be 2
-                    const maxFrom = parseInt(fromDayInputEl.max);
-                    const minTill = parseInt(tillDayInputEl.min); // Should be 2
-                    const maxTill = parseInt(tillDayInputEl.max);
+                    const minDayVal = 2; 
+                    const totalDaysForRange = parseInt(fromDayInputEl.max); 
     
                     let errorMessage = "";
-                     const timeDiff = selectedEndDate.getTime() - selectedStartDate.getTime();
-                     const totalDays = Math.max(1, Math.ceil(timeDiff / (1000 * 60 * 60 * 24)) + 1);
-
-                    if (totalDays < 2 && (fromDayVal > 1 || tillDayVal > 1) ) {
-                         errorMessage = `The selected date range is only ${totalDays} day(s). Custom day range selection requires at least 2 days.`;
-                    } else if (isNaN(fromDayVal) || fromDayVal < minFrom || fromDayVal > maxFrom) {
-                        errorMessage = `${from || 'From'} value is invalid. It must be between ${minFrom} and ${maxFrom}.`;
-                    } else if (isNaN(tillDayVal) || tillDayVal < minTill || tillDayVal > maxTill) {
-                        errorMessage = `${until || 'Until'} value is invalid. It must be between ${minTill} and ${maxTill}.`;
-                    } else if (fromDayVal > tillDayVal) {
-                        errorMessage = `${from || 'From'} value cannot be greater than ${until || 'Until'} value.`;
+    
+                    if (isNaN(fromDayVal) || fromDayVal < minDayVal || fromDayVal > totalDaysForRange) {
+                        errorMessage = `${from || 'From'} ${day || 'day'} value is invalid. It must be between ${minDayVal} and ${totalDaysForRange}.`;
+                    } else if (isNaN(tillDayVal) || tillDayVal < minDayVal || tillDayVal > totalDaysForRange) {
+                        errorMessage = `${until || 'Until'} ${day || 'day'} value is invalid. It must be between ${minDayVal} and ${totalDaysForRange}.`;
+                    } else if (fromDayVal >= tillDayVal) { 
+                        errorMessage = `${from || 'From'} ${day || 'day'} must be less than ${until || 'Until'} ${day || 'day'}.`;
                     }
     
                     if (errorMessage) {
