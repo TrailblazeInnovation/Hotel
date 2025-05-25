@@ -15,7 +15,7 @@ export const FormExtension = {
             fiveDays, sixDays, sevenDays, eightDays, nineDays, tenDays, enterExactDates,
             from, until, youCanChoose, days, titlePickAccommodation, undertitlePickAccommodation, FormSuites, FormRooms,
             accommodationPeople1_2, accommodationPeople1_3, accommodationPeople1_4, accommodationSize28, accommodationSize30,
-            accommodationSize60, accommodationSize72,
+            accommodationSize60, accommodationSize72, priceAcqua, priceMeranO, priceLoggia, priceVitaSuite, priceSuite, priceCallaSuite, priceCedro, priceDoppelzimmerSuperior, priceDoppelzimmerStandard, priceDoppelzimmerStandardJunior,  
             titleWhoTraveling, undertitleWhoTraveling, adults14Plus, children, specialRequests,
             specialRequestsTxt, titleContactInformation, undertitleContactInformationBooking,
             firstName, lastName, emailVF, phoneNumber, next, back, titleReview,
