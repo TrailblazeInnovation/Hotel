@@ -627,11 +627,11 @@ export const FormExtension = {
                     <div id="accommodation-categories">
                         <div class="category-selector" data-category="suites">
                             <img src="${suitesCategoryImageUrl}" alt="Suites">
-                            <h3>Suites</h3>
+                            <h3>${FormSuites}</h3>
                         </div>
                         <div class="category-selector" data-category="rooms">
                             <img src="${roomsCategoryImageUrl}" alt="Rooms">
-                            <h3>Rooms</h3>
+                            <h3>${FormRooms}</h3>
                         </div>
                     </div>
                 `;
