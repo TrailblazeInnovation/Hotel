@@ -16,8 +16,8 @@ export const FormExtension = {
             undertitleChooseYourStay2, selectDuration, exactlyAsSpecified, threeDays, fourDays,
             fiveDays, sixDays, sevenDays, eightDays, nineDays, tenDays, enterExactDates,
             from, until, youCanChoose, days, titlePickAccommodation, undertitlePickAccommodation,
-            accommodationSize1, accommodationPeople1, accommodationSize2, accommodationPeople2,
-            accommodationSize3, accommodationPeople3, accommodationSize4, accommodationPeople4,
+            accommodationRoomSize1, accommodationRoomPeople1, accommodationRoomSize2, accommodationRoomPeople2,
+            accommodationRoomSize3, accommodationRoomPeople3, accommodationRoomSize4, accommodationRoomPeople4,
             titleWhoTraveling, undertitleWhoTraveling, adults14Plus, children, specialRequests,
             specialRequestsTxt, titleContactInformation, undertitleContactInformationBooking,
             firstName, lastName, emailVF, phoneNumber, next, back, titleReview,
@@ -37,10 +37,10 @@ export const FormExtension = {
         ];
 
         const roomsData = [
-            { id: 'room_01', name: 'Acqua', imageSrc: 'https://www.hoteltermemerano.it/img/sales-content/fd938c17-b58e-46b2-b3d5-f744a5e3a439/426/426/crop/wisthaler.com%2D24%2D03%2Dfisi%2Dhtm%2Dhw98706%2D2.webp', description1: accommodationSize1, description2: accommodationPeople1 },
-            { id: 'room_02', name: 'MeranO', imageSrc: 'https://www.hoteltermemerano.it/img/sales-content/49655acb-a119-45d2-9f80-44cacf9c817b/426/426/crop/wisthaler.com%2D24%2D03%2Dfisi%2Dhtm%2Dhw90489.webp', description1: accommodationSize2, description2: accommodationPeople2 },
-            { id: 'room_03', name: 'Loggia', imageSrc: 'https://www.hoteltermemerano.it/img/sales-content/55e9bc7c-3df8-4236-bb6f-f247d1db00a1/426/426/crop/01.JPG', description1: accommodationSize3, description2: accommodationPeople3 },
-            { id: 'room_04', name: 'Cedro', imageSrc: 'https://www.hoteltermemerano.it/img/sales-content/d6ecc731-5ed8-4775-8754-f145467aecf7/426/426/crop/wisthaler.com%2D24%2D02%2Dhtm%2Dhw96272%2Dweb.JPG', description1: accommodationSize4, description2: accommodationPeople4 },
+            { id: 'room_01', name: 'Acqua', imageSrc: 'https://www.hoteltermemerano.it/img/sales-content/fd938c17-b58e-46b2-b3d5-f744a5e3a439/426/426/crop/wisthaler.com%2D24%2D03%2Dfisi%2Dhtm%2Dhw98706%2D2.webp', description1: accommodationRoomSize1, description2: accommodationRoomPeople1 },
+            { id: 'room_02', name: 'MeranO', imageSrc: 'https://www.hoteltermemerano.it/img/sales-content/49655acb-a119-45d2-9f80-44cacf9c817b/426/426/crop/wisthaler.com%2D24%2D03%2Dfisi%2Dhtm%2Dhw90489.webp', description1: accommodationRoomSize2, description2: accommodationRoomPeople2 },
+            { id: 'room_03', name: 'Loggia', imageSrc: 'https://www.hoteltermemerano.it/img/sales-content/55e9bc7c-3df8-4236-bb6f-f247d1db00a1/426/426/crop/01.JPG', description1: accommodationRoomSize3, description2: accommodationRoomPeople3 },
+            { id: 'room_04', name: 'Cedro', imageSrc: 'https://www.hoteltermemerano.it/img/sales-content/d6ecc731-5ed8-4775-8754-f145467aecf7/426/426/crop/wisthaler.com%2D24%2D02%2Dhtm%2Dhw96272%2Dweb.JPG', description1: accommodationRoomSize4, description2: accommodationRoomPeople4 },
             { id: 'room_05', name: 'Doppelzimmer Superior', imageSrc: 'https://www.hoteltermemerano.it/img/sales-content/58857828-7f98-4af5-aa9a-c5c1ecc0b270/426/426/crop/3205%2D262053.webp', description1: 'Dimensione: 40 mq', description2: 'Ideale per: 2 persone' },
             { id: 'room_06', name: 'Doppelzimmer Standard', imageSrc: 'https://www.hoteltermemerano.it/img/sales-content/8d53c197-52f2-4aca-b8bb-b071edc8b22f/426/426/crop/3205%2D347281.webp', description1: 'Dimensione: 35 mq', description2: 'Ideale per: 2 persone' },
             { id: 'room_07', name: 'Doppelzimmer Standard Junior', imageSrc: 'https://www.hoteltermemerano.it/img/sales-content/2331341d-bcd2-4e2b-acb7-9e44eda7da22/426/426/crop/3205%2D262051.webp', description1: 'Dimensione: 20 mq', description2: 'Ideale per: 1 persona' },
