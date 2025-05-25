@@ -13,9 +13,9 @@ export const FormExtension = {
             titleChooseYourStay, undertitleChooseYourStay, noDatesSelected, selected,
             undertitleChooseYourStay2, selectDuration, exactlyAsSpecified, threeDays, fourDays,
             fiveDays, sixDays, sevenDays, eightDays, nineDays, tenDays, enterExactDates,
-            from, until, youCanChoose, days, titlePickAccommodation, undertitlePickAccommodation, FormSuites, FormRooms,
+            from, until, youCanChoose, days, day, titlePickAccommodation, undertitlePickAccommodation, FormSuites, FormRooms,
             accommodationPeople1_2, accommodationPeople1_3, accommodationPeople1_4, accommodationSize28, accommodationSize30,
-            accommodationSize60, accommodationSize72, priceAcqua, priceMeranO, priceLoggia, priceVitaSuite, priceSuite, priceCallaSuite, priceCedro, priceDoppelzimmerSuperior, priceDoppelzimmerStandard, priceDoppelzimmerStandardJunior,  
+            accommodationSize60, accommodationSize72, priceAcqua, priceMeranO, priceLoggia, priceVitaSuite, priceSuite, priceCallaSuite, priceCedro, priceDoppelzimmerSuperior, priceDoppelzimmerStandard, priceDoppelzimmerStandardJunior,
             titleWhoTraveling, undertitleWhoTraveling, adults14Plus, children, specialRequests,
             specialRequestsTxt, titleContactInformation, undertitleContactInformationBooking,
             firstName, lastName, emailVF, phoneNumber, next, back, titleReview,
@@ -382,11 +382,11 @@ export const FormExtension = {
                             <div style="display: flex; gap: 10px; align-items: center;">
                                 <div class="input-wrapper">
                                     <label for="fromDay">${from}</label>
-                                    <input type="number" id="fromDay" name="fromDay" min="1" value="1">
+                                    <input type="number" id="fromDay" name="fromDay" min="2" value="2">
                                 </div>
                                 <div class="input-wrapper">
                                     <label for="tillDay">${until}</label>
-                                    <input type="number" id="tillDay" name="tillDay" min="1" value="1">
+                                    <input type="number" id="tillDay" name="tillDay" min="2" value="2">
                                 </div>
                                 <span id="maxRangeNote" style="margin-left: 10px; color: #666; font-size: 12px;"></span>
                             </div>
@@ -644,11 +644,11 @@ export const FormExtension = {
             } else {
                 const itemsToRender = currentAccommodationViewInStep3 === 'suites' ? suitesData : roomsData;
                 let itemsHtml = `<div class="back-to-categories-btn-container">
-                                    <button type="button" class="back-to-categories-btn">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/></svg>
-                                        ${accommodationCategories || 'Accommodation categories'}
-                                    </button>
-                                 </div>`;
+                                        <button type="button" class="back-to-categories-btn">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/></svg>
+                                            ${accommodationCategories || 'Accommodation categories'}
+                                        </button>
+                                     </div>`;
                 itemsHtml += `<ul id="accommodationListContainer">`;
                 itemsToRender.forEach(item => {
                     const checkboxId = `acc-myCheckbox-${item.id}`;
@@ -735,17 +735,22 @@ export const FormExtension = {
 
             fromDayInput.max = totalDays;
             tillDayInput.max = totalDays;
-            fromDayInput.min = 1;
-            tillDayInput.min = 1;
+            fromDayInput.min = 2;
+            tillDayInput.min = 2;
+
 
             if (rangeDurationRadio.checked || (!singleDurationRadio.checked && !rangeDurationRadio.checked)) {
-                 if (parseInt(fromDayInput.value) > totalDays || parseInt(fromDayInput.value) < 1 || fromDayInput.value === '' || isNaN(parseInt(fromDayInput.value))) {
-                    fromDayInput.value = 1;
-                 }
-                 if (parseInt(tillDayInput.value) > totalDays || parseInt(tillDayInput.value) < parseInt(fromDayInput.value) || tillDayInput.value === '' || isNaN(parseInt(tillDayInput.value))) {
-                    tillDayInput.value = totalDays;
+                if (fromDayInput.value === '' || isNaN(parseInt(fromDayInput.value)) || parseInt(fromDayInput.value) < 2) {
+                    fromDayInput.value = 2;
+                }
+                if (tillDayInput.value === '' || isNaN(parseInt(tillDayInput.value)) || parseInt(tillDayInput.value) < 2) {
+                    tillDayInput.value = 2;
+                }
+                if (parseInt(tillDayInput.value) < parseInt(fromDayInput.value)) {
+                    tillDayInput.value = fromDayInput.value;
                 }
             }
+
 
             maxRangeNote.textContent = `${youCanChoose || "Sie können maximal"} ${totalDays} ${days || "Tage"}`;
 
@@ -838,13 +843,29 @@ export const FormExtension = {
                         return false;
                     }
                 } else if (rangeDurationRadio.checked) {
-                    const fromDayVal = parseInt(formContainer.querySelector("#fromDay").value);
-                    const tillDayVal = parseInt(formContainer.querySelector("#tillDay").value);
-                    const maxDays = parseInt(formContainer.querySelector("#fromDay").max);
-
-                     if (isNaN(fromDayVal) || isNaN(tillDayVal) || fromDayVal < 1 || tillDayVal < 1 || fromDayVal > tillDayVal || tillDayVal > maxDays ) {
-                         alert(`Please enter a valid day range (Von/Bis) within 1 and ${maxDays} days.`);
-                         return false;
+                    const fromDayInputEl = formContainer.querySelector("#fromDay");
+                    const tillDayInputEl = formContainer.querySelector("#tillDay");
+                    const fromDayVal = parseInt(fromDayInputEl.value);
+                    const tillDayVal = parseInt(tillDayInputEl.value);
+                    
+                    const minFrom = parseInt(fromDayInputEl.min);
+                    const maxFrom = parseInt(fromDayInputEl.max);
+                    const minTill = parseInt(tillDayInputEl.min);
+                    const maxTill = parseInt(tillDayInputEl.max);
+    
+                    let errorMessage = "";
+    
+                    if (isNaN(fromDayVal) || fromDayVal < minFrom || fromDayVal > maxFrom) {
+                        errorMessage = `${from || 'From'} value is invalid. It must be between ${minFrom} and ${maxFrom}.`;
+                    } else if (isNaN(tillDayVal) || tillDayVal < minTill || tillDayVal > maxTill) {
+                        errorMessage = `${until || 'Until'} value is invalid. It must be between ${minTill} and ${maxTill}.`;
+                    } else if (fromDayVal > tillDayVal) {
+                        errorMessage = `${from || 'From'} value cannot be greater than ${until || 'Until'} value.`;
+                    }
+    
+                    if (errorMessage) {
+                        alert(errorMessage);
+                        return false;
                     }
                 }
             }
@@ -878,7 +899,7 @@ export const FormExtension = {
             const activeDurationBtn = formContainer.querySelector(".duration-btn.activeBtn");
             let durationText = "Not specified";
             if (rangeDurationRadio?.checked) {
-                durationText = `From day ${fromDayInputVal || 'N/A'} to day ${tillDayInputVal || 'N/A'}`;
+                durationText = `${from || 'From'} ${day || 'day'} ${fromDayInputVal || 'N/A'} ${until || 'to'} ${day || 'day'} ${tillDayInputVal || 'N/A'}`;
             } else if (activeDurationBtn) {
                 durationText = activeDurationBtn.textContent;
             } else if (singleDurationRadio?.checked) {
