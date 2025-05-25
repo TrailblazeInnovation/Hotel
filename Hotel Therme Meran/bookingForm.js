@@ -22,7 +22,7 @@ export const FormExtension = {
             undertitleReviewBooking, reviewStayDates, reviewTravelDates, reviewDurationOFStay,
             reviewAccommodation, reviewTypes, reviewTravelers, reviewAdults, reviewSpecialRequests,
             edit, submit, firstAndLastname, thankSubmission, formSubmitted, formTeam,
-            buttonTextAccommodationCategories = "Accommodation categories"
+            accommodationCategories
         } = trace.payload;
 
         const suitesCategoryImageUrl = 'https://www.hoteltermemerano.it/img/sales-content/3d92a810-b199-4492-b49b-09f406eafb58/426/426/crop/wisthaler.com%2D24%2D02%2Dhtm%2Dhw96182%2Dweb.JPG';
@@ -646,7 +646,7 @@ export const FormExtension = {
                 let itemsHtml = `<div class="back-to-categories-btn-container">
                                     <button type="button" class="back-to-categories-btn">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/></svg>
-                                        ${buttonTextAccommodationCategories}
+                                        ${accommodationCategories || 'Accommodation categories'}
                                     </button>
                                  </div>`;
                 itemsHtml += `<ul id="accommodationListContainer">`;
