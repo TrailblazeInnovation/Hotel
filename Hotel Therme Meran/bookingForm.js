@@ -4,8 +4,6 @@ export const FormExtension = {
     match: ({ trace }) =>
         trace?.type === 'Book_Form' || (trace.payload && trace.payload?.name === 'Book_Form'),
     render: ({ trace, element }) => {
-        // Ensure "UCity Pro" is loaded in your host environment (e.g., via @font-face).
-
         const formContainer = document.createElement('form');
         formContainer.classList.add('form-container');
         let currentStep = 1;
@@ -31,26 +29,25 @@ export const FormExtension = {
         const roomsCategoryImageUrl = 'https://www.hoteltermemerano.it/img/sales-content/fd938c17-b58e-46b2-b3d5-f744a5e3a439/426/426/crop/wisthaler.com%2D24%2D03%2Dfisi%2Dhtm%2Dhw98706%2D2.webp';
 
         const suitesData = [
-            { id: 'suite_01', name: 'Vita Suite', imageSrc: 'https://www.hoteltermemerano.it/img/sales-content/3d92a810-b199-4492-b49b-09f406eafb58/426/426/crop/wisthaler.com%2D24%2D02%2Dhtm%2Dhw96182%2Dweb.JPG', description1: 'Dimensione: 120 mq', description2: 'Ideale per: 2-4 persone' },
-            { id: 'suite_02', name: 'Suite', imageSrc: 'https://www.hoteltermemerano.it/img/sales-content/c9c5a713-8d8e-4f21-b7d9-110c82164c9f/426/426/crop/3205%2D316460.webp', description1: 'Dimensione: 85 mq', description2: 'Ideale per: 2 persone' },
-            { id: 'suite_03', name: 'Calla Suite', imageSrc: 'https://www.hoteltermemerano.it/img/sales-content/8bc77ab5-3167-4783-a8ed-7d42b453bebc/426/426/crop/3205%2D316408.webp', description1: 'Dimensione: 65 mq', description2: 'Ideale per: 1-2 persone' },
+            { id: 'suite_01', name: 'Vita Suite', imageSrc: 'https://www.hoteltermemerano.it/img/sales-content/3d92a810-b199-4492-b49b-09f406eafb58/426/426/crop/wisthaler.com%2D24%2D02%2Dhtm%2Dhw96182%2Dweb.JPG', description1: 'Dimensione: 120 mq', description2: 'Ideale per: 2-4 persone', description3: 'Terrazza con vista giardino' },
+            { id: 'suite_02', name: 'Suite', imageSrc: 'https://www.hoteltermemerano.it/img/sales-content/c9c5a713-8d8e-4f21-b7d9-110c82164c9f/426/426/crop/3205%2D316460.webp', description1: 'Dimensione: 85 mq', description2: 'Ideale per: 2 persone', description3: 'Balcone privato arredato' },
+            { id: 'suite_03', name: 'Calla Suite', imageSrc: 'https://www.hoteltermemerano.it/img/sales-content/8bc77ab5-3167-4783-a8ed-7d42b453bebc/426/426/crop/3205%2D316408.webp', description1: 'Dimensione: 65 mq', description2: 'Ideale per: 1-2 persone', description3: 'Area soggiorno separata' },
         ];
 
         const roomsData = [
-            { id: 'room_01', name: 'Acqua', imageSrc: 'https://www.hoteltermemerano.it/img/sales-content/fd938c17-b58e-46b2-b3d5-f744a5e3a439/426/426/crop/wisthaler.com%2D24%2D03%2Dfisi%2Dhtm%2Dhw98706%2D2.webp', description1: accommodationRoomSize1, description2: accommodationRoomPeople1 },
-            { id: 'room_02', name: 'MeranO', imageSrc: 'https://www.hoteltermemerano.it/img/sales-content/49655acb-a119-45d2-9f80-44cacf9c817b/426/426/crop/wisthaler.com%2D24%2D03%2Dfisi%2Dhtm%2Dhw90489.webp', description1: accommodationRoomSize2, description2: accommodationRoomPeople2 },
-            { id: 'room_03', name: 'Loggia', imageSrc: 'https://www.hoteltermemerano.it/img/sales-content/55e9bc7c-3df8-4236-bb6f-f247d1db00a1/426/426/crop/01.JPG', description1: accommodationRoomSize3, description2: accommodationRoomPeople3 },
-            { id: 'room_04', name: 'Cedro', imageSrc: 'https://www.hoteltermemerano.it/img/sales-content/d6ecc731-5ed8-4775-8754-f145467aecf7/426/426/crop/wisthaler.com%2D24%2D02%2Dhtm%2Dhw96272%2Dweb.JPG', description1: accommodationRoomSize4, description2: accommodationRoomPeople4 },
-            { id: 'room_05', name: 'Doppelzimmer Superior', imageSrc: 'https://www.hoteltermemerano.it/img/sales-content/58857828-7f98-4af5-aa9a-c5c1ecc0b270/426/426/crop/3205%2D262053.webp', description1: 'Dimensione: 40 mq', description2: 'Ideale per: 2 persone' },
-            { id: 'room_06', name: 'Doppelzimmer Standard', imageSrc: 'https://www.hoteltermemerano.it/img/sales-content/8d53c197-52f2-4aca-b8bb-b071edc8b22f/426/426/crop/3205%2D347281.webp', description1: 'Dimensione: 35 mq', description2: 'Ideale per: 2 persone' },
-            { id: 'room_07', name: 'Doppelzimmer Standard Junior', imageSrc: 'https://www.hoteltermemerano.it/img/sales-content/2331341d-bcd2-4e2b-acb7-9e44eda7da22/426/426/crop/3205%2D262051.webp', description1: 'Dimensione: 20 mq', description2: 'Ideale per: 1 persona' },
+            { id: 'room_01', name: 'Acqua', imageSrc: 'https://www.hoteltermemerano.it/img/sales-content/fd938c17-b58e-46b2-b3d5-f744a5e3a439/426/426/crop/wisthaler.com%2D24%2D03%2Dfisi%2Dhtm%2Dhw98706%2D2.webp', description1: accommodationRoomSize1, description2: accommodationRoomPeople1, description3: 'Design moderno e luminoso' },
+            { id: 'room_02', name: 'MeranO', imageSrc: 'https://www.hoteltermemerano.it/img/sales-content/49655acb-a119-45d2-9f80-44cacf9c817b/426/426/crop/wisthaler.com%2D24%2D03%2Dfisi%2Dhtm%2Dhw90489.webp', description1: accommodationRoomSize2, description2: accommodationRoomPeople2, description3: 'Vista sulla città di Merano' },
+            { id: 'room_03', name: 'Loggia', imageSrc: 'https://www.hoteltermemerano.it/img/sales-content/55e9bc7c-3df8-4236-bb6f-f247d1db00a1/426/426/crop/01.JPG', description1: accommodationRoomSize3, description2: accommodationRoomPeople3, description3: 'Loggia privata con sedute' },
+            { id: 'room_04', name: 'Cedro', imageSrc: 'https://www.hoteltermemerano.it/img/sales-content/d6ecc731-5ed8-4775-8754-f145467aecf7/426/426/crop/wisthaler.com%2D24%2D02%2Dhtm%2Dhw96272%2Dweb.JPG', description1: accommodationRoomSize4, description2: accommodationRoomPeople4, description3: 'Atmosfera accogliente e calda' },
+            { id: 'room_05', name: 'Doppelzimmer Superior', imageSrc: 'https://www.hoteltermemerano.it/img/sales-content/58857828-7f98-4af5-aa9a-c5c1ecc0b270/426/426/crop/3205%2D262053.webp', description1: 'Dimensione: 40 mq', description2: 'Ideale per: 2 persone', description3: 'Comfort elevato e spazio' },
+            { id: 'room_06', name: 'Doppelzimmer Standard', imageSrc: 'https://www.hoteltermemerano.it/img/sales-content/8d53c197-52f2-4aca-b8bb-b071edc8b22f/426/426/crop/3205%2D347281.webp', description1: 'Dimensione: 35 mq', description2: 'Ideale per: 2 persone', description3: 'Soluzione classica e funzionale' },
+            { id: 'room_07', name: 'Doppelzimmer Standard Junior', imageSrc: 'https://www.hoteltermemerano.it/img/sales-content/2331341d-bcd2-4e2b-acb7-9e44eda7da22/426/426/crop/3205%2D262051.webp', description1: 'Dimensione: 20 mq', description2: 'Ideale per: 1 persona', description3: 'Perfetta per viaggiatori singoli' },
         ];
 
         let currentAccommodationViewInStep3 = 'categories';
 
         formContainer.innerHTML = `
             <style>
-            /* Ensure "UCity Pro" is loaded in your host environment. */
             .form-container {
                 font-family: "UCity Pro", sans-serif; width: 100%; background: #fff; padding: 20px; border-radius: 5px;
             }
@@ -176,7 +173,7 @@ export const FormExtension = {
                 transform: scale(1.03);
             }
             ul#accommodationListContainer label p {
-                font-size: 13px; /* INCREASED font size for item descriptions */
+                font-size: 13px;
                 margin-top: 8px;
                 text-align: left;
                 padding: 0 5px;
@@ -221,8 +218,8 @@ export const FormExtension = {
                 position: absolute; top: -0.7em; z-index: 1; left: 0.8em;
                 background-color: white; padding: 0 5px; font-size: 11px; color: #666;
             }
-            b{ font-size: 13px!important; } /* This rule will also affect the <b> tag for item names if not overridden */
-            ul#accommodationListContainer label p b { font-size: inherit; } /* Ensure item name <b> tag inherits 13px from p */
+            b{ font-size: 13px!important; }
+            ul#accommodationListContainer label p b { font-size: inherit; }
 
             .counter-btn {
                 width: 25px; height: 25px; border-radius: 50%; background: #f5f5f5; border: 1px solid #ddd;
@@ -294,11 +291,10 @@ export const FormExtension = {
                 color: #000; text-decoration: underline; background: none;
             }
 
-            /* --- START: CSS for Spacing in Step 4 (Who is Traveling) --- */
-            .step-4 > div:nth-child(4) { /* Flex container for Adults/Children inputs */
+            .step-4 > div:nth-child(4) {
                 margin-bottom: 25px;
             }
-            .step-4 > div:nth-child(5) { /* Container for Special Requests textarea */
+            .step-4 > div:nth-child(5) {
                 margin-bottom: 30px;
             }
             .step-4 label {
@@ -311,22 +307,19 @@ export const FormExtension = {
             .step-4 textarea {
                 margin-top: 0;
             }
-            /* --- END: CSS for Spacing in Step 4 --- */
 
-            /* --- START: CSS for Spacing in Step 5 (Contact Information) --- */
-            .step-5 > div:nth-child(4) { /* Flex container for First Name / Last Name inputs */
-                margin-bottom: 25px; /* Space after the First/Last Name row */
+            .step-5 > div:nth-child(4) {
+                margin-bottom: 25px;
             }
-            .step-5 > div:nth-child(5) { /* Container for Email input */
-                margin-bottom: 25px; /* Space after the Email field, before Phone field */
+            .step-5 > div:nth-child(5) {
+                margin-bottom: 25px;
             }
-            .step-5 label { /* General label styling within Step 5 */
+            .step-5 label {
                 display: block;
-                margin-bottom: 8px; /* Space between label and its input/textarea */
+                margin-bottom: 8px;
                 font-weight: 500;
-                text-align: left !important; /* From original inline style */
+                text-align: left !important;
             }
-            /* --- END: CSS for Spacing in Step 5 --- */
 
             </style>
             <div class="steps" style="display: flex; gap: 30px; justify-content: space-around; width: 100%;">
@@ -476,12 +469,11 @@ export const FormExtension = {
             </div>
         `;
 
-        // JavaScript functions (collapsed for brevity, unchanged from previous version)
         const steps = formContainer.querySelectorAll(".step");
         const stepIndicators = formContainer.querySelectorAll(".step-indicator");
         const reviewInfo = formContainer.querySelector("#review-info");
 
-        function createCustomCalendar() { /* ... Code from previous version ... */
+        function createCustomCalendar() {
             const calendarContainer = formContainer.querySelector("#customCalendar");
             const dateRangeDisplay = formContainer.querySelector("#dateRangeDisplay");
             if (!calendarContainer) return;
@@ -589,7 +581,7 @@ export const FormExtension = {
             renderCalendar(currentMonth, currentYear);
             updateDateRangeDisplay();
         }
-        function setupRoomCounters(containerElement) { /* ... Code from previous version ... */
+        function setupRoomCounters(containerElement) {
             const checkboxes = containerElement.querySelectorAll('input[type="checkbox"][id^="acc-myCheckbox"]');
             checkboxes.forEach(checkbox => {
                 const listItem = checkbox.closest('li');
@@ -625,7 +617,7 @@ export const FormExtension = {
                 });
             });
         }
-        function renderStep3DynamicContent() { /* ... Code from previous version, with title text corrected ... */
+        function renderStep3DynamicContent() {
             const contentArea = formContainer.querySelector("#step3-dynamic-content");
             if (!contentArea) return;
             contentArea.innerHTML = '';
@@ -668,7 +660,8 @@ export const FormExtension = {
                                 <p style="text-align: left;">
                                     <b>${item.name}</b><br/>
                                     ${item.description1 || ''} <br/>
-                                    ${item.description2 || ''}
+                                    ${item.description2 || ''} <br/>
+                                    ${item.description3 || ''}
                                 </p>
                             </label>
                             <div class="room-counter">
@@ -689,7 +682,7 @@ export const FormExtension = {
                 setupRoomCounters(contentArea);
             }
         }
-        function showStep(step) { /* ... Code from previous version ... */
+        function showStep(step) {
              steps.forEach((el, index) => {
                 el.style.display = index === step - 1 ? "block" : "none";
                 if (index < step - 1) {
@@ -710,7 +703,7 @@ export const FormExtension = {
             if (step === 3) renderStep3DynamicContent();
             if (step === 6) updateReviewInfo();
         }
-        function updateStep2() { /* ... Code from previous version ... */
+        function updateStep2() {
             if (currentStep !== 2) return;
             const dateRangeDisplay = formContainer.querySelector("#selectedDateRange");
             const durationBtns = Array.from(formContainer.querySelectorAll(".duration-btn"));
@@ -747,7 +740,7 @@ export const FormExtension = {
 
             if (rangeDurationRadio.checked || (!singleDurationRadio.checked && !rangeDurationRadio.checked)) {
                  if (parseInt(fromDayInput.value) > totalDays || parseInt(fromDayInput.value) < 1 || fromDayInput.value === '' || isNaN(parseInt(fromDayInput.value))) {
-                     fromDayInput.value = 1;
+                    fromDayInput.value = 1;
                  }
                  if (parseInt(tillDayInput.value) > totalDays || parseInt(tillDayInput.value) < parseInt(fromDayInput.value) || tillDayInput.value === '' || isNaN(parseInt(tillDayInput.value))) {
                     tillDayInput.value = totalDays;
@@ -808,7 +801,7 @@ export const FormExtension = {
 
             updateInputStates();
         }
-        function validateStep() { /* ... Code from previous version ... */
+        function validateStep() {
              if (!steps[currentStep - 1]) return true;
             const currentInputs = steps[currentStep - 1].querySelectorAll("input[required], textarea[required]");
             for (let input of currentInputs) {
@@ -849,7 +842,7 @@ export const FormExtension = {
                     const tillDayVal = parseInt(formContainer.querySelector("#tillDay").value);
                     const maxDays = parseInt(formContainer.querySelector("#fromDay").max);
 
-                    if (isNaN(fromDayVal) || isNaN(tillDayVal) || fromDayVal < 1 || tillDayVal < 1 || fromDayVal > tillDayVal || tillDayVal > maxDays ) {
+                     if (isNaN(fromDayVal) || isNaN(tillDayVal) || fromDayVal < 1 || tillDayVal < 1 || fromDayVal > tillDayVal || tillDayVal > maxDays ) {
                          alert(`Please enter a valid day range (Von/Bis) within 1 and ${maxDays} days.`);
                          return false;
                     }
@@ -857,7 +850,7 @@ export const FormExtension = {
             }
             return true;
         }
-        function updateReviewInfo() { /* ... Code from previous version ... */
+        function updateReviewInfo() {
             if (!reviewInfo) return;
             const accommodationTypes = [];
             const checkboxes = formContainer.querySelectorAll('#step3-dynamic-content input[type="checkbox"][id^="acc-myCheckbox"]:checked');
@@ -920,7 +913,7 @@ export const FormExtension = {
                 </div>
             `;
         }
-        function createChatBox() { /* ... Code from previous version ... */
+        function createChatBox() {
             const chatBox = document.createElement('div');
             chatBox.classList.add('chat-box');
             chatBox.innerHTML = `
@@ -942,7 +935,7 @@ export const FormExtension = {
             formContainer.replaceWith(chatBox);
         }
 
-        formContainer.addEventListener("click", function (event) { /* ... Code from previous version ... */
+        formContainer.addEventListener("click", function (event) {
              if (event.target.classList.contains("next")) {
                 if (!validateStep()) return;
                 if (currentStep === 5) {
@@ -958,7 +951,7 @@ export const FormExtension = {
                 showStep(currentStep);
             }
         });
-        formContainer.addEventListener('submit', function (event) { /* ... Code from previous version ... */
+        formContainer.addEventListener('submit', function (event) {
             event.preventDefault();
             if (!validateStep()) return;
             const accommodationList = [];
@@ -968,10 +961,10 @@ export const FormExtension = {
                  const roomName = checkbox.dataset.name || 'Unknown Room';
                  const quantityInput = listItem.querySelector('.room-quantity');
                  accommodationList.push({
-                     id: checkbox.id.replace('acc-myCheckbox-', ''),
-                     type: roomName,
-                     category: checkbox.dataset.type,
-                     quantity: quantityInput ? parseInt(quantityInput.value) || 1 : 1
+                    id: checkbox.id.replace('acc-myCheckbox-', ''),
+                    type: roomName,
+                    category: checkbox.dataset.type,
+                    quantity: quantityInput ? parseInt(quantityInput.value) || 1 : 1
                  });
             });
             let durationData = {};
