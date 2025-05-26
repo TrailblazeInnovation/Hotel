@@ -6,8 +6,8 @@
     render: ({ trace, element }) => {
       const GoogleMap = document.createElement('iframe');
       const { apiKey, origin, destination, travelMode, zoom, height, width } = trace.payload;
-      GoogleMap.width = width || height;
-      GoogleMap.height = height || width;
+      GoogleMap.width = width || ${height};
+      GoogleMap.height = height || ${width};
       GoogleMap.style.border = '0';
       GoogleMap.loading = 'lazy';
       GoogleMap.allowFullscreen = true;
