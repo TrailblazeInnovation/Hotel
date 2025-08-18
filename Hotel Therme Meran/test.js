@@ -300,8 +300,6 @@ export const FormExtension = {
       `;
 
       let currentAccommodationViewInStep3 = 'categories';
-      const steps = formContainer.querySelectorAll('.step');
-      const stepIndicators = formContainer.querySelectorAll('.step-indicator');
       const reviewInfo = formContainer.querySelector('#review-info');
 
       function createCustomCalendar() {
