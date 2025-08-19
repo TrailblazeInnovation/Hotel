@@ -1,87 +1,69 @@
 {
-  "titleChooseYourStay": "Choose Your Stay Dates",
-  "undertitleChooseYourStay": "Select the period of your planned stay",
-  "noDatesSelected": "No dates selected",
-  "selected": "Selected",
-  "undertitleChooseYourStay2": "Select how long you want to stay within the selected period",
-  "selectDuration": "Select a duration",
-  "exactlyAsSpecified": "Exactly as specified",
-  "threeDays": "3 days",
-  "fourDays": "4 days",
-  "fiveDays": "5 days",
-  "sixDays": "6 days",
-  "sevenDays": "7 days",
-  "eightDays": "8 days",
-  "nineDays": "9 days",
-  "tenDays": "10 days",
-  "enterExactDates": "Or enter the exact travel duration in days",
-  "from": "From",
-  "until": "Until",
-  "youCanChoose": "You can add max",
-  "accommodationCategories": "Accommodation categories",
-  "titlePickAccommodation": "Pick Your Accommodation",
-  "undertitlePickAccommodation": "You can select one or more accommodation types. If you're booking for multiple people, simply add more as needed",
-  "FormSuites": "Suites",
-  "FormRooms": "Rooms",
-
-  "titleWhoTraveling": "Who Will Be Traveling",
-  "undertitleWhoTraveling": "Enter the number of adults and children, and let us know if you have any special requests",
-  "adults14Plus": "Adults (14+)",
-  "children": "Children",
-  "specialRequests": "Special Requests (e.g., dietary needs, accessibility, pets)",
-  "specialRequestsTxt": "Please let us know if you have any special requests",
-
-  "reviewStayDates": "Stay Dates",
-  "reviewTravelDates": "Travel Dates",
-  "reviewDurationOFStay": "Duration of Stay",
-  "reviewAccommodation": "Accommodation",
-  "reviewTypes": "Types",
-  "reviewTravelers": "Travelers",
-  "reviewAdults": "Adults",
-  "reviewSpecialRequests": "Special Requests",
-
-  "days": "days",
-  "day": "day",
-
-  "titleContactInformation": "Contact Information",
-  "undertitleContactInformationBooking": "Please provide your details so we can complete your booking",
-  "firstName": "First Name",
-  "lastName": "Last Name",
-  "emailVF": "Email",
-  "phoneNumber": "Phone Number",
-  "next": "Next",
-  "back": "Back",
-
-  "titleReview": "Review and Submit",
-  "undertitleReviewBooking": "Please review your booking information before submitting",
-  "edit": "Edit",
-  "submit": "Submit",
-  "firstAndLastname": "First and Last Name",
-  "thankSubmission": "Thank you for your submission!",
-  "formSubmitted": "Your form has been successfully submitted",
-  "formTeam": "Our team will get back to you shortly",
-
-
-  "sizeSqmPattern": "Size: {sqm} sqm",
-  "idealForPattern": "Ideal for: {min} - {max} people",
-  "priceFromPerPersonPattern": "Price from: {price} per person",
-
-
-  "msgPleasePickDatesFirst": "Please select travel dates first.",
-  "msgSelectValidRange": "Please select a valid date range.",
-  "msgPickCategory": "Please select a category and then an accommodation.",
-  "msgPickAccommodation": "Please select at least one accommodation type.",
-  "msgPickDuration": "Please select a duration option.",
-  "msgFromDayInvalid": "From day value is invalid.",
-  "msgUntilDayInvalid": "Until day value is invalid.",
-  "msgFromLessThanUntil": "From day must be less than Until day.",
-  "msgRequiredField": "Please fill in the required field:",
-  "msgNotSelected": "Not selected",
-  "msgNone": "None",
-  "labelFromWord": "From",
-  "labelUntilWord": "Until",
-  "labelToWord": "to",
-
-
-  "maxDaysAllowedText": "You can add a maximum of {totalDays} days"
+  "ui": {
+    "buttons": {
+      "next": "Next",
+      "back": "Back",
+      "submit": "Submit",
+      "edit": "Edit"
+    },
+    "step1": {
+      "title": "Choose Your Stay Dates",
+      "subtitle": "Select the period of your planned stay",
+      "noDatesSelected": "No dates selected",
+      "selected": "Selected"
+    },
+    "step2": {
+      "title": "Select how long you want to stay",
+      "selectDuration": "Select a duration",
+      "exactlyAsSpecified": "Exactly as specified",
+      "durationOptions": ["3 days", "4 days", "5 days", "6 days", "7 days", "8 days", "9 days", "10 days"],
+      "enterExactDuration": "Or enter the exact travel duration in days",
+      "from": "From",
+      "until": "Until",
+      "maxDays": "You can add a maximum of {totalDays} days",
+      "day": "day",
+      "days": "days"
+    },
+    "step3": {
+      "title": "Pick Your Accommodation",
+      "subtitle": "You can select one or more accommodation types. If you're booking for multiple people, simply add more as needed.",
+      "suites": "Suites",
+      "rooms": "Rooms",
+      "categories": "Accommodation categories"
+    },
+    "step4": {
+      "title": "Who Will Be Traveling?",
+      "subtitle": "Enter the number of adults and children, and let us know if you have any special requests.",
+      "adults": "Adults (14+)",
+      "children": "Children",
+      "specialRequests": "Special Requests (e.g., dietary needs, accessibility, pets)",
+      "specialRequestsPlaceholder": "Please let us know if you have any special requests"
+    },
+    "step5": {
+      "title": "Contact Information",
+      "subtitle": "Please provide your details so we can complete your booking.",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "phone": "Phone Number"
+    },
+    "step6": {
+      "title": "Review and Submit",
+      "subtitle": "Please review your booking information before submitting.",
+      "reviewStayDates": "Stay Dates",
+      "reviewTravelDates": "Travel Dates",
+      "reviewDuration": "Duration of Stay",
+      "reviewAccommodation": "Accommodation",
+      "reviewTypes": "Types",
+      "reviewTravelers": "Travelers",
+      "reviewAdults": "Adults",
+      "reviewSpecialRequests": "Special Requests",
+      "reviewFullName": "First and Last Name"
+    },
+    "confirmation": {
+      "title": "Thank you for your submission!",
+      "subtitle": "Your form has been successfully submitted.",
+      "message": "Our team will get back to you shortly."
+    }
+  }
 }
