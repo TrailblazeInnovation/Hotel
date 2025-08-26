@@ -1,6 +1,3 @@
-// File: /Hotel Therme Meran/formextension.js
-// VERSIONE FINALE E COMPLETA
-
 export const FormExtension = {
     name: 'Forms',
     type: 'response',
@@ -15,8 +12,7 @@ export const FormExtension = {
         
         const langCode = (trace.payload.locale || 'en').split('-')[0];
         
-        // Carica i testi statici dell'interfaccia (T) con fallback in inglese
-        let T; 
+        let T; // Conterrà i testi statici dell'interfaccia
         try {
             const langModule = await import(`${generalPath}/locales/${langCode}.js`);
             T = langModule.translations;
@@ -26,12 +22,10 @@ export const FormExtension = {
             T = fallbackModule.translations;
         }
 
-        // Carica i dati dinamici specifici dell'hotel (D)
         const hotelDataModule = await import(`${hotelSpecificPath}/hotel-data.js`);
         const D = hotelDataModule.hotelData;
         
         // --- SEZIONE 2: PREPARAZIONE DEI DATI PER LA VISUALIZZAZIONE ---
-        // Combina i dati grezzi dell'hotel con i formati di testo per creare le stringhe finali
         const processedRooms = D.rooms.map(room => {
             const name = room.name[langCode] || room.name['default'];
             const size = T.sizeText.replace('{size}', room.sizeSqm);
@@ -39,8 +33,7 @@ export const FormExtension = {
             const price = T.priceFrom.replace('{price}', room.priceFromPerPerson).replace('{currency}', D.currency);
 
             return {
-                ...room, // Mantiene tutti i dati originali (id, image, etc.)
-                // Aggiunge i campi finali pronti per essere mostrati nell'HTML
+                ...room,
                 displayName: name,
                 displaySize: size,
                 displayCapacity: capacity,
@@ -48,12 +41,10 @@ export const FormExtension = {
             };
         });
 
-        // Filtra le camere preparate per categoria, pronte per essere usate nel form
         const suitesData = processedRooms.filter(r => r.category === 'suite');
         const roomsData = processedRooms.filter(r => r.category === 'room');
         
         // --- SEZIONE 3: CODICE ORIGINALE DEL FORM (HTML, CSS, JS) ---
-        // Questo è il tuo codice originale al 100%, ora integrato con la nuova logica
         const formContainer = document.createElement('form');
         formContainer.classList.add('form-container');
         let currentStep = 1;
@@ -181,14 +172,157 @@ export const FormExtension = {
         const stepIndicators = formContainer.querySelectorAll(".step-indicator");
         const reviewInfo = formContainer.querySelector("#review-info");
 
-        function createCustomCalendar(){const e=formContainer.querySelector("#customCalendar"),t=formContainer.querySelector("#dateRangeDisplay");if(!e)return;let a=new Date,n=a.getMonth(),l=a.getFullYear();function d(a,r){e.innerHTML="";const o=document.createElement("div");o.className="calendar-header";const i=document.createElement("div");i.className="calendar-title",i.textContent=new Date(r,a).toLocaleDateString(trace.payload.locale||"en-US",{month:"long",year:"numeric"});const c=document.createElement("div");c.className="calendar-nav";const s=document.createElement("button");s.innerHTML="&lt;",s.addEventListener("click",()=>{0===a?(a=11,r--):a--,d(a,r)});const u=document.createElement("button");u.innerHTML="&gt;",u.addEventListener("click",()=>{11===a?(a=0,r++):a++,d(a,r)}),c.appendChild(s),c.appendChild(u),o.appendChild(i),o.appendChild(c),e.appendChild(o);const m=document.createElement("div");m.className="calendar-grid",["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].forEach(e=>{const t=document.createElement("div");t.className="calendar-day-header",t.textContent=e,m.appendChild(t)});const p=new Date(r,a,1).getDay(),y=new Date(r,a+1,0).getDate();for(let e=0;e<p;e++){const e=document.createElement("div");e.className="calendar-day empty",m.appendChild(e)}const g=new Date;g.setHours(0,0,0,0);for(let e=1;e<=y;e++){const o=document.createElement("div");o.className="calendar-day",o.textContent=e;const i=new Date(r,a,e);i.setHours(0,0,0,0),e===g.getDate()&&a===g.getMonth()&&r===g.getFullYear()&&o.classList.add("today"),i<g?o.classList.add("disabled"):o.addEventListener("click",()=>h(new Date(r,a,e))),selectedStartDate&&i.getTime()===selectedStartDate.getTime()?o.classList.add("selected-start"):selectedEndDate&&i.getTime()===selectedEndDate.getTime()?o.classList.add("selected-end"):selectedStartDate&&selectedEndDate&&i>selectedStartDate&&i<selectedEndDate&&o.classList.add("in-range"),m.appendChild(o)}e.appendChild(m)}function h(e){const t=new Date;t.setHours(0,0,0,0),e<t||(n=e.getMonth(),l=e.getFullYear(),selectedStartDate&&!selectedEndDate&&e>selectedStartDate?selectedEndDate=e:(selectedStartDate=e,selectedEndDate=null),v(),d(n,l))}function v(){if(!selectedStartDate)return void(t.innerHTML=`<span>${T.noDatesSelected}</span>`);const e=selectedStartDate.toLocaleDateString(trace.payload.locale||"en-US",{month:"short",day:"numeric",year:"numeric"});if(selectedEndDate){const a=selectedEndDate.toLocaleDateString(trace.payload.locale||"en-US",{month:"short",day:"numeric",year:"numeric"});t.innerHTML=`<span>${T.selected}: ${e} - ${a}</span>`}else t.innerHTML=`<span>${T.selected}: ${e}</span>`}d(n,l),v()}
-        function setupRoomCounters(e){e.querySelectorAll('input[type="checkbox"][id^="acc-myCheckbox"]').forEach(e=>{const t=e.closest("li"),a=t.querySelector(".room-counter"),n=a.querySelector(".increment"),l=a.querySelector(".decrement"),d=a.querySelector(".room-quantity");e.addEventListener("change",()=>{t&&t.classList.toggle("selected-item",e.checked),a.style.display=e.checked?"flex":"none"}),e.checked?(t&&t.classList.add("selected-item"),a.style.display="flex"):(t&&t.classList.remove("selected-item"),a.style.display="none"),n.addEventListener("click",function(){d.value=parseInt(d.value)+1}),l.addEventListener("click",function(){parseInt(d.value)>1&&(d.value=parseInt(d.value)-1)})})}
-        
+        function createCustomCalendar() {
+            const calendarContainer = formContainer.querySelector("#customCalendar");
+            const dateRangeDisplay = formContainer.querySelector("#dateRangeDisplay");
+            if (!calendarContainer) return;
+            let currentDate = new Date();
+            let currentMonth = currentDate.getMonth();
+            let currentYear = currentDate.getFullYear();
+    
+            function renderCalendar(month, year) {
+                calendarContainer.innerHTML = '';
+                const header = document.createElement('div');
+                header.className = 'calendar-header';
+                const titleEl = document.createElement('div');
+                titleEl.className = 'calendar-title';
+                titleEl.textContent = new Date(year, month).toLocaleDateString(trace.payload.locale || 'en-US', { month: 'long', year: 'numeric' });
+                const nav = document.createElement('div');
+                nav.className = 'calendar-nav';
+                const prevBtn = document.createElement('button');
+                prevBtn.innerHTML = '&lt;';
+                prevBtn.addEventListener('click', () => {
+                    if (month === 0) { month = 11; year--; } else { month--; }
+                    renderCalendar(month, year);
+                });
+                const nextBtn = document.createElement('button');
+                nextBtn.innerHTML = '&gt;';
+                nextBtn.addEventListener('click', () => {
+                    if (month === 11) { month = 0; year++; } else { month++; }
+                    renderCalendar(month, year);
+                });
+                nav.appendChild(prevBtn); nav.appendChild(nextBtn);
+                header.appendChild(titleEl); header.appendChild(nav);
+                calendarContainer.appendChild(header);
+                const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                const grid = document.createElement('div');
+                grid.className = 'calendar-grid';
+                dayNames.forEach(day => {
+                    const dayHeader = document.createElement('div');
+                    dayHeader.className = 'calendar-day-header'; dayHeader.textContent = day;
+                    grid.appendChild(dayHeader);
+                });
+                const firstDay = new Date(year, month, 1).getDay();
+                const daysInMonth = new Date(year, month + 1, 0).getDate();
+                for (let i = 0; i < firstDay; i++) {
+                    const emptyDay = document.createElement('div');
+                    emptyDay.className = 'calendar-day empty'; grid.appendChild(emptyDay);
+                }
+                const today = new Date();
+                today.setHours(0,0,0,0);
+    
+                for (let day = 1; day <= daysInMonth; day++) {
+                    const dayElement = document.createElement('div');
+                    dayElement.className = 'calendar-day'; dayElement.textContent = day;
+                    const date = new Date(year, month, day);
+                    date.setHours(0,0,0,0);
+    
+                    if (day === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
+                        dayElement.classList.add('today');
+                    }
+                    if (date < today) {
+                        dayElement.classList.add('disabled');
+                    } else {
+                        dayElement.addEventListener('click', () => selectDate(new Date(year, month, day)));
+                    }
+                    if (selectedStartDate && date.getTime() === selectedStartDate.getTime()) {
+                        dayElement.classList.add('selected-start');
+                    } else if (selectedEndDate && date.getTime() === selectedEndDate.getTime()) {
+                        dayElement.classList.add('selected-end');
+                    } else if (selectedStartDate && selectedEndDate && date > selectedStartDate && date < selectedEndDate) {
+                        dayElement.classList.add('in-range');
+                    }
+                    grid.appendChild(dayElement);
+                }
+                calendarContainer.appendChild(grid);
+            }
+    
+            function selectDate(date) {
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                if (date < today) return;
+    
+                currentMonth = date.getMonth();
+                currentYear = date.getFullYear();
+    
+                if (!selectedStartDate || (selectedStartDate && selectedEndDate) || date < selectedStartDate) {
+                    selectedStartDate = date;
+                    selectedEndDate = null;
+                } else {
+                    selectedEndDate = date;
+                }
+                updateDateRangeDisplay();
+                renderCalendar(currentMonth, currentYear);
+            }
+    
+            function updateDateRangeDisplay() {
+                if (!selectedStartDate) {
+                    dateRangeDisplay.innerHTML = `<span>${T.noDatesSelected}</span>`; return;
+                }
+                const startDateStr = selectedStartDate.toLocaleDateString(trace.payload.locale || 'en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+                if (!selectedEndDate) {
+                    dateRangeDisplay.innerHTML = `<span>${T.selected}: ${startDateStr}</span>`;
+                } else {
+                    const endDateStr = selectedEndDate.toLocaleDateString(trace.payload.locale || 'en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+                    dateRangeDisplay.innerHTML = `<span>${T.selected}: ${startDateStr} - ${endDateStr}</span>`;
+                }
+            }
+            renderCalendar(currentMonth, currentYear);
+            updateDateRangeDisplay();
+        }
+    
+        function setupRoomCounters(containerElement) {
+            const checkboxes = containerElement.querySelectorAll('input[type="checkbox"][id^="acc-myCheckbox"]');
+            checkboxes.forEach(checkbox => {
+                const listItem = checkbox.closest('li');
+                const counter = listItem.querySelector('.room-counter');
+                const incrementBtn = counter.querySelector('.increment');
+                const decrementBtn = counter.querySelector('.decrement');
+                const quantityInput = counter.querySelector('.room-quantity');
+    
+                const updateItemSelection = () => {
+                    if (listItem) {
+                        listItem.classList.toggle('selected-item', checkbox.checked);
+                    }
+                    counter.style.display = checkbox.checked ? 'flex' : 'none';
+                };
+    
+                checkbox.addEventListener('change', updateItemSelection);
+    
+                if (checkbox.checked) {
+                    if (listItem) listItem.classList.add('selected-item');
+                    counter.style.display = 'flex';
+                } else {
+                    if (listItem) listItem.classList.remove('selected-item');
+                    counter.style.display = 'none';
+                }
+    
+                incrementBtn.addEventListener('click', function () {
+                    quantityInput.value = parseInt(quantityInput.value) + 1;
+                });
+                decrementBtn.addEventListener('click', function () {
+                    if (parseInt(quantityInput.value) > 1) {
+                        quantityInput.value = parseInt(quantityInput.value) - 1;
+                    }
+                });
+            });
+        }
+    
         function renderStep3DynamicContent() {
             const contentArea = formContainer.querySelector("#step3-dynamic-content");
             if (!contentArea) return;
             contentArea.innerHTML = '';
-
+    
             if (currentAccommodationViewInStep3 === 'categories') {
                 contentArea.innerHTML = `
                     <div id="accommodation-categories">
@@ -240,7 +374,7 @@ export const FormExtension = {
                 });
                 itemsHtml += `</ul>`;
                 contentArea.innerHTML = itemsHtml;
-
+    
                 contentArea.querySelector('.back-to-categories-btn').addEventListener('click', () => {
                     currentAccommodationViewInStep3 = 'categories';
                     renderStep3DynamicContent();
@@ -248,15 +382,157 @@ export const FormExtension = {
                 setupRoomCounters(contentArea);
             }
         }
-        
-        function showStep(e){steps.forEach((t,a)=>{t.style.display=a===e-1?"block":"none",a<e-1?stepIndicators[a]?.classList.add("visited"):stepIndicators[a]?.classList.remove("visited")}),stepIndicators.forEach((t,a)=>{const n=formContainer.querySelector(`.step-indicator.step-${e}`);stepIndicators.forEach(e=>e.classList.remove("active")),n&&n.classList.add("active")}),1===e&&createCustomCalendar(),2===e&&updateStep2(),3===e&&renderStep3DynamicContent(),6===e&&updateReviewInfo()}
-        function updateStep2(){if(2!==currentStep)return;const e=formContainer.querySelector("#selectedDateRange"),t=Array.from(formContainer.querySelectorAll(".duration-btn")),a=formContainer.querySelector("#fromDay"),n=formContainer.querySelector("#tillDay"),l=formContainer.querySelector("#maxRangeNote"),d=formContainer.querySelector("#ButtonSelection"),h=formContainer.querySelector("#rangeDuration"),v=formContainer.querySelector("#quickDurationButtonsContainer"),r=formContainer.querySelector("#rangeDurationInputContainer");if(!selectedStartDate||!selectedEndDate)return e.textContent="Please select travel dates first.",v&&(v.style.opacity="0.5"),r&&(r.style.opacity="0.5"),t.forEach(e=>{e.disabled=!0,e.classList.add("disabled")}),a.disabled=!0,void(n.disabled=!0);const o=Math.max(1,Math.ceil((selectedEndDate.getTime()-selectedStartDate.getTime())/864e5)+1),i=selectedStartDate.toLocaleDateString(trace.payload.locale||"en-US",{month:"short",day:"numeric",year:"numeric"}),c=selectedEndDate.toLocaleDateString(trace.payload.locale||"en-US",{month:"short",day:"numeric",year:"numeric"});e.textContent=`${i} - ${c}`,a.max=o,n.max=o,a.min=2,n.min=2,(h.checked||!d.checked&&!h.checked)&&(isNaN(parseInt(a.value))||parseInt(a.value)<2?a.value=2:parseInt(a.value)>o&&(a.value=o),parseInt(a.value)<2&&(o>=2?a.value=2:a.value=o),isNaN(parseInt(n.value))||parseInt(n.value)<2?n.value=2:parseInt(n.value)>o&&(n.value=o),parseInt(n.value)<2&&(o>=2?n.value=2:n.value=o)),l.textContent=T.maxDaysAllowedText?T.maxDaysAllowedText.replace("{totalDays}",o):`${T.youCanChoose||"Sie können maximal"} ${o} ${T.days||"Tage"}`;const s=()=>{const e=d.checked;v&&(v.style.opacity=e?"1":"0.5"),r&&(r.style.opacity=e?"0.5":"1"),t.forEach(t=>{let a=!1;"exact"!==t.dataset.days&&(a=parseInt(t.dataset.days)>o),t.disabled=!e||a,t.classList.toggle("disabled",!e||a),e||t.classList.remove("activeBtn")}),a.disabled=e,n.disabled=e};d.addEventListener("change",s),h.addEventListener("change",s),t.forEach(e=>{e.addEventListener("click",function(){d.checked?e.disabled||(t.forEach(e=>e.classList.remove("activeBtn")),e.classList.add("activeBtn")):(d.checked=!0,d.dispatchEvent(new Event("change",{bubbles:!0})))})});const u=()=>{h.checked||(h.checked=!0,h.dispatchEvent(new Event("change",{bubbles:!0})))};a.addEventListener("focus",u),n.addEventListener("focus",u),a.addEventListener("input",u),n.addEventListener("input",u),s()}
+    
+        function showStep(step) {
+            steps.forEach((el, index) => {
+                el.style.display = index === step - 1 ? "block" : "none";
+                if (index < step - 1) {
+                    stepIndicators[index]?.classList.add("visited");
+                } else {
+                    stepIndicators[index]?.classList.remove("visited");
+                }
+            });
+    
+            stepIndicators.forEach((el, index) => {
+                const targetIndicator = formContainer.querySelector(`.step-indicator.step-${step}`);
+                stepIndicators.forEach(ind => ind.classList.remove("active"));
+                if(targetIndicator) targetIndicator.classList.add("active");
+            });
+    
+            if (step === 1) createCustomCalendar();
+            if (step === 2) updateStep2();
+            if (step === 3) renderStep3DynamicContent();
+            if (step === 6) updateReviewInfo();
+        }
+    
+        function updateStep2() {
+            if (currentStep !== 2) return;
+            const dateRangeDisplay = formContainer.querySelector("#selectedDateRange");
+            const durationBtns = Array.from(formContainer.querySelectorAll(".duration-btn"));
+            const fromDayInput = formContainer.querySelector("#fromDay");
+            const tillDayInput = formContainer.querySelector("#tillDay");
+            const maxRangeNote = formContainer.querySelector("#maxRangeNote");
+    
+            const singleDurationRadio = formContainer.querySelector("#ButtonSelection");
+            const rangeDurationRadio = formContainer.querySelector("#rangeDuration");
+            const quickButtonsContainer = formContainer.querySelector('#quickDurationButtonsContainer');
+            const rangeInputContainer = formContainer.querySelector('#rangeDurationInputContainer');
+    
+            if (!selectedStartDate || !selectedEndDate) {
+                dateRangeDisplay.textContent = "Please select travel dates first.";
+                if (quickButtonsContainer) quickButtonsContainer.style.opacity = '0.5';
+                if (rangeInputContainer) rangeInputContainer.style.opacity = '0.5';
+                durationBtns.forEach(btn => { btn.disabled = true; btn.classList.add("disabled"); });
+                fromDayInput.disabled = true;
+                tillDayInput.disabled = true;
+                return;
+            }
+    
+            const timeDiff = selectedEndDate.getTime() - selectedStartDate.getTime();
+            const totalDays = Math.max(1, Math.ceil(timeDiff / (1000 * 60 * 60 * 24)) + 1);
+    
+            const startStr = selectedStartDate.toLocaleDateString(trace.payload.locale || 'en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            const endStr = selectedEndDate.toLocaleDateString(trace.payload.locale || 'en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            dateRangeDisplay.textContent = `${startStr} - ${endStr}`;
+    
+            fromDayInput.max = totalDays;
+            tillDayInput.max = totalDays;
+            fromDayInput.min = 2;
+            tillDayInput.min = 2;
+    
+            if (rangeDurationRadio.checked || (!singleDurationRadio.checked && !rangeDurationRadio.checked)) {
+                let currentFrom = parseInt(fromDayInput.value);
+                if (isNaN(currentFrom) || currentFrom < 2) {
+                    fromDayInput.value = 2;
+                }
+                if (parseInt(fromDayInput.value) > totalDays) {
+                    fromDayInput.value = totalDays;
+                }
+                if (parseInt(fromDayInput.value) < 2 && totalDays >=2 ) {
+                    fromDayInput.value = 2;
+                } else if (parseInt(fromDayInput.value) < 2 && totalDays < 2) {
+                    fromDayInput.value = totalDays;
+                }
+    
+                let currentTill = parseInt(tillDayInput.value);
+                if (isNaN(currentTill) || currentTill < 2) {
+                    tillDayInput.value = 2;
+                }
+                if (parseInt(tillDayInput.value) > totalDays) {
+                    tillDayInput.value = totalDays;
+                }
+                if (parseInt(tillDayInput.value) < 2 && totalDays >=2) {
+                    tillDayInput.value = 2;
+                } else if (parseInt(tillDayInput.value) < 2 && totalDays < 2) {
+                    tillDayInput.value = totalDays;
+                }
+            }
+            
+            if (T.maxDaysAllowedText) {
+                maxRangeNote.textContent = T.maxDaysAllowedText.replace('{totalDays}', totalDays);
+            } else {
+                maxRangeNote.textContent = `${T.youCanChoose} ${totalDays} ${T.days}`;
+            }
+    
+            const updateInputStates = () => {
+                const isSingleActive = singleDurationRadio.checked;
+    
+                if (quickButtonsContainer) quickButtonsContainer.style.opacity = isSingleActive ? '1' : '0.5';
+                if (rangeInputContainer) rangeInputContainer.style.opacity = isSingleActive ? '0.5' : '1';
+    
+                durationBtns.forEach(btn => {
+                    let isDisabledByTotalDays = false;
+                    if (btn.dataset.days !== "exact") {
+                        const daysNum = parseInt(btn.dataset.days);
+                        isDisabledByTotalDays = daysNum > totalDays;
+                    }
+                    btn.disabled = !isSingleActive || isDisabledByTotalDays;
+                    btn.classList.toggle("disabled", !isSingleActive || isDisabledByTotalDays);
+                    if (!isSingleActive) {
+                        btn.classList.remove("activeBtn");
+                    }
+                });
+    
+                fromDayInput.disabled = isSingleActive;
+                tillDayInput.disabled = isSingleActive;
+            };
+    
+            singleDurationRadio.addEventListener("change", updateInputStates);
+            rangeDurationRadio.addEventListener("change", updateInputStates);
+    
+            durationBtns.forEach(btn => {
+                btn.addEventListener("click", function () {
+                    if (!singleDurationRadio.checked) {
+                        singleDurationRadio.checked = true;
+                        singleDurationRadio.dispatchEvent(new Event('change', { bubbles: true }));
+                    } else if (btn.disabled) {
+                        return;
+                    }
+                    durationBtns.forEach(b => b.classList.remove("activeBtn"));
+                    btn.classList.add("activeBtn");
+                });
+            });
+    
+            const autoSwitchToRange = () => {
+                if (!rangeDurationRadio.checked) {
+                    rangeDurationRadio.checked = true;
+                    rangeDurationRadio.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+            };
+            fromDayInput.addEventListener('focus', autoSwitchToRange);
+            tillDayInput.addEventListener('focus', autoSwitchToRange);
+            fromDayInput.addEventListener('input', autoSwitchToRange);
+            tillDayInput.addEventListener('input', autoSwitchToRange);
+    
+            updateInputStates();
+        }
+    
         function validateStep() {
              if (!steps[currentStep - 1]) return true;
              const currentInputs = steps[currentStep - 1].querySelectorAll("input[required], textarea[required]");
              for (let input of currentInputs) {
                  if (!input.checkValidity()) {
-                     alert(`${T.firstName} ${input.labels?.[0]?.textContent || input.name}`);
+                     alert(`Please fill in the required field: ${input.labels?.[0]?.textContent || input.name}`);
                      input.focus();
                      return false;
                  }
@@ -308,15 +584,116 @@ export const FormExtension = {
              }
              return true;
          }
-        function updateReviewInfo(){if(!reviewInfo)return;const e=[];formContainer.querySelectorAll('#step3-dynamic-content input[type="checkbox"][id^="acc-myCheckbox"]:checked').forEach(t=>{const a=t.closest("li");if(!a)return;const n=a.querySelector(`label[for="${t.id}"]`),l=a.querySelector(".room-quantity");if(n&&l){const t=n.querySelector("b")?.textContent.trim()||"Unknown Room",a=l.value||"1";e.push(`${a}x ${t}`)}});let t="Not selected";selectedStartDate&&selectedEndDate&&(t=`${selectedStartDate.toLocaleDateString(trace.payload.locale||"en-US",{month:"short",day:"numeric",year:"numeric"})} to ${selectedEndDate.toLocaleDateString(trace.payload.locale||"en-US",{month:"short",day:"numeric",year:"numeric"})}`);const a=formContainer.querySelector("#fromDay")?.value,n=formContainer.querySelector("#tillDay")?.value,l=formContainer.querySelector("#ButtonSelection"),d=formContainer.querySelector("#rangeDuration"),h=formContainer.querySelector(".duration-btn.activeBtn");let v="Not specified";if(d?.checked)v=`${T.from||"From"} ${T.day||"day"} ${a||"N/A"} ${T.until||"to"} ${T.day||"day"} ${n||"N/A"}`;else if(h)v=h.textContent;else if(l?.checked){const e=Array.from(formContainer.querySelectorAll(".duration-btn")).find(e=>"exact"===e.dataset.days);v=e?e.textContent:"As specified"}const r=formContainer.querySelector("#First")?.value||"",o=formContainer.querySelector("#LastName")?.value||"",i=formContainer.querySelector("#Email")?.value||"",c=formContainer.querySelector("#Phone")?.value||"";reviewInfo.innerHTML=`\n            <div style="background: #F5F5F7; padding: 10px; border-radius: 5px; margin-top: 20px;">\n                <div><h2 style="margin: 0!important;">${T.reviewStayDates}</h2></div>\n                <div><p>${T.reviewTravelDates}<br/> <span style="color: gray;">${t}</span></p></div>\n                <div><p>${T.reviewDurationOFStay}<br/> <span style="color: gray;">${v}</span></p></div>\n            </div>\n            <div style="background: #F5F5F7; padding: 10px; border-radius: 5px; margin-top: 20px;">\n                <div><h2 style="margin: 0!important;">${T.reviewAccommodation}</h2></div>\n                <div><p>${T.reviewTypes}<br/> <span style="color: gray;">${e.length>0?e.join("<br/>"):"None selected"}</span></p></div>\n            </div>\n            <div style="background: #F5F5F7; padding: 10px; border-radius: 5px; margin-top: 20px;">\n                <div><h2 style="margin: 0!important;">${T.reviewTravelers}</h2></div>\n                <div><p>${T.reviewAdults}<br/> <span style="color: gray;">${formContainer.querySelector("#adults")?.value||""}</span></p></div>\n                <div><p>${T.children}<br/> <span style="color: gray;">${formContainer.querySelector("#children")?.value||""}</span></p></div>\n                <div><p>${T.reviewSpecialRequests}<br/> <span style="color: gray;">${formContainer.querySelector("#special-requests")?.value||"None"}</span></p></div>\n            </div>\n            <div style="background: #F5F5F7; padding: 10px; border-radius: 5px; margin-top: 20px;">\n                <div><h2 style="margin: 0!important;">${T.titleContactInformation}</h2></div>\n                <div><p>${T.firstAndLastname}<br/> <span style="color: gray;">${r} ${o}</span></p></div>\n                <div><p>${T.emailVF}<br/> <span style="color: gray;">${i}</span></p></div>\n                <div><p>${T.phoneNumber}<br/> <span style="color: gray;">${c}</span></p></div>\n            </div>\n        `}
-        function createChatBox(){const e=document.createElement("div");e.classList.add("chat-box"),e.innerHTML=`\n            <style>\n                .vfrc-message--extension-Forms{ width: 100%; background: #fff; }\n                .chat-box h3, .chat-box p { font-family: "UCity Pro", sans-serif; }\n            </style>\n            <div style="position: relative; display: flex; justify-content: center; align-items: center; height: 500px; width: 100%; flex-direction: column;">\n                <div style="position: relative; color: black; text-align: center;">\n                    <div style="display: flex; justify-content: center; height: 50px;">\n                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="height: 40px; width: 38px; fill: black;"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>\n                    </div>\n                    <h3>${T.thankSubmission}</h3>\n                    <p>${T.formSubmitted}<br/>${T.formTeam}</p>\n                </div>\n            </div>`,formContainer.replaceWith(e)}
-
-        formContainer.addEventListener("click",function(e){if(e.target.classList.contains("next")){if(!validateStep())return;5===currentStep?(updateReviewInfo(),currentStep++,showStep(currentStep)):(currentStep++,showStep(currentStep))}else e.target.classList.contains("prev")&&(currentStep--,showStep(currentStep))});
+    
+        function updateReviewInfo() {
+            if (!reviewInfo) return;
+            const accommodationTypes = [];
+            const checkboxes = formContainer.querySelectorAll('#step3-dynamic-content input[type="checkbox"][id^="acc-myCheckbox"]:checked');
+            checkboxes.forEach(checkbox => {
+                const listItem = checkbox.closest('li');
+                if (!listItem) return;
+                const label = listItem.querySelector(`label[for="${checkbox.id}"]`);
+                const quantityInput = listItem.querySelector('.room-quantity');
+                if (label && quantityInput) {
+                    const typeName = label.querySelector('b')?.textContent.trim() || 'Unknown Room';
+                    const quantity = quantityInput.value || '1';
+                    accommodationTypes.push(`${quantity}x ${typeName}`);
+                }
+            });
+            let dateRangeStr = "Not selected";
+            if (selectedStartDate && selectedEndDate) {
+                const startStr = selectedStartDate.toLocaleDateString(trace.payload.locale || 'en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+                const endStr = selectedEndDate.toLocaleDateString(trace.payload.locale || 'en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+                dateRangeStr = `${startStr} to ${endStr}`;
+            }
+            const fromDayInputVal = formContainer.querySelector("#fromDay")?.value;
+            const tillDayInputVal = formContainer.querySelector("#tillDay")?.value;
+            const singleDurationRadio = formContainer.querySelector("#ButtonSelection");
+            const rangeDurationRadio = formContainer.querySelector("#rangeDuration");
+            const activeDurationBtn = formContainer.querySelector(".duration-btn.activeBtn");
+            let durationText = "Not specified";
+            if (rangeDurationRadio?.checked) {
+                durationText = `${T.from} ${T.day} ${fromDayInputVal || 'N/A'} ${T.until} ${T.day} ${tillDayInputVal || 'N/A'}`;
+            } else if (activeDurationBtn) {
+                durationText = activeDurationBtn.textContent;
+            } else if (singleDurationRadio?.checked) {
+                const exactBtn = Array.from(formContainer.querySelectorAll(".duration-btn")).find(b => b.dataset.days === "exact");
+                durationText = exactBtn ? exactBtn.textContent : "As specified";
+            }
+            const reviewFirstName = formContainer.querySelector("#First")?.value || '';
+            const reviewLastName = formContainer.querySelector("#LastName")?.value || '';
+            const reviewEmail = formContainer.querySelector("#Email")?.value || '';
+            const reviewPhone = formContainer.querySelector("#Phone")?.value || '';
+            reviewInfo.innerHTML = `
+                <div style="background: #F5F5F7; padding: 10px; border-radius: 5px; margin-top: 20px;">
+                    <div><h2 style="margin: 0!important;">${T.reviewStayDates}</h2></div>
+                    <div><p>${T.reviewTravelDates}<br/> <span style="color: gray;">${dateRangeStr}</span></p></div>
+                    <div><p>${T.reviewDurationOFStay}<br/> <span style="color: gray;">${durationText}</span></p></div>
+                </div>
+                <div style="background: #F5F5F7; padding: 10px; border-radius: 5px; margin-top: 20px;">
+                    <div><h2 style="margin: 0!important;">${T.reviewAccommodation}</h2></div>
+                    <div><p>${T.reviewTypes}<br/> <span style="color: gray;">${accommodationTypes.length > 0 ? accommodationTypes.join('<br/>') : 'None selected'}</span></p></div>
+                </div>
+                <div style="background: #F5F5F7; padding: 10px; border-radius: 5px; margin-top: 20px;">
+                    <div><h2 style="margin: 0!important;">${T.reviewTravelers}</h2></div>
+                    <div><p>${T.reviewAdults}<br/> <span style="color: gray;">${formContainer.querySelector("#adults")?.value || ''}</span></p></div>
+                    <div><p>${T.children}<br/> <span style="color: gray;">${formContainer.querySelector("#children")?.value || ''}</span></p></div>
+                    <div><p>${T.reviewSpecialRequests}<br/> <span style="color: gray;">${formContainer.querySelector("#special-requests")?.value || 'None'}</span></p></div>
+                </div>
+                <div style="background: #F5F5F7; padding: 10px; border-radius: 5px; margin-top: 20px;">
+                    <div><h2 style="margin: 0!important;">${T.titleContactInformation}</h2></div>
+                    <div><p>${T.firstAndLastname}<br/> <span style="color: gray;">${reviewFirstName} ${reviewLastName}</span></p></div>
+                    <div><p>${T.emailVF}<br/> <span style="color: gray;">${reviewEmail}</span></p></div>
+                    <div><p>${T.phoneNumber}<br/> <span style="color: gray;">${reviewPhone}</span></p></div>
+                </div>
+            `;
+        }
+    
+        function createChatBox() {
+            const chatBox = document.createElement('div');
+            chatBox.classList.add('chat-box');
+            chatBox.innerHTML = `
+                <style>
+                    .vfrc-message--extension-Forms{ width: 100%; background: #fff; }
+                    .chat-box h3, .chat-box p { font-family: "UCity Pro", sans-serif; }
+                </style>
+                <div style="position: relative; display: flex; justify-content: center; align-items: center; height: 500px; width: 100%; flex-direction: column;">
+                    <div style="position: relative; color: black; text-align: center;">
+                        <div style="display: flex; justify-content: center; height: 50px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="height: 40px; width: 38px; fill: black;">
+                                <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/>
+                            </svg>
+                        </div>
+                        <h3>${T.thankSubmission}</h3>
+                        <p>${T.formSubmitted}<br/>${T.formTeam}</p>
+                    </div>
+                </div>`;
+            formContainer.replaceWith(chatBox);
+        }
+    
+        formContainer.addEventListener("click", function (event) {
+            if (event.target.classList.contains("next")) {
+                if (!validateStep()) return;
+                if (currentStep === 5) {
+                    updateReviewInfo();
+                    currentStep++;
+                    showStep(currentStep);
+                } else {
+                    currentStep++;
+                    showStep(currentStep);
+                }
+            } else if (event.target.classList.contains("prev")) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        });
+    
         formContainer.addEventListener('submit', function (event) {
             event.preventDefault();
             if (!validateStep()) return;
             const accommodationList = [];
-            formContainer.querySelectorAll('#step3-dynamic-content input[type="checkbox"][id^="acc-myCheckbox"]:checked').forEach(checkbox => {
+            const checkboxes = formContainer.querySelectorAll('#step3-dynamic-content input[type="checkbox"][id^="acc-myCheckbox"]:checked');
+            checkboxes.forEach(checkbox => {
                 const listItem = checkbox.closest('li');
                 const roomName = checkbox.dataset.name || 'Unknown Room';
                 const quantityInput = listItem.querySelector('.room-quantity');
@@ -365,7 +742,7 @@ export const FormExtension = {
             }
             createChatBox();
         });
-
+    
         showStep(currentStep);
         element.appendChild(formContainer);
     },
