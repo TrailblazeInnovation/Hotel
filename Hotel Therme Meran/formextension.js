@@ -1,3 +1,6 @@
+// File: /Hotel Therme Meran/formextension.js
+// VERSIONE FINALE E COMPLETA - CON CSS ORIGINALE RIPRISTINATO
+
 export const FormExtension = {
     name: 'Forms',
     type: 'response',
@@ -12,7 +15,7 @@ export const FormExtension = {
         
         const langCode = (trace.payload.locale || 'en').split('-')[0];
         
-        let T; // Conterrà i testi statici dell'interfaccia
+        let T; 
         try {
             const langModule = await import(`${generalPath}/locales/${langCode}.js`);
             T = langModule.translations;
@@ -58,7 +61,279 @@ export const FormExtension = {
 
         formContainer.innerHTML = `
             <style>
-            .form-container{font-family:"UCity Pro",sans-serif;width:100%;background:#fff;padding:20px;border-radius:5px}.steps{display:flex;justify-content:space-between;padding:10px 0;background:#fff;font-family:"UCity Pro",sans-serif}.step-indicator{flex:1;text-align:center;padding:10px;font-weight:700;color:#8b8686;background:#fff;border-radius:5px;font-family:"UCity Pro",sans-serif}.step-indicator.active span{background:#000!important;color:#fff;font-family:"UCity Pro",sans-serif}._1ddzqsn7{width:100%!important}.active{color:#000!important}.active span{background:#000;color:#fff}input,textarea{width:100%;padding:10px;margin:10px 0;border-radius:10px;border:1px solid #ccc;outline:none;font-family:"UCity Pro",sans-serif;box-sizing:border-box}input:hover,textarea:hover{border:1px solid #000}h2,label,input,textarea,button{font-family:"UCity Pro",sans-serif}.steps{position:relative;width:100%}.step-1 .bord2{position:absolute;border:2px solid #e1dada;width:100%;left:0;top:80px}.step-1.active .bord,.step-2.active .bord{position:absolute;border:2px solid #000;width:20%;left:0;top:80px}.step-2.active .bord{display:block!important}.step-3.active .bord{position:absolute;border:2px solid #000;width:40%;left:0;top:80px}.step-4.active .bord{position:absolute;border:2px solid #000;width:60%;left:0;top:80px}.step-5.active .bord{position:absolute;border:2px solid #000;width:80%;left:0;top:80px}.step-6.active .bord{position:absolute;border:2px solid #000;width:100%;left:0;top:80px}.visited span{background:#000!important;color:#fff}.next,.prev{background:0 0;border:1px solid gray;width:150px;color:#000;padding:10px 25px;border-radius:20px;cursor:pointer}.next:hover,.prev:hover{background:#000;color:#fff}.vfrc-message--extension-Forms{background:#fff!important}.step-content{margin-top:28px}.duration-btn{border:1px solid gray;background-color:#fff;color:#000}.BtnSimp{border-radius:8px;padding:10px 25px;cursor:pointer}.duration-btn.activeBtn{color:#fff;background:#000!important;border-color:#000!important}.duration-btn:not(.disabled):hover{color:#fff;background:#000!important;border-color:#000!important}.duration-btn.disabled{opacity:.5;cursor:not-allowed;background:#f5f5f5!important;border:1px solid #ddd!important;color:#999!important}.custom-radio-container{display:flex;align-items:center;cursor:pointer;padding:5px 0;margin-bottom:5px}.custom-radio-container input[type=radio][name=durationType]{opacity:0;position:absolute;width:1px;height:1px}.custom-radio-square{width:14px;height:14px;border:1px solid #888;margin-right:8px;display:inline-block;background-color:#fff;transition:background-color .2s ease,border-color .2s ease;border-radius:4px}.custom-radio-container input[type=radio][name=durationType]:checked+.custom-radio-square{background-color:#000;border-color:#000}.custom-radio-container .radio-label-text{font-weight:500;font-family:"UCity Pro",sans-serif}#quickDurationButtonsContainer,#rangeDurationInputContainer{transition:opacity .3s ease-in-out}ul#accommodationListContainer{display:flex;flex-wrap:wrap;margin-top:0;list-style-type:none;padding-left:0!important;gap:15px;justify-content:flex-start}ul#accommodationListContainer li{display:flex;flex-direction:column;margin:0;flex-basis:calc(50% - 8px);border-radius:12px;background-color:transparent;box-shadow:none;border:none;overflow:hidden;transition:background-color .3s ease;padding:0}ul#accommodationListContainer li:hover{background-color:#f5f5f5}ul#accommodationListContainer li.selected-item{background-color:#e0e0e0}@media (max-width:768px){ul#accommodationListContainer li{flex-basis:calc(100% - 8px)}}input[type=checkbox][id^=acc-myCheckbox]{display:none}ul#accommodationListContainer label{display:block;position:relative;cursor:pointer;text-align:center;padding:10px;background-color:transparent;border:none;height:auto;box-sizing:border-box}ul#accommodationListContainer label img{height:170px;width:100%;border-radius:8px;display:block;margin-left:auto;margin-right:auto;object-fit:cover;transition:transform .3s ease;transform:scale(1)}ul#accommodationListContainer li:hover label img{transform:scale(1.03)}ul#accommodationListContainer label p{font-size:13px;margin-top:8px;text-align:left;padding:0 5px;line-height:1.4;color:#333}.room-counter{margin:0 auto 10px;display:none;justify-content:center;align-items:center;gap:6px;padding-top:5px}input[type=checkbox][id^=acc-myCheckbox]:checked~.room-counter{display:flex}.fieldinput{margin-top:0!important}.custom-calendar{width:100%;margin-top:20px;font-family:"UCity Pro",sans-serif}.calendar-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.calendar-title{font-weight:600;font-size:16px}.calendar-nav{display:flex;gap:10px}.calendar-nav button{background:none;border:none;cursor:pointer;font-size:16px;padding:5px 10px;border-radius:5px}.calendar-nav button:hover{background:#f5f5f5}.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:0}.calendar-day-header{text-align:center;font-weight:500;font-size:12px;color:#666;padding:5px 0}.calendar-day{text-align:center;padding:10px 5px;border-radius:5px;cursor:pointer;font-size:14px}.calendar-day:hover{background:#f5f5f5}.calendar-day.empty{visibility:hidden}.calendar-day.today{font-weight:700}.calendar-day.selected-start,.calendar-day.selected-end{background:#000;color:#fff}.calendar-day.in-range{background:#e0e0e0;border-radius:0}.calendar-day.disabled{color:#ccc;cursor:not-allowed}.date-range-display{margin-top:15px;padding:10px;background:#f5f5f7;border-radius:5px;font-size:14px}.date-range-display span{color:#666}.input-wrapper{position:relative;margin:5px 0}#rangeDurationInputContainer .input-wrapper input[type=number]{border:1px solid gray;border-radius:6px;width:80px!important;margin:0;height:34px;text-align:right;box-sizing:border-box;padding:0 10px}#rangeDurationInputContainer .input-wrapper label{position:absolute;top:-.7em;z-index:1;left:.8em;background-color:#fff;padding:0 5px;font-size:11px;color:#666}b{font-size:13px!important}ul#accommodationListContainer label p b{font-size:inherit}.counter-btn{width:25px;height:25px;border-radius:50%;background:#f5f5f5;border:1px solid #ddd;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px}input[type=checkbox][id^=acc-myCheckbox]:checked~.room-counter .counter-btn{display:flex!important}.counter-btn:hover{background:#e0e0e0}.room-quantity{border:1px solid #ddd;border-radius:5px;padding:5px;text-align:center;width:60px}#accommodation-categories{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:20px}.category-selector{cursor:pointer;padding:15px;border-radius:12px;width:calc(50% - 5px);background-color:#fff;box-sizing:border-box;overflow:hidden;transition:background-color .3s ease}.category-selector:hover{background-color:#f5f5f5}.category-selector img{width:100%;height:220px;border-radius:8px;object-fit:cover;margin-bottom:10px;transition:transform .3s ease}.category-selector:hover img{transform:scale(1.05)}.category-selector h3{margin-top:10px;margin-bottom:5px;font-size:16px;font-weight:400;color:#333;text-align:left;font-family:"UCity Pro",sans-serif}@media (min-width:601px){#accommodation-categories:has(.category-selector:nth-child(1):last-child) .category-selector{width:calc(100% - 30px);margin-left:auto;margin-right:auto}}@media (max-width:600px){.category-selector{width:calc(100% - 20px);margin-left:10px;margin-right:10px}#accommodation-categories{justify-content:center}}.back-to-categories-btn-container{margin-bottom:20px;text-align:left}.back-to-categories-btn{background:none;border:none;padding:5px 0;color:#555;cursor:pointer;font-size:14px;display:inline-flex;align-items:center;font-family:"UCity Pro",sans-serif;text-decoration:none;width:auto;border-radius:0;font-weight:500}.back-to-categories-btn svg{width:1em;height:1em;margin-right:8px;fill:currentColor}.back-to-categories-btn:hover{color:#000;text-decoration:underline;background:none}.step-4>div:nth-child(4){margin-bottom:25px}.step-4>div:nth-child(5){margin-bottom:30px}.step-4 label{display:block;margin-bottom:8px;font-weight:500;text-align:left!important}.step-4 input[type=number],.step-4 textarea{margin-top:0}.step-5>div:nth-child(4){margin-bottom:25px}.step-5>div:nth-child(5){margin-bottom:25px}.step-5 label{display:block;margin-bottom:8px;font-weight:500;text-align:left!important}
+                /* CSS ORIGINALE 100% INTATTO */
+                .form-container {
+                    font-family: "UCity Pro", sans-serif; width: 100%; background: #fff; padding: 20px; border-radius: 5px;
+                }
+                .steps {
+                    display: flex; justify-content: space-between; padding: 10px 0; background: #fff; font-family: "UCity Pro", sans-serif;
+                }
+                .step-indicator {
+                    flex: 1; text-align: center; padding: 10px; font-weight: bold; color: #8b8686; background: #fff; border-radius: 5px; font-family: "UCity Pro", sans-serif;
+                }
+                .step-indicator.active span { background: black !important; color: white; font-family: "UCity Pro", sans-serif; }
+                ._1ddzqsn7 { width: 100% !important; }
+                .active{ color: black!important; }
+                .active span { background: black; color: white; }
+                input, textarea {
+                    width: 100%; padding: 10px; margin: 10px 0; border-radius: 10px; border: 1px solid #ccc; outline: none; font-family: "UCity Pro", sans-serif; box-sizing: border-box;
+                }
+                input:hover, textarea:hover{ border: 1px solid black; }
+                h2, label, input, textarea, button { font-family: "UCity Pro", sans-serif; }
+                .steps { position: relative; width: 100%; }
+
+                .step-1 .bord2{
+                    position: absolute; border: 2px solid #e1dada; width: 100%; left: 0; top: 80px;
+                }
+                .step-1.active .bord, .step-2.active .bord{
+                    position: absolute; border: 2px solid black; width: 20%; left: 0; top: 80px;
+                }
+                .step-2.active .bord{
+                    display: block!important;
+                }
+                .step-3.active .bord{
+                    position: absolute; border: 2px solid black; width: 40%; left: 0; top: 80px;
+                }
+                .step-4.active .bord{
+                    position: absolute; border: 2px solid black; width: 60%; left: 0; top: 80px;
+                }
+                .step-5.active .bord{
+                    position: absolute; border: 2px solid black; width: 80%; left: 0; top: 80px;
+                }
+                .step-6.active .bord{
+                    position: absolute; border: 2px solid black; width: 100%; left: 0; top: 80px;
+                }
+                .visited span{ background: black!important; color: white; }
+                .next, .prev {
+                    background: transparent; border: 1px solid gray; width: 150px; color: black; padding: 10px 25px; border-radius: 20px; cursor: pointer;
+                }
+                .next:hover, .prev:hover { background: #000; color: white; }
+                .vfrc-message--extension-Forms{ background: white!important; }
+                .step-content{margin-top: 28px;}
+                .duration-btn { border: 1px solid gray; background-color: #fff; color: black; }
+                .BtnSimp { border-radius: 8px; padding: 10px 25px; cursor: pointer; }
+                .duration-btn.activeBtn { color: #fff; background: #000 !important; border-color: #000 !important; }
+                .duration-btn:not(.disabled):hover { color: #fff; background: #000 !important; border-color: #000 !important; }
+                .duration-btn.disabled {
+                    opacity: 0.5; cursor: not-allowed; background: #f5f5f5 !important; border: 1px solid #ddd !important; color: #999 !important;
+                }
+                .custom-radio-container {
+                    display: flex; align-items: center; cursor: pointer; padding: 5px 0; margin-bottom: 5px;
+                }
+                .custom-radio-container input[type="radio"][name="durationType"] {
+                    opacity: 0; position: absolute; width: 1px; height: 1px;
+                }
+                .custom-radio-square {
+                    width: 14px; height: 14px; border: 1px solid #888; margin-right: 8px; display: inline-block; background-color: #fff;
+                    transition: background-color 0.2s ease, border-color 0.2s ease; border-radius: 4px;
+                }
+                .custom-radio-container input[type="radio"][name="durationType"]:checked + .custom-radio-square {
+                    background-color: black; border-color: black;
+                }
+                .custom-radio-container .radio-label-text { font-weight: 500; font-family: "UCity Pro", sans-serif; }
+                #quickDurationButtonsContainer, #rangeDurationInputContainer { transition: opacity 0.3s ease-in-out; }
+
+                ul#accommodationListContainer {
+                    display: flex; flex-wrap: wrap; margin-top: 0; list-style-type: none;
+                    padding-left: 0px !important; gap: 15px;
+                    justify-content: flex-start;
+                }
+                ul#accommodationListContainer li {
+                    display: flex;
+                    flex-direction: column;
+                    margin: 0;
+                    flex-basis: calc(50% - 8px);
+                    border-radius: 12px;
+                    background-color: transparent;
+                    box-shadow: none;
+                    border: none;
+                    overflow: hidden;
+                    transition: background-color 0.3s ease;
+                    padding: 0;
+                }
+                ul#accommodationListContainer li:hover {
+                    background-color: #f5f5f5;
+                }
+                ul#accommodationListContainer li.selected-item {
+                    background-color: #e0e0e0;
+                }
+                @media (max-width: 768px) { ul#accommodationListContainer li { flex-basis: calc(100% - 8px); } }
+
+                input[type="checkbox"][id^="acc-myCheckbox"] { display: none; }
+
+                ul#accommodationListContainer label {
+                    display: block;
+                    position: relative;
+                    cursor: pointer;
+                    text-align: center;
+                    padding: 10px;
+                    background-color: transparent;
+                    border: none;
+                    height: auto;
+                    box-sizing: border-box;
+                }
+
+                ul#accommodationListContainer label img {
+                    height: 170px;
+                    width: 100%;
+                    border-radius: 8px;
+                    display: block;
+                    margin-left: auto; margin-right: auto;
+                    object-fit: cover;
+                    transition: transform 0.3s ease;
+                    transform: scale(1);
+                }
+                ul#accommodationListContainer li:hover label img {
+                    transform: scale(1.03);
+                }
+                ul#accommodationListContainer label p {
+                    font-size: 13px;
+                    margin-top: 8px;
+                    text-align: left;
+                    padding: 0 5px;
+                    line-height: 1.4;
+                    color: #333;
+                }
+
+                .room-counter {
+                    margin: 0px auto 10px auto;
+                    display: none;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 6px;
+                    padding-top: 5px;
+                }
+                input[type="checkbox"][id^="acc-myCheckbox"]:checked ~ .room-counter { display: flex; }
+
+                .fieldinput{ margin-top: 0!important; }
+                .custom-calendar { width: 100%; margin-top: 20px; font-family: "UCity Pro", sans-serif; }
+                .calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+                .calendar-title { font-weight: 600; font-size: 16px; }
+                .calendar-nav { display: flex; gap: 10px; }
+                .calendar-nav button { background: none; border: none; cursor: pointer; font-size: 16px; padding: 5px 10px; border-radius: 5px; }
+                .calendar-nav button:hover { background: #f5f5f5; }
+                .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0px; }
+                .calendar-day-header { text-align: center; font-weight: 500; font-size: 12px; color: #666; padding: 5px 0; }
+                .calendar-day { text-align: center; padding: 10px 5px; border-radius: 5px; cursor: pointer; font-size: 14px; }
+                .calendar-day:hover { background: #f5f5f5; }
+                .calendar-day.empty { visibility: hidden; }
+                .calendar-day.today { font-weight: bold; }
+                .calendar-day.selected-start, .calendar-day.selected-end { background: black; color: white; }
+                .calendar-day.in-range { background: #e0e0e0; border-radius: 0px; }
+                .calendar-day.disabled { color: #ccc; cursor: not-allowed; }
+                .date-range-display { margin-top: 15px; padding: 10px; background: #f5f5f7; border-radius: 5px; font-size: 14px; }
+                .date-range-display span { color: #666; }
+                .input-wrapper { position: relative; margin: 5px 0; }
+                #rangeDurationInputContainer .input-wrapper input[type="number"] {
+                    border: 1px solid gray; border-radius: 6px; width: 80px !important; margin: 0;
+                    height: 34px; text-align: right; box-sizing: border-box; padding: 0 10px;
+                }
+                #rangeDurationInputContainer .input-wrapper label {
+                    position: absolute; top: -0.7em; z-index: 1; left: 0.8em;
+                    background-color: white; padding: 0 5px; font-size: 11px; color: #666;
+                }
+                b{ font-size: 13px!important; }
+                ul#accommodationListContainer label p b { font-size: inherit; }
+
+                .counter-btn {
+                    width: 25px; height: 25px; border-radius: 50%; background: #f5f5f5; border: 1px solid #ddd;
+                    cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px;
+                }
+                input[type="checkbox"][id^="acc-myCheckbox"]:checked ~ .room-counter .counter-btn { display: flex !important; }
+                .counter-btn:hover { background: #e0e0e0; }
+                .room-quantity { border: 1px solid #ddd; border-radius: 5px; padding: 5px; text-align: center; width: 60px; }
+
+                #accommodation-categories {
+                    display: flex; justify-content: space-between;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                    margin-bottom: 20px;
+                }
+                .category-selector {
+                    cursor: pointer; padding: 15px; border-radius: 12px;
+                    width: calc(50% - 5px);
+                    background-color: #fff; box-sizing: border-box; overflow: hidden;
+                    transition: background-color 0.3s ease;
+                }
+                .category-selector:hover {
+                    background-color: #f5f5f5;
+                }
+                .category-selector img {
+                    width: 100%;
+                    height: 220px;
+                    border-radius: 8px; object-fit: cover; margin-bottom: 10px;
+                    transition: transform 0.3s ease;
+                }
+                .category-selector:hover img {
+                    transform: scale(1.05);
+                }
+                .category-selector h3 {
+                    margin-top: 10px; margin-bottom: 5px;
+                    font-size: 16px;
+                    font-weight: normal; color: #333;
+                    text-align: left; font-family: "UCity Pro", sans-serif;
+                }
+                @media (min-width: 601px) {
+                    #accommodation-categories:has(.category-selector:nth-child(1):last-child) .category-selector {
+                        width: calc(100% - 30px);
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
+                }
+                @media (max-width: 600px) {
+                    .category-selector {
+                        width: calc(100% - 20px);
+                        margin-left: 10px; margin-right: 10px;
+                    }
+                    #accommodation-categories {
+                        justify-content: center;
+                    }
+                }
+                .back-to-categories-btn-container {
+                    margin-bottom: 20px; text-align: left;
+                }
+                .back-to-categories-btn {
+                    background: none; border: none; padding: 5px 0; color: #555; cursor: pointer;
+                    font-size: 14px; display: inline-flex; align-items: center;
+                    font-family: "UCity Pro", sans-serif; text-decoration: none; width: auto;
+                    border-radius: 0; font-weight: 500;
+                }
+                .back-to-categories-btn svg {
+                    width: 1em; height: 1em; margin-right: 8px; fill: currentColor;
+                }
+                .back-to-categories-btn:hover {
+                    color: #000; text-decoration: underline; background: none;
+                }
+
+                .step-4 > div:nth-child(4) {
+                    margin-bottom: 25px;
+                }
+                .step-4 > div:nth-child(5) {
+                    margin-bottom: 30px;
+                }
+                .step-4 label {
+                    display: block;
+                    margin-bottom: 8px;
+                    font-weight: 500;
+                    text-align: left !important;
+                }
+                .step-4 input[type="number"],
+                .step-4 textarea {
+                    margin-top: 0;
+                }
+
+                .step-5 > div:nth-child(4) {
+                    margin-bottom: 25px;
+                }
+                .step-5 > div:nth-child(5) {
+                    margin-bottom: 25px;
+                }
+                .step-5 label {
+                    display: block;
+                    margin-bottom: 8px;
+                    font-weight: 500;
+                    text-align: left !important;
+                }
             </style>
             <div class="steps" style="display: flex; gap: 30px; justify-content: space-around; width: 100%;">
                 <div class="step-indicator step-1"><span class="bord2"></span><span class="bord"></span><span style="background-color: rgb(218 213 213 / 0%); border: 1px solid; width: 34px; text-align: center; display: inline-flex; align-items: center; height: 34px; justify-content: center; border-radius: 50%;">1</span></div>
@@ -172,6 +447,7 @@ export const FormExtension = {
         const stepIndicators = formContainer.querySelectorAll(".step-indicator");
         const reviewInfo = formContainer.querySelector("#review-info");
 
+        // Tutte le funzioni originali da qui in poi
         function createCustomCalendar() {
             const calendarContainer = formContainer.querySelector("#customCalendar");
             const dateRangeDisplay = formContainer.querySelector("#dateRangeDisplay");
