@@ -1,9 +1,9 @@
 // File: /General Hotel Extensions/locales/it.js
 export const translations = {
     // Formatting for dynamic room data
-    priceFrom: "da {price} {currency}",
-    capacityText: "{min}-{max} Pers.",
-    sizeText: "{size} m²",
+    priceFrom: "Prezzo da: {price} {currency}",
+    capacityText: "Ideale per: {min}-{max} Persone",
+    sizeText: "Dimensione: {size} m²",
 
     // General UI
     next: "Avanti", back: "Indietro", edit: "Modifica", submit: "Invia", selected: "Selezionato", days: "giorni", day: "giorno",
