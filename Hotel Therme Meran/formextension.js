@@ -1,6 +1,3 @@
-// File: /Hotel Therme Meran/formextension.js
-// VERSIONE FINALE E COMPLETA - CON CSS ORIGINALE RIPRISTINATO
-
 export const FormExtension = {
     name: 'Forms',
     type: 'response',
