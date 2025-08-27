@@ -630,11 +630,11 @@ export const FormExtension = {
                             <input type="checkbox" id="acc-myCheckbox-${item.id}" data-name="${item.displayName}" data-type="${currentAccommodationViewInStep3}"/>
                             <label for="acc-myCheckbox-${item.id}">
                                 <img src="${item.image}" alt="${item.displayName}" />
+                                <br/>
                                 <p style="text-align: left;">
                                     <b>${item.displayName}</b><br/>
                                     ${item.displaySize} <br/>
-                                    ${item.displayCapacity} <br/>
-                                    ${item.displayPrice}
+                                    ${item.displayCapacity}
                                 </p>
                             </label>
                             <div class="room-counter">
