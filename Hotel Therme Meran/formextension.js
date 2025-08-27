@@ -30,14 +30,12 @@ export const FormExtension = {
             const name = room.name[langCode] || room.name['default'];
             const size = T.sizeText.replace('{size}', room.sizeSqm);
             const capacity = T.capacityText.replace('{min}', room.capacity.min).replace('{max}', room.capacity.max);
-            const price = T.priceFrom.replace('{price}', room.priceFromPerPerson).replace('{currency}', D.currency);
 
             return {
                 ...room,
                 displayName: name,
                 displaySize: size,
                 displayCapacity: capacity,
-                displayPrice: price,
             };
         });
 
