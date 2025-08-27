@@ -1,6 +1,5 @@
 export const translations = {
     // Formatting for dynamic room data
-    priceFrom: "Prezzo da: {price} {currency}",
     capacityText: "Ideale per: {min}-{max} Persone",
     sizeText: "Dimensione: {size} m²",
 
