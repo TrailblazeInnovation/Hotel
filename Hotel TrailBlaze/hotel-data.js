@@ -19,7 +19,7 @@ export const hotelData = {
       "category": "suite",
       "name": { "default": "Royal Suite" },
       "image": "https://cm4-production-assets.s3.amazonaws.com/1743412475967-suite-2.png",
-      "sizeSqm": 60,
+      "sizeSqm": 55,
       "capacity": { "min": 1, "max": 4 }
     },
     {
